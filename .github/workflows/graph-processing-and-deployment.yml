@@ -1,0 +1,48 @@
+name: Graph processing and deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  graph-processing-and-deployment:
+    name: Graph processing and deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate turtle syntax of all `.ttl` files
+        run: |
+          python src/python/validate.py
+
+      - name: Run reasoning script to construct an extended graph
+        run: |
+          python src/python/rdf-processing.py \
+            -i rdf/ontology/*.ttl rdf/data/*.ttl rdf/shape/*.ttl \
+            -o rdf/processed/graph.ttl \
+            -r src/sparql/inference-rules/*.sparql src/sparql/processing-rules/03-foag-systems.sparql
+      
+      - name: Clear the old graph on LINDAS PROD
+        run: |
+          curl \
+            --user lindas-foag-system-map:${{ secrets.LINDAS_PROD_PASSWORD }} \
+            -X DELETE \
+            "https://graphdb.lindas.admin.ch/repositories/lindas/rdf-graphs/service?graph=https://lindas.admin.ch/foag/system-map"
+      
+      - name: Upload new turtle file to LINDAS PROD
+        run: |
+          curl \
+            --user lindas-foag-system-map:${{ secrets.LINDAS_PROD_PASSWORD }} \
+            -X POST \
+            -H "Content-Type: text/turtle" \
+            --data-binary @rdf/processed/graph.ttl \
+            "https://graphdb.lindas.admin.ch/repositories/lindas/rdf-graphs/service?graph=https://lindas.admin.ch/foag/system-map"

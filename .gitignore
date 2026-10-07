@@ -26,3 +26,7 @@ glossary.md
 
 # Varia
 .DS_Store
+# System map
+prompt.*
+deprecated/
+*.sparqlbook

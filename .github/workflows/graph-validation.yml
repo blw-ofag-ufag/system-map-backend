@@ -1,0 +1,50 @@
+name: Graph validation tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-ttl-syntax:
+    name: Validate turtle files (`.ttl`) syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate turtle syntax
+        run: python src/python/validate.py
+
+  validate-graph-shacl:
+    name: Validate shape of `rdf/graph.ttl`
+    needs: validate-ttl-syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run owl-based inferencing to construct `graph.ttl`
+        run: |
+          python src/python/rdf-processing.py \
+            -i rdf/ontology/*.ttl rdf/data/*.ttl rdf/shape/*.ttl \
+            -o rdf/processed/graph.ttl \
+            -r src/sparql/inference-rules/*.sparql src/sparql/processing-rules/03-foag-systems.sparql
+      
+      - name: Validate graph shape with SHACL CLI
+        run: pyshacl -s rdf/shape/shape.ttl -f human rdf/processed/graph.ttl

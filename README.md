@@ -1,119 +1,85 @@
-# Semantic web project template
+[![Combine Datasets](https://github.com/blw-ofag-ufag/system-map/actions/workflows/graph-processing-and-deployment.yml/badge.svg)](https://github.com/blw-ofag-ufag/metadata/actions/workflows/combine-datasets.yml)
+[![Combine Datasets](https://github.com/blw-ofag-ufag/system-map/actions/workflows/graph-validation.yml/badge.svg)](https://github.com/blw-ofag-ufag/metadata/actions/workflows/graph-validation.yml)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/blw-ofag-ufag/system-map.svg)](https://github.com/blw-ofag-ufag/system-map/commits)
+[![GitHub issues](https://img.shields.io/github/issues/blw-ofag-ufag/system-map.svg)](https://github.com/blw-ofag-ufag/system-map/issues)
 
-[![CI](https://github.com/blw-ofag-ufag/semantic-web-template/actions/workflows/ci.yml/badge.svg)](https://github.com/blw-ofag-ufag/semantic-web-template/actions/workflows/ci.yml)
-[![GitHub last commit](https://img.shields.io/github/last-commit/blw-ofag-ufag/semantic-web-template.svg)](https://github.com/blw-ofag-ufag/semantic-web-template/commits)
-[![GitHub issues](https://img.shields.io/github/issues/blw-ofag-ufag/semantic-web-template.svg)](https://github.com/blw-ofag-ufag/semantic-web-template/issues)
+<kbd>
+  <a href="https://blw-ofag-ufag.github.io/system-map/index.html" target="_blank"><img src="https://github.com/user-attachments/assets/87d303c3-ed30-42af-888d-aa8abc307da7" /></a>
+</kbd>
 
-For demonstrative purposes, this template repository includes a full semantic web pipeline, including
- 
-1. manual data curation (data files in `src/rdf/data`),
-2. data integration from a relational database (using python, specifically `src/python/pipeline/...`),
-3. OWL-based inferencing (using the ontology in `src/rdf/model.owl.ttl`),
-4. SPARQL-based processing of the graph (using rules in `src/sparql/processing/...`)
-5. SHACL-based graph data validation (using `src/rdf/shapes/model.shacl.ttl`)
-6. a even more customizable Pytest test suite,
-7. uploading of the final graph to LINDAS
-8. a documentation building pipeline using Quarto
+# 🧭 A system map for the Federal Office for Agriculture
 
-Specifically, this demo project creates a graph of around 120k triples from the Chinook database, makes some inferences, processes and validates the graph.
+This repository is set up to gather and visualize information about IT systems, the data those contain and their operating organizations in the Swiss agri-food sector.
+You can visually explore this work on the following pages:
 
-> [!IMPORTANT]
-> After using this template repository for a project, you probably want to delete/overwrite any of the aforementioned turtle/sparql/python files.
+- [**DigiAgriFood system map**](https://blw-ofag-ufag.github.io/system-map/index.html?lang=de), a visualization of the system map knowledge graph that specifically shows the classes organization, system and information unit.
+- [**Circular system map**](https://blw-ofag-ufag.github.io/system-map/varia/circle), an alternative visualization in circular arrangement.
+- [**Table on a federal demo site**](https://blw-ofag-ufag.github.io/system-map/varia/table/) that shows (a) how quickly we can query LINDAS data and perform some computation and (b) how this information can be displayed on a (federal) webpage.
+- [**Standalone search site**](https://blw-ofag-ufag.github.io/system-map/varia/search) to help you find an entity in case you're lost.
+- [**Tiny data catalog demo**](https://blw-ofag-ufag.github.io/system-map/varia/data-catalog) to visualize datasets more conventionally.
+- [**Nanoid generator**](https://blw-ofag-ufag.github.io/system-map/varia/nanoid) just for internal use.
 
-## Development tools
+If instead you are interested in the *actual* data, you can have a look at the following folders:
 
-This template uses a variety of tools to ensure robust data integration, reasoning, validation, and documentation.
+- [**Ontology files**](https://github.com/blw-ofag-ufag/system-map/rdf/ontology/) contains information about how the data is structured. You can visualize it [using WebVOWL](https://service.tib.eu/webvowl/#iri=https://raw.githubusercontent.com/blw-ofag-ufag/system-map/refs/heads/main/rdf/processed/ontology.ttl).[^1]
+- [**Data files**](https://github.com/blw-ofag-ufag/system-map/blob/main/rdf/data/) contains information about the organizations, systems and information units themselves.
 
-- [HermiT](http://www.hermit-reasoner.com/): An OWL reasoner used for logical reasoning and inferring new knowledge from the ontology and data.
-- [Pytest](https://docs.pytest.org/): A testing framework used to run syntax checks and evaluate SHACL validation reports.
-- [PySHACL](https://github.com/RDFLib/pySHACL): A Python engine used to validate the generated RDF graphs against SHACL shape definitions.
-- [ROBOT](http://robot.obolibrary.org/): CLI tool used to merge, reason, and process RDF graphs.
-- [RDFLib](https://rdflib.readthedocs.io/): A Python library used to parse, serialize, and programmatically manipulate RDF data.
-- [Quarto](https://quarto.org/): An open-source publishing system used for rendering the documentation.
+[^1]: Note that because WebVOWL expects rdfs:label and rdfs:comment and doesn't recognize the similar schema.org properties, we bind a separately written file here.
 
-## Semantic web standards
+# 🔎 Subgraphs
 
-The project relies on core W3C Semantic Web standards to model, link, and validate data effectively.
+Subgraphs of the system map allow inspecting one part of the overall system without being disturbed by the multitude of connected nodes around it. Have a look at the subgraphs for
 
-- [RDF (Resource Description Framework)](https://www.w3.org/RDF/): The foundational data model used to represent information as a directed graph of triples.
-- [OWL (Web Ontology Language)](https://www.w3.org/OWL/): Used to define the formal semantics, classes, and properties of the ontology.
-- [SHACL (Shapes Constraint Language)](https://www.w3.org/TR/shacl/): Used to declare structural constraints and validate the integrity of the RDF data.
-- [SPARQL](https://www.w3.org/TR/sparql11-overview/): The standard query language used to extract, transform, and post-process the RDF graphs.
-- [Turtle](https://www.w3.org/TR/turtle/): The primary, human-readable serialization format used for all RDF files in this repository.
+- [MARS III](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=SaAA0IQkj02jgbLEb)
+- [digiFLUX](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=Si8UnIQkj02jgbLEb)
+- [Acontrol](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=Sa9PcqsvnAMuiYCjx)
+- [AGIS](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=SAAAX37V802JgbLEb)
+- [NTGS](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=SH7U7SUsgqWmNqXA5)
 
-## Build and deployment orchestration
+If you want a always up-to-date list of all subgraphs and their size, you can [query the system map accordingly](https://s.zazuko.com/221bFQW).
 
-To streamline the workflow, this project uses `make` as its primary orchestration tool, automating everything from setup to deployment. The `Makefile` defines a single entry point to sequentially execute data integration, logical reasoning, SPARQL updates, SHACL validation, testing, and documentation rendering. `make help` lists all available targets with a short description.
+# ⚙️ Examples of SPARQL queries from LINDAS
 
-1. Add variables to `.env` (for local execution)
+The DigiAgriFoodCH System Map graph on LINDAS can be queried to return various tables as *data products* from one source. Here are some examples:
 
-    ``` sh
-    USER=********
-    PASSWORD=********
-    GRAPH=********
-    ENDPOINT=********
-    ```
+- [Is there (sensitive) personal data in a system?](https://s.zazuko.com/xTGEjj)
+- [Label and comment length for all objects in any language](https://s.zazuko.com/3AANqKA)
+- [Private sector system engagement](https://s.zazuko.com/4AqBRH)
 
-2. Set up dependencies:
+You may find more examples [in this directory](sparql/queries/)
 
-    ``` sh
-    make setup
-    ```
+# 🔄 Run the data processing pipeline
 
-3. Run the build process:
+To run the data processing and upload to LINDAS, follow these steps:
 
-    ``` sh
-    make
-    ```
+1. Add variables to `.env`
 
-    The default target runs `make test` followed by `make docs`.
+  ``` bash
+  USER=lindas-foag-system-map
+  PASSWORD=********
+  GRAPH=https://lindas.admin.ch/foag/crops
+  ENDPOINT=https://stardog.cluster.ldbar.ch/lindas
+  ```
 
-    **Run tests**
+2. Start a virtual environment and install libraries:
 
-    To build the graph (data integration, reasoning, SPARQL processing and SHACL validation) and run the Pytest suite, run:
+  ``` bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows use: venv\Scripts\activate
+  pip install -r requirements.txt
+  ```
 
-    ``` sh
-    make test
-    ```
+3. Execute `upload.bash`
 
-    **Build documentation**
+  ``` bash
+  bash upload.bash
+  ```
 
-    To render the model UML diagram, and builds the Quarto website into `build/docs/`:
-    
-    ``` sh
-    make docs
-    ```
-    
-    Note that this step requires [Quarto](https://quarto.org/) to be installed.
+4. Run all tests
 
-4. Upload the final data to [LINDAS](https://lindas.admin.ch/), the linked data service by the federal archives:
+  ``` bash
+  pytest
+  ```
 
-    **Automatic deployment**
-
-    The deployment is automatically triggered via GitHub Actions whenever changes are pushed or merged to the `main` branch. 
-    To enable this, configure the environment variables listed in step 1 as **repository secrets** in your GitHub project settings (`Settings > Secrets and variables > Actions > New repository secret`):
-
-    **Manual deployment**
-
-    You can still upload the final data manually by running:
-
-    ``` sh
-    make publish
-    ```
-
-    By default, the publication process starts by deleting any pre-existing data in the provided named graph on LINDAS.
-    You can also *just* delete any published data by running:
-
-    ``` sh
-    make delete
-    ```
-
-5. *If* you want to clean all written files:
-
-    ``` sh
-    make clean
-    ```
-
-## Contact
-
-Do you have questions? Please do not hesitate to contact us at [agridata.ch@blw.admin.ch](mailto:agridata.ch@blw.admin.ch), open an [issue in this repository](../../issues), or directly submit a [Request for Change (RFC) via the official eCH feedback form](https://ech.ch/de/ech-standards/standardisierungsprozess/request-change-rfc).
+You can find the rest of the technical documentation [on the Wiki of this repository](https://github.com/blw-ofag-ufag/system-map/wiki). There, the ontology, the data processing pipeline and the visualization tool are explained in much more detail.
