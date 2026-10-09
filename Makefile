@@ -52,7 +52,7 @@ NC               := \033[0m
 .PHONY: all help robot test docs clean check-python venv install-dependencies setup build delete publish stamp-metadata generate-shacl-docs generate-glossary-docs
 
 # Default target
-all: test docs ## Run the tests and build the documentation (default)
+all: test ## Run the tests (default)
 
 # ==============================================================================
 # HELP
