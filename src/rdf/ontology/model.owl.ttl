@@ -581,8 +581,7 @@ schema:memberOf a owl:ObjectProperty ;
     rdfs:range schema:Organization ;
     owl:inverseOf schema:member .
 
-schema:parentOrganization a owl:ObjectProperty,
-        owl:TransitiveProperty ;
+schema:parentOrganization a owl:ObjectProperty ;
     schema:name "gehört zu"@de,
         "belongs to"@en,
         "fait partie de"@fr,
@@ -602,8 +601,7 @@ schema:parentOrganization a owl:ObjectProperty,
     rdfs:domain schema:Organization ;
     rdfs:range schema:Organization .
 
-schema:subOrganization a owl:ObjectProperty,
-        owl:TransitiveProperty ;
+schema:subOrganization a owl:ObjectProperty ;
     schema:name "beinhaltet Suborganisation"@de,
         "contains suborganization"@en,
         "contient une sous-organisation"@fr,
@@ -945,7 +943,7 @@ systemmap: a owl:Ontology ;
         "Ontologia della mappa del sistema DigiAgriFoodCH"@it ;
     owl:versionInfo "0.4.0" .
 
-dcterms:hasPart a owl:TransitiveProperty ;
+dcterms:hasPart a owl:ObjectProperty ;
     schema:name "hat Teil"@de,
         "has part"@en,
         "a pour partie"@fr,
@@ -964,7 +962,7 @@ dcterms:hasPart a owl:TransitiveProperty ;
         """@it ;
     owl:inverseOf dcterms:isPartOf .
 
-dcterms:isPartOf a owl:TransitiveProperty ;
+dcterms:isPartOf a owl:ObjectProperty ;
     schema:name "ist Teil von"@de,
         "is part of"@en,
         "fait partie de"@fr,
