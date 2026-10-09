@@ -28,7 +28,7 @@ WHERE {
     {
       ?organization schema:address ?addrNode .
     } UNION {
-      ?organization owl:sameAs ?sameOrganization .
+      ?organization owl:sameAs|schema:sameAs ?sameOrganization .
       ?sameOrganization schema:address ?addrNode .
     }
     ?addrNode schema:streetAddress ?street ;

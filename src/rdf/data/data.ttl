@@ -4471,7 +4471,7 @@ systemmap:S1JvEmah9Tl0698au a systemmap:FederalOrganization ;
         "The Directorate for Digitalization and Data Management is committed to ensuring that digital transformation and data management in the agricultural and food sector are promoted in a goal-oriented and forward-looking manner."@en,
         "La Direction de la numérisation et de la gestion des données s'engage à ce que la transformation numérique et la gestion des données dans le secteur agricole et alimentaire soient encouragées de manière ciblée et tournée vers l'avenir."@fr,
         "La Direzione per la digitalizzazione e la gestione dei dati si impegna a garantire che la trasformazione digitale e la gestione dei dati nel settore agricolo e alimentare siano promosse in modo mirato e orientato al futuro."@it ;
-    owl:sameAs staatskalender:20034677 ;
+    schema:sameAs staatskalender:20034677 ;
     systemmap:abbreviation "DBDD"@de,
         "DBDD"@en,
         "DBDD"@fr,
@@ -4483,7 +4483,7 @@ systemmap:S29aVziwo4wUgF79o a systemmap:FederalOrganization ;
         "Exploitation des applications spécialisées"@fr,
         "Esercizio delle applicazioni specialistiche"@it ;
     schema:parentOrganization systemmap:S6ybKol71qEEkISAr ;
-    owl:sameAs staatskalender:20039413 .
+    schema:sameAs staatskalender:20039413 .
 
 systemmap:S2QF8BOhJczC0PGhe a systemmap:FederalOrganization ;
     schema:name "Staatssekretariat für Wirtschaft"@de,
@@ -4510,7 +4510,7 @@ systemmap:S2QF8BOhJczC0PGhe a systemmap:FederalOrganization ;
         Promuove una crescita economica sostenibile e crea le necessarie condizioni quadro normative ed economiche.
         Inoltre, coordina le relazioni economiche della Svizzera a livello nazionale e internazionale.
         """@it ;
-    owl:sameAs staatskalender:10008856 ;
+    schema:sameAs staatskalender:10008856 ;
     systemmap:abbreviation "SECO"@de,
         "SECO"@en,
         "SECO"@fr,
@@ -4525,7 +4525,7 @@ systemmap:S2tIdqNmt3uS5Ny6D a systemmap:FederalOrganization ;
         "The Federal Office for Agriculture (FOAG) is the Confederation's competence centre for all core issues relating to the agricultural sector."@en,
         "L'Office fédéral de l'agriculture (OFAG) est le centre de compétence de la Confédération pour toutes les questions essentielles liées au secteur agricole."@fr,
         "L'Ufficio federale dell'agricoltura (UFAG) è il centro di competenza della Confederazione per tutte le questioni fondamentali relative al settore agricolo."@it ;
-    owl:sameAs <https://ld.admin.ch/office/VI.1.5>,
+    schema:sameAs <https://ld.admin.ch/office/VI.1.5>,
         staatskalender:10008654 ;
     systemmap:abbreviation "BLW"@de,
         "FOAG"@en,
@@ -4553,7 +4553,7 @@ systemmap:S3Rf79NI3Pm1rfOlN a systemmap:FederalOrganization ;
         Il compito principale dell'USAV è promuovere attivamente la salute e il benessere di esseri umani e animali.  
         I pilastri principali sono la sicurezza alimentare e un'alimentazione sana per gli esseri umani, nonché il benessere e la salute degli animali.  
         """@it ;
-    owl:sameAs staatskalender:10008671 ;
+    schema:sameAs staatskalender:10008671 ;
     systemmap:abbreviation "BLV"@de,
         "FSVO"@en,
         "OSAV"@fr,
@@ -4565,7 +4565,7 @@ systemmap:S5bXMn9v3OzOo48f a systemmap:FederalOrganization ;
         "Secteur Politique agricole et développement de stratégies"@fr,
         "Settore Politica agricola e sviluppo di strategie"@it ;
     schema:parentOrganization systemmap:SqeNr0H0FGL6Uv5Rr ;
-    owl:sameAs staatskalender:10010636 .
+    schema:sameAs staatskalender:10010636 .
 
 systemmap:S6ybKol71qEEkISAr a systemmap:FederalOrganization ;
     schema:name "Fachanwendungen"@de,
@@ -4589,7 +4589,7 @@ systemmap:S6ybKol71qEEkISAr a systemmap:FederalOrganization ;
         Il settore Applicazioni specialistiche dell'ISCeco sviluppa, mantiene e gestisce le applicazioni specialistiche degli uffici del DEFR.
         Comprende i team Gestione delle applicazioni specialistiche, Sviluppo del software, Esercizio delle applicazioni specialistiche e OCC ISCeco.
         """@it ;
-    owl:sameAs staatskalender:10003238 .
+    schema:sameAs staatskalender:10003238 .
 
 systemmap:S8WjMkerPw98ZkWA7 a systemmap:FederalOrganization ;
     schema:name "Bundesamt für Gesundheit"@de,
@@ -4616,7 +4616,7 @@ systemmap:S8WjMkerPw98ZkWA7 a systemmap:FederalOrganization ;
         Si impegna per un sistema sanitario efficiente e accessibile.
         Inoltre, l'UFSP rappresenta la Svizzera nelle questioni di salute pubblica a livello internazionale.
         """@it ;
-    owl:sameAs staatskalender:10008684 ;
+    schema:sameAs staatskalender:10008684 ;
     systemmap:abbreviation "BAG"@de,
         "FOPH"@en,
         "OFSP"@fr,
@@ -4632,12 +4632,12 @@ systemmap:SAz9l8Ty8MnLTPN5 a systemmap:FederalOrganization ;
         "Groupe Sécurité intégrale"@fr,
         "Gruppo Sicurezza integrale"@it ;
     schema:parentOrganization systemmap:SntetIp00hrUGsnj5 ;
-    owl:sameAs staatskalender:20050956 .
+    schema:sameAs staatskalender:20050956 .
 
 systemmap:SE8y4MuFWW5BKqK92 a systemmap:FederalOrganization ;
     schema:name "Gruppe Agrarinformationssystem AGIS"@de ;
     schema:parentOrganization systemmap:SaVyVVsIDkiDMtQq4 ;
-    owl:sameAs staatskalender:21000496 .
+    schema:sameAs staatskalender:21000496 .
 
 systemmap:SEdKz3w2AGJD0Xxh a systemmap:FederalOrganization ;
     schema:name "Agroscope-Rat"@de,
@@ -4650,7 +4650,7 @@ systemmap:SFAwQAwxBcNnaURgO a systemmap:FederalOrganization ;
     schema:name "Fachbereich Datenraum und Datenmanagement"@de ;
     schema:parentOrganization systemmap:S1JvEmah9Tl0698au ;
     systemmap:abbreviation "FBDD"@de ;
-    owl:sameAs staatskalender:21000494 .
+    schema:sameAs staatskalender:21000494 .
 
 systemmap:SFKPRpdGa5UISiJlx a systemmap:FederalOrganization ;
     schema:name "Bundesamt für Zoll und Grenzsicherheit"@de,
@@ -4677,7 +4677,7 @@ systemmap:SFKPRpdGa5UISiJlx a systemmap:FederalOrganization ;
         Gli esperti dell'UDSC verificano che le merci siano dichiarate correttamente, stabiliscono imposte e tasse e garantiscono il rispetto di numerose normative per proteggere la popolazione e l'economia.  
         In collaborazione con autorità partner nazionali e internazionali, l'UDSC svolge anche compiti in materia di sicurezza e migrazione alle frontiere, nel trasporto ferroviario e negli aeroporti.  
         """@it ;
-    owl:sameAs staatskalender:10008659 ;
+    schema:sameAs staatskalender:10008659 ;
     systemmap:abbreviation "BAZG"@de,
         "FOCBS"@en,
         "OFDF"@fr,
@@ -4713,7 +4713,7 @@ systemmap:SFL2DYxeNnVaFsv64 a systemmap:FederalOrganization ;
         "FBPG"@en,
         "FBPG"@fr,
         "FBPG"@it ;
-    owl:sameAs staatskalender:10003240 .
+    schema:sameAs staatskalender:10003240 .
 
 systemmap:SG8fSveeGZNcYzoUN a systemmap:FederalOrganization ;
     schema:name "Fachbereich Meliorationen"@de ;
@@ -4743,7 +4743,7 @@ systemmap:SGDvpIuyJO7p6JdrU a systemmap:FederalOrganization ;
         """
         Il settore Applicazioni GEVER dell'ISCeco sviluppa e gestisce GEVER, il servizio standard della Confederazione per la gestione elettronica degli affari.
         """@it ;
-    owl:sameAs staatskalender:10002475 .
+    schema:sameAs staatskalender:10002475 .
 
 systemmap:SIo1a8l3IT4lBqBJE a systemmap:FederalOrganization ;
     schema:name "Agroscope"@de,
@@ -4771,7 +4771,7 @@ systemmap:SIo1a8l3IT4lBqBJE a systemmap:FederalOrganization ;
         Affiliato all'Ufficio federale dell'agricoltura, conduce ricerche lungo l'intera catena del valore del settore agricolo e alimentare, coprendo argomenti che vanno dalla produzione vegetale e dall'allevamento fino agli alimenti e alla nutrizione.
         Oltre alla ricerca, Agroscope fornisce consulenza politica, scambio di conoscenze e trasferimento tecnologico per sostenere un sistema agroalimentare competitivo e multifunzionale in Svizzera.
         """@it ;
-    owl:sameAs staatskalender:10003634 .
+    schema:sameAs staatskalender:10003634 .
 
 systemmap:SJFcc0xsgJmHYGgDv a systemmap:FederalOrganization ;
     schema:name "Direktion"@de ;
@@ -4798,7 +4798,7 @@ systemmap:SMEuPWk5l3mWZtRgT a systemmap:FederalOrganization ;
         "Développement de logiciels"@fr,
         "Sviluppo del software"@it ;
     schema:parentOrganization systemmap:S6ybKol71qEEkISAr ;
-    owl:sameAs staatskalender:20039412 .
+    schema:sameAs staatskalender:20039412 .
 
 systemmap:SMnIieexlpOQHsGvN a systemmap:FederalOrganization ;
     schema:name "Genetische Ressourcen, Produktionssicherheit und Futtermittel"@de,
@@ -4830,7 +4830,7 @@ systemmap:SMnIieexlpOQHsGvN a systemmap:FederalOrganization ;
         Inoltre, gestisce la risposta a incidenti e crisi legati a eventi ABCN e coordina il controllo dei mangimi e lo sviluppo delle normative pertinenti.  
         Un altro punto focale è la salute animale, in particolare attraverso la promozione di innovazioni, strategie contro la resistenza agli antibiotici e l’approccio One Health.  
         """@it ;
-    owl:sameAs staatskalender:20011808 ;
+    schema:sameAs staatskalender:20011808 ;
     systemmap:abbreviation "FBGRT"@de,
         "FBGRT"@en,
         "FBGRT"@fr,
@@ -4857,7 +4857,7 @@ systemmap:SNbhMvt3Btta1U1d6 a systemmap:FederalOrganization ;
         In qualità di centro nazionale di competenza per la statistica pubblica, l'Ufficio federale di statistica (UST) è il nodo centrale dell'ecosistema dei dati in Svizzera.
         Supporta e rafforza l'intera amministrazione pubblica nella gestione dei dati.
         """@it ;
-    owl:sameAs staatskalender:10008742 ;
+    schema:sameAs staatskalender:10008742 ;
     systemmap:abbreviation "BFS"@de,
         "FSO"@en,
         "OFS"@fr,
@@ -4870,7 +4870,7 @@ systemmap:SNywnS0Z1yfhpYlp a systemmap:FederalOrganization ;
         "Secteur Droit et procédures"@fr,
         "Settore Diritto e procedure"@it ;
     schema:parentOrganization systemmap:SntetIp00hrUGsnj5 ;
-    owl:sameAs staatskalender:10003207 .
+    schema:sameAs staatskalender:10003207 .
 
 systemmap:SPRJAmR2zrnkDULS a systemmap:FederalOrganization ;
     schema:name "Fachbereich Landmanagement und Infrastrukturen"@de,
@@ -4878,14 +4878,14 @@ systemmap:SPRJAmR2zrnkDULS a systemmap:FederalOrganization ;
         "Secteur Gestion du territoire et infrastructures"@fr,
         "Settore Gestione del territorio e infrastrutture"@it ;
     schema:parentOrganization systemmap:SsJ9OfSkUgPD8dkz3 ;
-    owl:sameAs staatskalender:10003231 .
+    schema:sameAs staatskalender:10003231 .
 
 systemmap:SQbNLiw8h9MnSXuyo a systemmap:FederalOrganization ;
     schema:name "Fachbereich Informatik und Digitalisierung"@de,
         "Secteur Informatique et numérisation"@fr,
         "Settore Informatica e digitalizzazione"@it ;
     schema:parentOrganization systemmap:S1JvEmah9Tl0698au ;
-    owl:sameAs staatskalender:10003237 ;
+    schema:sameAs staatskalender:10003237 ;
     systemmap:abbreviation "FBID"@de .
 
 systemmap:SRu4rav1Rlm2mUMWr a systemmap:FederalOrganization ;
@@ -4910,7 +4910,7 @@ systemmap:SRu4rav1Rlm2mUMWr a systemmap:FederalOrganization ;
         I principali compiti dell'Unità specializzata Importazione ed Esportazione (FBEA) comprendono la gestione delle contingenti tariffari, il rilascio delle autorizzazioni all'importazione, l'assegnazione delle quote di contingente, il coordinamento con la Direzione Generale delle Dogane e l'esecuzione di controlli interni ed esterni.
         Inoltre, il FBEA si occupa della gestione delle tasse, del funzionamento e della manutenzione delle applicazioni specializzate, dell'elaborazione delle domande nel traffico di perfezionamento attivo e della consulenza all'esportazione.
         """@it ;
-    owl:sameAs staatskalender:10003223 ;
+    schema:sameAs staatskalender:10003223 ;
     systemmap:abbreviation "FBEA"@de,
         "SIE"@fr .
 
@@ -4941,7 +4941,7 @@ systemmap:SVZJz682iwRjVx5wp a systemmap:FederalOrganization ;
         L'ISCeco gestisce circa 70 applicazioni specialistiche, tra cui Agate ed EasyGov, e ha sede nel campus Meielen a Zollikofen.
         """@it ;
     schema:url <https://www.isceco.admin.ch/> ;
-    owl:sameAs staatskalender:10009853 ;
+    schema:sameAs staatskalender:10009853 ;
     systemmap:abbreviation "ISCeco"@de,
         "ISCeco"@en,
         "ISCeco"@fr,
@@ -4973,7 +4973,7 @@ systemmap:SW5qcGjvfz5WXYTVl a systemmap:FederalOrganization ;
         Sviluppa linee guida e monitora il rispetto degli standard per proteggere la salute della popolazione.
         Inoltre, informa il pubblico su temi nutrizionali e collabora con partner nazionali e internazionali.
         """@it ;
-    owl:sameAs staatskalender:20035162 .
+    schema:sameAs staatskalender:20035162 .
 
 systemmap:SYjW88WfrLk7M8Cy a systemmap:FederalOrganization ;
     schema:name "Fachbereich Qualitäts- und Absatzförderung"@de,
@@ -4981,7 +4981,7 @@ systemmap:SYjW88WfrLk7M8Cy a systemmap:FederalOrganization ;
         "Secteur Promotion de la qualité et des ventes"@fr,
         "Settore Promozione della qualità e delle vendite"@it ;
     schema:parentOrganization systemmap:ShkERubSSrICbOshu ;
-    owl:sameAs staatskalender:10003222 .
+    schema:sameAs staatskalender:10003222 .
 
 systemmap:SZ48VGp6B0Q0XXEc a systemmap:FederalOrganization ;
     schema:name "Fachbereich Kommunikation und Sprachdienste"@de,
@@ -4989,7 +4989,7 @@ systemmap:SZ48VGp6B0Q0XXEc a systemmap:FederalOrganization ;
         "Secteur Communication et services linguistiques"@fr,
         "Settore Comunicazione e servizi linguistici"@it ;
     schema:parentOrganization systemmap:SqeNr0H0FGL6Uv5Rr ;
-    owl:sameAs staatskalender:10003197 .
+    schema:sameAs staatskalender:10003197 .
 
 systemmap:SaVyVVsIDkiDMtQq4 a systemmap:FederalOrganization ;
     schema:name "Fachbereich Agrardaten und Marktanalysen"@de,
@@ -4999,7 +4999,7 @@ systemmap:SaVyVVsIDkiDMtQq4 a systemmap:FederalOrganization ;
     systemmap:abbreviation "FBAM"@de ;
     systemmap:hasLegalBasis LwG:art_27,
         <https://www.fedlex.admin.ch/eli/cc/1999/71> ;
-    owl:sameAs staatskalender:10003210 .
+    schema:sameAs staatskalender:10003210 .
 
 systemmap:SbuROz7XWr5iX3cMd a systemmap:FederalOrganization ;
     schema:name "Human Resources"@de,
@@ -5007,7 +5007,7 @@ systemmap:SbuROz7XWr5iX3cMd a systemmap:FederalOrganization ;
         "Ressources humaines"@fr,
         "Risorse umane"@it ;
     schema:parentOrganization systemmap:SVZJz682iwRjVx5wp ;
-    owl:sameAs staatskalender:20048302 .
+    schema:sameAs staatskalender:20048302 .
 
 systemmap:ScVJ3tNOuwZ1juXuE a systemmap:FederalOrganization ;
     schema:name "Fachbereich Tierische Produkte und Tierzucht"@de,
@@ -5019,7 +5019,7 @@ systemmap:ScVJ3tNOuwZ1juXuE a systemmap:FederalOrganization ;
         "The design and further development of agricultural policy framework conditions in the field of animal products and breeding are among the core tasks of the SPAE. Furthermore, it ensures the smooth and correct implementation of the relevant provisions of the Agricultural Act and the following Federal Council ordinances: Milk Price Support Ordinance, Slaughter Livestock Ordinance, Egg Ordinance, Ordinance on Identitas AG and the Animal Traffic Database, Disposal Contribution Ordinance, Agricultural Declaration Ordinance, Maximum Stock Ordinance, Ordinance on Sector and Producer Organizations, Sheep Wool Ordinance, and Breeding Ordinance."@en,
         "La conception et le développement des cadres politiques agricoles dans le domaine des produits animaux et de l'élevage font partie des missions principales du SPAE. Il veille également à la mise en œuvre correcte et sans heurts des dispositions pertinentes de la loi agricole et des ordonnances suivantes du Conseil fédéral : Ordonnance sur le soutien des prix du lait, Ordonnance sur le bétail de boucherie, Ordonnance sur les œufs, Ordonnance sur Identitas AG et la base de données sur le trafic des animaux, Ordonnance sur la contribution à l'élimination, Ordonnance sur la déclaration agricole, Ordonnance sur le nombre maximal d'animaux, Ordonnance sur les organisations de filières et de producteurs, Ordonnance sur la laine de mouton et Ordonnance sur l'élevage."@fr,
         "La progettazione e lo sviluppo del quadro politico agricolo nel settore dei prodotti animali e dell'allevamento sono tra i compiti principali dello SPAA. Inoltre, garantisce l'attuazione fluida e corretta delle disposizioni pertinenti della legge sull'agricoltura e delle seguenti ordinanze del Consiglio federale: Ordinanza sul sostegno del prezzo del latte, Ordinanza sul bestiame da macello, Ordinanza sulle uova, Ordinanza su Identitas AG e la banca dati sul traffico degli animali, Ordinanza sul contributo per lo smaltimento, Ordinanza sulla dichiarazione agricola, Ordinanza sul numero massimo di capi, Ordinanza sulle organizzazioni di settore e di produttori, Ordinanza sulla lana di pecora e Ordinanza sulla selezione degli animali."@it ;
-    owl:sameAs staatskalender:10003217 ;
+    schema:sameAs staatskalender:10003217 ;
     systemmap:abbreviation "FBTT"@de,
         "FBTT"@en,
         "SPAE"@fr,
@@ -5054,7 +5054,7 @@ systemmap:ScoeXHl4TgJbke1Yf a systemmap:FederalOrganization ;
         nei settori della sicurezza dell'approvvigionamento, del paesaggio culturale, dei contributi transitori,  
         delle zone e aree agricole, della terminologia agricola e del riconoscimento delle aziende e dei modelli aziendali.  
         """@it ;
-    owl:sameAs staatskalender:10003228 ;
+    schema:sameAs staatskalender:10003228 ;
     systemmap:abbreviation "FBDG"@de,
         "FBDG"@en,
         "FBDG"@fr,
@@ -5066,7 +5066,7 @@ systemmap:Sd3CQWsy3YrWpTCF a systemmap:FederalOrganization ;
         "Secteur Économie agraire, aspects sociaux et développement régional"@fr,
         "Settore Economia agricola, aspetti sociali e sviluppo regionale"@it ;
     schema:parentOrganization systemmap:SsJ9OfSkUgPD8dkz3 ;
-    owl:sameAs staatskalender:10003233 .
+    schema:sameAs staatskalender:10003233 .
 
 systemmap:SfX7h09MplFWwb4LK a systemmap:FederalOrganization ;
     schema:name "Fachbereich nachhaltiger Pflanzenschutz und Sorten"@de,
@@ -5098,7 +5098,7 @@ systemmap:SfX7h09MplFWwb4LK a systemmap:FederalOrganization ;
         "FBNPS"@en,
         "FBNPS"@fr,
         "FBNPS"@it ;
-    owl:sameAs staatskalender:10003242 .
+    schema:sameAs staatskalender:10003242 .
 
 systemmap:SfboATOJndLpbzUm a systemmap:FederalOrganization ;
     schema:name "Fachbereich Betriebsentwicklung und Bodenrecht"@de,
@@ -5106,7 +5106,7 @@ systemmap:SfboATOJndLpbzUm a systemmap:FederalOrganization ;
         "Secteur Développement des exploitations et droit foncier"@fr,
         "Settore Sviluppo delle aziende e diritto fondiario"@it ;
     schema:parentOrganization systemmap:SsJ9OfSkUgPD8dkz3 ;
-    owl:sameAs staatskalender:10003232 .
+    schema:sameAs staatskalender:10003232 .
 
 systemmap:Sg6T9dU4npL98bHrb a systemmap:FederalOrganization ;
     schema:name "Abteilung Tiergesundheit und Tierschutz"@de,
@@ -5134,7 +5134,7 @@ systemmap:Sg6T9dU4npL98bHrb a systemmap:FederalOrganization ;
         Collabora strettamente con le organizzazioni di allevatori e gli organi di esecuzione, basandosi su fondamenti scientifici.
         Il dipartimento è suddiviso in sei settori specialistici: prevenzione delle epizoozie, lotta contro le epizoozie, medicinali veterinari, allevamento degli animali da reddito, protezione degli animali domestici e selvatici, nonché sperimentazione animale.
         """@it ;
-    owl:sameAs staatskalender:20035164 .
+    schema:sameAs staatskalender:20035164 .
 
 systemmap:SgcQvG4DiaNnZmA2z a systemmap:FederalOrganization ;
     schema:name "Eidgenössisches Departement für Wirtschaft, Bildung und Forschung"@de,
@@ -5162,7 +5162,7 @@ systemmap:SgcQvG4DiaNnZmA2z a systemmap:FederalOrganization ;
         Del DEFR fanno parte, tra gli altri, la Segreteria di Stato dell'economia (SECO), la Segreteria di Stato per la formazione, la ricerca e l'innovazione (SEFRI) e l'Ufficio federale dell'agricoltura (UFAG).
         """@it ;
     schema:url <https://www.wbf.admin.ch/> ;
-    owl:sameAs staatskalender:10000032 ;
+    schema:sameAs staatskalender:10000032 ;
     systemmap:abbreviation "WBF"@de,
         "EAER"@en,
         "DEFR"@fr,
@@ -5179,7 +5179,7 @@ systemmap:ShkERubSSrICbOshu a systemmap:FederalOrganization ;
         "La Direction des marchés et des affaires internationales s'efforce de garantir que l'agriculture tire la plus grande valeur ajoutée possible de la vente de ses produits. Elle soutient les mesures d'auto-assistance, l'innovation et la commercialisation des différentes filières. De plus, cette direction est impliquée dans des organisations internationales telles que l'Organisation des Nations unies pour l'alimentation et l'agriculture (FAO) et l'Organisation mondiale du commerce (OMC)."@fr,
         "La Direzione dei mercati e degli affari internazionali si adopera affinché l'agricoltura ottenga il massimo valore aggiunto possibile dalla vendita dei suoi prodotti. Sostiene misure di auto-aiuto, innovazione e commercializzazione nei vari settori. Inoltre, questa direzione è coinvolta in organizzazioni internazionali come l'Organizzazione delle Nazioni Unite per l'alimentazione e l'agricoltura (FAO) e l'Organizzazione mondiale del commercio (OMC)."@it ;
     systemmap:abbreviation "DBMI"@de ;
-    owl:sameAs staatskalender:10003213 .
+    schema:sameAs staatskalender:10003213 .
 
 systemmap:SieZtzwlMAxzFY1op a systemmap:FederalOrganization ;
     schema:name "Business Intelligence Competence Center"@de,
@@ -5218,7 +5218,7 @@ systemmap:SkXNnz5XU1uiiA6u a systemmap:FederalOrganization ;
         "Secteur Personnel"@fr,
         "Settore Personale"@it ;
     schema:parentOrganization systemmap:SntetIp00hrUGsnj5 ;
-    owl:sameAs staatskalender:10003199 .
+    schema:sameAs staatskalender:10003199 .
 
 systemmap:SlGI80HwqsEiDIEK a systemmap:FederalOrganization ;
     schema:name "Fachbereich Finanzen und Beschaffung"@de,
@@ -5226,7 +5226,7 @@ systemmap:SlGI80HwqsEiDIEK a systemmap:FederalOrganization ;
         "Secteur Finances et acquisitions"@fr,
         "Settore Finanze e acquisti"@it ;
     schema:parentOrganization systemmap:SntetIp00hrUGsnj5 ;
-    owl:sameAs staatskalender:10003209 .
+    schema:sameAs staatskalender:10003209 .
 
 systemmap:Sm8b6HX6P2QM8BGb a systemmap:FederalOrganization ;
     schema:name "Fachbereich Revisionen und Inspektionen"@de,
@@ -5234,7 +5234,7 @@ systemmap:Sm8b6HX6P2QM8BGb a systemmap:FederalOrganization ;
         "Secteur Révisions et inspections"@fr,
         "Settore Revisioni e ispezioni"@it ;
     schema:parentOrganization systemmap:SqeNr0H0FGL6Uv5Rr ;
-    owl:sameAs staatskalender:10009826 .
+    schema:sameAs staatskalender:10009826 .
 
 systemmap:SnRV57gqFPkFrOFa a systemmap:FederalOrganization ;
     schema:name "Fachbereich Pflanzliche Produkte"@de,
@@ -5242,7 +5242,7 @@ systemmap:SnRV57gqFPkFrOFa a systemmap:FederalOrganization ;
         "Secteur Produits végétaux"@fr,
         "Settore Prodotti vegetali"@it ;
     schema:parentOrganization systemmap:ShkERubSSrICbOshu ;
-    owl:sameAs staatskalender:10003219 .
+    schema:sameAs staatskalender:10003219 .
 systemmap:SkDLABe9Tq3eDUHWC a systemmap:FederalOrganization ;
     schema:name "Generalsekretariat WBF"@de,
         "General Secretariat EAER"@en,
@@ -5269,7 +5269,7 @@ systemmap:SkDLABe9Tq3eDUHWC a systemmap:FederalOrganization ;
         Pianifica, coordina e controlla gli affari del dipartimento e fornisce prestazioni trasversali a livello dipartimentale quali diritto, comunicazione, finanze, personale e informatica.
         L'Information Service Center DEFR ISCeco è aggregato alla SG-DEFR.
         """@it ;
-    owl:sameAs staatskalender:10002651 ;
+    schema:sameAs staatskalender:10002651 ;
     systemmap:abbreviation "GS-WBF"@de,
         "GS-EAER"@en,
         "SG-DEFR"@fr,
@@ -5281,7 +5281,7 @@ systemmap:SkFlBVxIrsy1VUsM0 a systemmap:FederalOrganization ;
         "OCC ISCeco"@fr,
         "OCC ISCeco"@it ;
     schema:parentOrganization systemmap:S6ybKol71qEEkISAr ;
-    owl:sameAs staatskalender:20046666 .
+    schema:sameAs staatskalender:20046666 .
 
 systemmap:SntetIp00hrUGsnj5 a systemmap:FederalOrganization ;
     schema:name "Direktionsbereich Recht, Ressourcen und Integrale Sicherheit"@de,
@@ -5297,7 +5297,7 @@ systemmap:SntetIp00hrUGsnj5 a systemmap:FederalOrganization ;
         "DBRRIS"@en,
         "DBRRIS"@fr,
         "DBRRIS"@it ;
-    owl:sameAs staatskalender:20012618 .
+    schema:sameAs staatskalender:20012618 .
 
 systemmap:SoqmfoevPVgr3d0AA a systemmap:FederalOrganization ;
     schema:name "Zulassungsstelle Pflanzenschutzmittel"@de,
@@ -5325,7 +5325,7 @@ systemmap:SoqmfoevPVgr3d0AA a systemmap:FederalOrganization ;
         Garantisce che solo prodotti sicuri ed efficaci siano immessi sul mercato, valutando attentamente i loro impatti sulla salute e sull'ecologia.
         Dal 1° gennaio 2022, la competenza per l'autorizzazione dei prodotti fitosanitari spetta all'USAV, mentre l'Ufficio federale dell'ambiente (UFAM) ha la responsabilità principale della valutazione dei rischi ambientali.
         """@it ;
-    owl:sameAs staatskalender:20049676 .
+    schema:sameAs staatskalender:20049676 .
 
 systemmap:Sou0GnQeSqCPHGhze a systemmap:FederalOrganization ;
     schema:name "Abteilung Wissensgrundlagen"@de,
@@ -5353,7 +5353,7 @@ systemmap:Sou0GnQeSqCPHGhze a systemmap:FederalOrganization ;
         Valuta i rischi per la salute di uomini e animali e garantisce che le conoscenze attuali siano registrate e, se necessario, integrate da competenze esterne.
         In questo modo, i rischi possono essere identificati e classificati scientificamente in una fase precoce.
         """@it ;
-    owl:sameAs staatskalender:20035163 .
+    schema:sameAs staatskalender:20035163 .
 
 systemmap:SqeNr0H0FGL6Uv5Rr a systemmap:FederalOrganization ;
     schema:name "Direktion BLW"@de,
@@ -5362,7 +5362,7 @@ systemmap:SqeNr0H0FGL6Uv5Rr a systemmap:FederalOrganization ;
         "Direzione UFAG"@it ;
     schema:description "Die Direktion verantwortet die strategische Führung und Koordination der Schweizer Agrarpolitik. Zudem ist die Direktion für die Kommunikation und Öffentlichkeitsarbeit in den drei Amtssprachen zuständig."@de ;
     schema:parentOrganization systemmap:S2tIdqNmt3uS5Ny6D ;
-    owl:sameAs staatskalender:10003196 .
+    schema:sameAs staatskalender:10003196 .
 
 systemmap:SqgdLrfZrpZz2bs4 a systemmap:FederalOrganization ;
     schema:name "Fachbereich Internationale Angelegenheiten"@de,
@@ -5370,13 +5370,13 @@ systemmap:SqgdLrfZrpZz2bs4 a systemmap:FederalOrganization ;
         "Secteur Affaires internationales"@fr,
         "Settore Affari internazionali"@it ;
     schema:parentOrganization systemmap:ShkERubSSrICbOshu ;
-    owl:sameAs staatskalender:20015678 .
+    schema:sameAs staatskalender:20015678 .
 
 systemmap:SsFdxnjM8hgUdzVT5 a systemmap:FederalOrganization ;
     schema:name "Kompetenzzentrum Daten"@de,
         "Gestion des connaissances"@fr ;
     schema:parentOrganization systemmap:Sou0GnQeSqCPHGhze ;
-    owl:sameAs staatskalender:20051877 ;
+    schema:sameAs staatskalender:20051877 ;
     systemmap:abbreviation "DCC"@de .
 
 systemmap:SsJ9OfSkUgPD8dkz3 a systemmap:FederalOrganization ;
@@ -5390,7 +5390,7 @@ systemmap:SsJ9OfSkUgPD8dkz3 a systemmap:FederalOrganization ;
         "Les agriculteurs fournissent divers services à la collectivité et sont donc soutenus par des contributions financières. La Direction des paiements directs et du développement rural en est responsable. Elle s'engage également pour la vitalité des zones rurales."@fr,
         "Gli agricoltori forniscono vari servizi alla collettività e sono quindi sostenuti con contributi finanziari. La Direzione dei pagamenti diretti e dello sviluppo rurale è responsabile di questo. Inoltre, si impegna per la vitalità delle aree rurali."@it ;
     systemmap:abbreviation "DBDLE"@de ;
-    owl:sameAs staatskalender:10003224 .
+    schema:sameAs staatskalender:10003224 .
 
 systemmap:SsUrshR7syK9mF89z a systemmap:FederalOrganization ;
     schema:name "Consulting und Governance"@de,
@@ -5410,7 +5410,7 @@ systemmap:SsUrshR7syK9mF89z a systemmap:FederalOrganization ;
         """
         Il settore Consulting e Governance dell'ISCeco fornisce consulenza agli uffici del DEFR in materia di digitalizzazione e governance informatica.
         """@it ;
-    owl:sameAs staatskalender:10011160 .
+    schema:sameAs staatskalender:10011160 .
 
 systemmap:StL8MElzDJHAjtyXL a systemmap:FederalOrganization ;
     schema:name "Gruppe GEVER Services"@de,
@@ -5434,7 +5434,7 @@ systemmap:StL8MElzDJHAjtyXL a systemmap:FederalOrganization ;
         Il Gruppo Servizi GEVER è responsabile della distribuzione della posta fisica ed elettronica, nonché della gestione centralizzata degli indirizzi all'interno dell'UFAG.
         L'elaborazione della posta avviene principalmente tramite il sistema GEVER, che consente una gestione strutturata e l'archiviazione dei documenti digitali.
         """@it ;
-    owl:sameAs staatskalender:20032934 ;
+    schema:sameAs staatskalender:20032934 ;
     systemmap:abbreviation "GRGS"@de,
         "GSG"@en,
         "GSG"@fr,
@@ -5446,7 +5446,7 @@ systemmap:SulrC05vIKcFXygx a systemmap:FederalOrganization ;
         "Secteur Recherche, vulgarisation et innovation"@fr,
         "Settore Ricerca, consulenza e innovazione"@it ;
     schema:parentOrganization systemmap:SzXI1C2DYjDriK2F8 ;
-    owl:sameAs staatskalender:10003236 .
+    schema:sameAs staatskalender:10003236 .
 
 systemmap:SuEmcrbjilkHk6j26 a systemmap:FederalOrganization ;
     schema:name "Ressourcen"@de,
@@ -5454,17 +5454,17 @@ systemmap:SuEmcrbjilkHk6j26 a systemmap:FederalOrganization ;
         "Ressources"@fr,
         "Risorse"@it ;
     schema:parentOrganization systemmap:SVZJz682iwRjVx5wp ;
-    owl:sameAs staatskalender:10011152 .
+    schema:sameAs staatskalender:10011152 .
 
 systemmap:SuodJifeNVNW8c4Tj a systemmap:FederalOrganization ;
     schema:name "Bildung & Forschung"@de ;
     schema:parentOrganization systemmap:Sou0GnQeSqCPHGhze ;
-    owl:sameAs staatskalender:20035170 .
+    schema:sameAs staatskalender:20035170 .
 
 systemmap:SvCD295luQEx4jnuB a systemmap:FederalOrganization ;
     schema:name "Toxikologie Pflanzenschutzmittel"@de ;
     schema:parentOrganization systemmap:Sou0GnQeSqCPHGhze ;
-    owl:sameAs staatskalender:20035173 .
+    schema:sameAs staatskalender:20035173 .
 
 systemmap:SwWLwS6etEGNQl9N a systemmap:FederalOrganization ;
     schema:name "Gruppe Logistik"@de,
@@ -5479,7 +5479,7 @@ systemmap:SvbHJV9ra3Pmy339v a systemmap:FederalOrganization ;
         "Gestion des applications spécialisées"@fr,
         "Gestione delle applicazioni specialistiche"@it ;
     schema:parentOrganization systemmap:S6ybKol71qEEkISAr ;
-    owl:sameAs staatskalender:20039362 .
+    schema:sameAs staatskalender:20039362 .
 
 systemmap:SwlgSr7ukziL6iHsP a systemmap:FederalOrganization ;
     schema:name "Bundesamt für Umwelt"@de,
@@ -5506,7 +5506,7 @@ systemmap:SwlgSr7ukziL6iHsP a systemmap:FederalOrganization ;
         È responsabile dell'uso sostenibile delle risorse naturali e della protezione della popolazione dai pericoli naturali e dalle eccessive pressioni ambientali.
         Fondato nel 1971, l'UFAM ha la sua sede principale a Berna.
         """@it ;
-    owl:sameAs staatskalender:10008758 ;
+    schema:sameAs staatskalender:10008758 ;
     systemmap:abbreviation "BAFU"@de,
         "FOEN"@en,
         "OFEV"@fr,
@@ -5538,7 +5538,7 @@ systemmap:SyfZhzeyT1CqJU0BP a systemmap:FederalOrganization ;
         Inoltre, sviluppa la prova delle prestazioni ecologiche (ÖLN), coordina ambiti normativi come la strategia per la biodiversità, l’agricoltura biologica, la protezione dell’energia e del clima e gestisce le interfacce legislative pertinenti.  
         A livello tecnico, vengono fornite applicazioni informatiche e implementate misure di riduzione. Altri compiti includono la gestione delle dichiarazioni, le relazioni pubbliche e il coinvolgimento degli attori interessati.  
         """@it ;
-    owl:sameAs staatskalender:10003227 ;
+    schema:sameAs staatskalender:10003227 ;
     systemmap:abbreviation "FBDP"@de,
         "FBDP"@en,
         "FBDP"@fr,
@@ -5547,7 +5547,7 @@ systemmap:SyfZhzeyT1CqJU0BP a systemmap:FederalOrganization ;
 systemmap:Sym1u44hA9FMZOdyT a systemmap:FederalOrganization ;
     schema:name "Risikobewertung"@de ;
     schema:parentOrganization systemmap:Sou0GnQeSqCPHGhze ;
-    owl:sameAs staatskalender:20050577 .
+    schema:sameAs staatskalender:20050577 .
 
 systemmap:SzUTdovwcGsmlBKx a systemmap:FederalOrganization ;
     schema:name "Fachbereich Agrarumweltsysteme und Nährstoffe"@de,
@@ -5555,7 +5555,7 @@ systemmap:SzUTdovwcGsmlBKx a systemmap:FederalOrganization ;
         "Secteur Systèmes agroenvironnementaux et éléments fertilisants"@fr,
         "Settore Sistemi agroambientali e sostanze nutritive"@it ;
     schema:parentOrganization systemmap:SzXI1C2DYjDriK2F8 ;
-    owl:sameAs staatskalender:10010634 .
+    schema:sameAs staatskalender:10010634 .
 
 systemmap:SzXI1C2DYjDriK2F8 a systemmap:FederalOrganization ;
     schema:name "Direktionsbereich Produktionsgrundlagen, natürliche Ressourcen und Forschung"@de,
@@ -5571,7 +5571,7 @@ systemmap:SzXI1C2DYjDriK2F8 a systemmap:FederalOrganization ;
         "DBPRF"@en,
         "DBPRF"@fr,
         "DBPRF"@it ;
-    owl:sameAs staatskalender:10003239 .
+    schema:sameAs staatskalender:10003239 .
 
 staatskalender:20050530 a systemmap:FederalOrganization ;
     schema:name "Monitoring des Agrarumweltsystems Schweiz MAUS"@de .
@@ -5783,7 +5783,7 @@ systemmap:SQ3N7dTc23t2wzXr2 a systemmap:PrivateOrganization ;
         Inoltre, vengono svolti altri incarichi nei settori della fiduciaria, della gestione dei fondi, delle statistiche e dei controlli all'esportazione.
         Il principale committente di TSM è l'Ufficio federale dell'agricoltura (UFAG).
         """@it ;
-    owl:sameAs zefix:427931 .
+    schema:sameAs zefix:427931 .
 
 systemmap:SWdllcNbPnjdcm7om a systemmap:PrivateOrganization ;
     schema:name "Agroline"@de ;
@@ -6036,7 +6036,7 @@ zefix:328631 a systemmap:PrivateOrganization ;
         Fenaco possiede marchi come Landi, Volg, Agrola e vari produttori alimentari.
         La cooperativa è di proprietà degli agricoltori svizzeri e ha la sua sede principale a Berna.
         """@it ;
-    owl:sameAs zefix:328631 .
+    schema:sameAs zefix:328631 .
 
 zefix:330180 a systemmap:PrivateOrganization ;
     schema:name "Bison Schweiz AG"@de ;
@@ -6114,7 +6114,7 @@ zefix:449781 a systemmap:PrivateOrganization ;
         In qualità di fornitore di servizi IT per la Confederazione, i cantoni e gli attori privati, Identitas AG offre servizi digitali per la registrazione, l'elaborazione e l'analisi dei dati sugli animali e sulle aziende agricole.
         L'azienda ha sede a Berna.
         """@it ;
-    owl:sameAs zefix:449781 .
+    schema:sameAs zefix:449781 .
 
 zefix:505628 a systemmap:PrivateOrganization ;
     schema:name "Isagri GmbH"@de .
