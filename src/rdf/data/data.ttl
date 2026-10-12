@@ -358,7 +358,7 @@ LwG:art_178 a schema:Legislation ;
         "Art. 178 LAgr"@it .
 
 <https://www.fedlex.admin.ch/eli/cc/1998/3244_3244_3244> a schema:Legislation ;
-    schema:name "Ordinanza concernente l'importazione e l'esportazione di verdura, frutta e prodotti della floricoltura",
+    schema:name "Ordinanza concernente l'importazione e l'esportazione di verdura, frutta e prodotti della floricoltura"@it,
         "Verordnung über die Ein- und Ausfuhr von Gemüse, Obst und Gartenbauerzeugnissen (VEAGOG)"@de,
         "Ordonnance sur l'importation et l'exportation de légumes, de fruits et de plantes horticoles"@fr .
 
@@ -711,7 +711,7 @@ zefix:429308 a schema:Organization ;
     schema:name "Schweizer Bauernverband"@de,
         "Union Suisse des Paysans"@fr,
         "Unione Svizzera dei Contadini"@it ;
-    schema:abbreviation "SBV"@de,
+    systemmap:abbreviation "SBV"@de,
         "USP"@fr,
         "USC"@it ;
     schema:member zefix:165954,
@@ -2210,7 +2210,7 @@ systemmap:Sc6kZqxTyS0gFGCY a schema:SoftwareApplication ;
         "MARS III"@en,
         "MARS III"@fr,
         "MARS III"@it ;
-    systemmap:isPartOf systemmap:ShZO092di7cBnOm7F ;
+    dcterms:isPartOf systemmap:ShZO092di7cBnOm7F ;
     systemmap:operatedBy systemmap:SaVyVVsIDkiDMtQq4 .
 
 systemmap:Sd3egXVVG1pgbzgcA a schema:SoftwareApplication ;
