@@ -13,22 +13,24 @@ It is built on the [semantic-web-template](https://github.com/blw-ofag-ufag/sema
 3. SPARQL-based processing of the graph (using rules in `src/sparql/processing/...`),
 4. SHACL-based graph data validation (using `src/rdf/shapes/model.shacl.ttl`),
 5. a Pytest test suite,
-6. uploading of the final graph to LINDAS (named graph `https://lindas.admin.ch/foag/system-map`).
+6. uploading of the final graph to LINDAS (named graph `https://lindas.admin.ch/foag/system-map`),
+7. a documentation building pipeline using Quarto, which describes the data model based on the SHACL shapes.
 
-The published graph is visualized by the [system map frontend](https://github.com/damian-oswald/system-map-frontend), which queries it live from LINDAS. The earlier visualizations remain in `docs/`.
+The published graph is visualized by the [system map frontend](https://github.com/damian-oswald/system-map-frontend), which queries it live from LINDAS.
 
 > [!NOTE]
 > This repository was migrated from [system-map](https://github.com/blw-ofag-ufag/system-map); its full commit history is preserved here.
 
 ## Development tools
 
-This project uses a variety of tools to ensure robust reasoning and validation.
+This project uses a variety of tools to ensure robust reasoning, validation, and documentation.
 
 - [HermiT](http://www.hermit-reasoner.com/): An OWL reasoner used for logical reasoning and inferring new knowledge from the ontology and data.
 - [Pytest](https://docs.pytest.org/): A testing framework used to run syntax checks and evaluate SHACL validation reports.
 - [PySHACL](https://github.com/RDFLib/pySHACL): A Python engine used to validate the generated RDF graphs against SHACL shape definitions.
 - [ROBOT](http://robot.obolibrary.org/): CLI tool used to merge, reason, and process RDF graphs.
 - [RDFLib](https://rdflib.readthedocs.io/): A Python library used to parse, serialize, and programmatically manipulate RDF data.
+- [Quarto](https://quarto.org/): An open-source publishing system used for rendering the documentation.
 
 ## Semantic web standards
 
@@ -42,7 +44,7 @@ The project relies on core W3C Semantic Web standards to model, link, and valida
 
 ## Build and deployment orchestration
 
-To streamline the workflow, this project uses `make` as its primary orchestration tool, automating everything from setup to deployment. The `Makefile` defines a single entry point to sequentially execute logical reasoning, SPARQL updates, SHACL validation and testing. `make help` lists all available targets with a short description.
+To streamline the workflow, this project uses `make` as its primary orchestration tool, automating everything from setup to deployment. The `Makefile` defines a single entry point to sequentially execute logical reasoning, SPARQL updates, SHACL validation, testing, and documentation rendering. `make help` lists all available targets with a short description.
 
 1. Add variables to `.env` (for local execution)
 
@@ -65,7 +67,27 @@ To streamline the workflow, this project uses `make` as its primary orchestratio
     make
     ```
 
-    The default target runs `make test`, which builds the graph (reasoning, SPARQL processing and SHACL validation) and runs the Pytest suite. The processed graph is written to `build/rdf/03-processed.ttl`.
+    The default target runs `make test` followed by `make docs`.
+
+    **Run tests**
+
+    To build the graph (reasoning, SPARQL processing and SHACL validation) and run the Pytest suite, run:
+
+    ``` sh
+    make test
+    ```
+
+    The processed graph is written to `build/rdf/03-processed.ttl`.
+
+    **Build documentation**
+
+    To generate the data model pages from the SHACL shapes and build the Quarto website into `build/docs/`, run:
+
+    ``` sh
+    make docs
+    ```
+
+    Note that this step requires [Quarto](https://quarto.org/) to be installed.
 
 4. Upload the final data to [LINDAS](https://lindas.admin.ch/), the linked data service by the federal archives:
 
@@ -107,7 +129,7 @@ The repository follows the structure and pipeline of the semantic-web-template. 
 - **Namespace and IRIs:** The project keeps its existing namespace `https://agriculture.ld.admin.ch/system-map/` and its random identifiers (e.g. `systemmap:SvDlxaJ5YMkuZGH6k`), instead of a versioned namespace and readable IRIs. Changing them would break the frontend, saved queries and external links.
 - **Hierarchy properties are not transitive:** `schema:parentOrganization`, `schema:subOrganization`, `dcterms:isPartOf` and `dcterms:hasPart` describe direct relations only, as in schema.org and Dublin Core. Indirect relations can be queried with property paths, e.g. `schema:parentOrganization+`.
 - **Links to registers use `schema:sameAs`:** Organizations point to their entries in the Staatskalender and in Zefix with `schema:sameAs`, not `owl:sameAs`. `owl:sameAs` declares two IRIs to be the same individual, so the reasoner would copy all statements onto the register IRIs and create duplicate organizations.
-- **No Quarto documentation:** `docs/` contains the visualizations of the system map. The documentation steps of the template are removed from the Makefile default target and from the CI; `docs/_ech.yml` only holds the name of the named graph, which the test suite reads.
+- **Not an eCH standard:** The documentation uses the layout of the template, but the system map has no eCH number, version or category (`docs/_ech.yml`).
 
 ## Contact
 

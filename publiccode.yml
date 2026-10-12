@@ -1,6 +1,6 @@
 publiccodeYmlVersion: 0.5.0
 name: DigiAgriFoodCH System Map
-url: https://github.com/blw-ofag-ufag/system-map
+url: https://github.com/blw-ofag-ufag/system-map-backend
 landingURL: https://blw-ofag-ufag.github.io/system-map/
 softwareVersion: 1.0.0
 platforms:
