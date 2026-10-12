@@ -7,8 +7,8 @@ project:
     - en/index.qmd
 
 website:
-  title: eCH-1234 Version 2.4.1 (Working Draft)
-  repo-url: https://github.com/blw-ofag-ufag/semantic-web-template
+  title: Systemlandkarte
+  repo-url: https://github.com/blw-ofag-ufag/system-map-backend
   favicon: assets/favicon.svg
   navbar:
     background: dark
@@ -17,10 +17,10 @@ website:
     logo-alt: eCH
     right:
       - icon: github
-        href: https://github.com/blw-ofag-ufag/semantic-web-template
+        href: https://github.com/blw-ofag-ufag/system-map-backend
         aria-label: GitHub
       - icon: bug
-        href: https://github.com/blw-ofag-ufag/semantic-web-template/issues/new
+        href: https://github.com/blw-ofag-ufag/system-map-backend/issues/new
         aria-label: Issue
       - icon: envelope
         href: mailto:agridata.ch@blw.admin.ch
@@ -36,7 +36,7 @@ website:
   announcement:
     icon: info-circle
     dismissable: true
-    content: Diese Seite beinhaltet einen *Working Draft* und kann sich dadurch laufend verändern. Für eine aktuelle Version, besuchen Sie [ech.ch](https://ech.ch/).
+    content: Diese Dokumentation ist in Bearbeitung und kann sich laufend verändern.
     type: warning
 
 bibliography: references.yaml

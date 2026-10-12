@@ -1,8 +1,14 @@
-BASE <https://agriculture.ld.admin.ch/eCH-1234/2/>
+# IT systems of the system map, with their operating organizations (in German)
 PREFIX schema: <http://schema.org/>
-SELECT *
+PREFIX systemmap: <https://agriculture.ld.admin.ch/system-map/>
+
+SELECT ?system ?operator
+FROM <https://lindas.admin.ch/foag/system-map>
 WHERE {
-    ?genre a <Genre> ;
-        schema:name ?name .
+  ?s a schema:SoftwareApplication ;
+     schema:name ?system ;
+     systemmap:operatedBy/schema:name ?operator .
+  FILTER(LANG(?system) = "de" && LANG(?operator) = "de")
 }
-LIMIT 10
+ORDER BY ?system
+LIMIT 20

@@ -1,13 +1,11 @@
-@base <https://agriculture.ld.admin.ch/eCH-1234/2/> .
-@prefix genre: <https://agriculture.ld.admin.ch/eCH-1234/2/genre/> .
-@prefix schema: <http://schema.org/> .
+@prefix schema:          <http://schema.org/> .
+@prefix service:         <http://purl.org/ontology/service#> .
+@prefix systemmap:       <https://agriculture.ld.admin.ch/system-map/> .
+@prefix LwG:             <https://www.fedlex.admin.ch/eli/cc/1998/3033_3033_3033#> .
 
-genre:1 a <Genre> ;
-    schema:name "Rock" .
-
-genre:2 a <Genre> ;
-    schema:name "Jazz" .
-
-genre:3 a <Genre> ;
-    schema:name "Metal" ;
-    schema:partOf genre:1 .
+systemmap:SjCVTMrYaOTygNcqF a schema:SoftwareApplication ;
+    schema:name "digiFLUX"@de, "digiFLUX"@fr ;
+    schema:description "Webanwendung zur Umsetzung der Meldepflicht für Pflanzenschutzmittel und Nährstoffe."@de ;
+    service:consumes systemmap:SK6JOIUV1UjrOYD7f ;
+    systemmap:hasLegalBasis LwG:art_165_f, LwG:art_165_f_bis ;
+    systemmap:operatedBy systemmap:SyfZhzeyT1CqJU0BP .
