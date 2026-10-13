@@ -17,460 +17,169 @@
 @prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
 
 # ==============================================================================
-# DATA MODEL
+# DATA MODEL METADATA
 # ==============================================================================
 
 shape: a owl:Ontology ;
     rdfs:label "Datenmodell der Systemlandkarte"@de,
         "System map data model"@en,
-        "Modèle de données de la carte des systèmes"@fr,
-        "Modello di dati della mappa dei sistemi"@it ;
-    rdfs:comment "Dieses SHACL-Datenmodell beschreibt und validiert die IT-Systeme, Daten, Services und Organisationen der Systemlandkarte."@de,
-        "This SHACL data model describes and validates the IT systems, data, services and organizations of the system map."@en,
-        "Ce modèle de données SHACL décrit et valide les systèmes informatiques, les données, les services et les organisations de la carte des systèmes."@fr,
-        "Questo modello di dati SHACL descrive e convalida i sistemi IT, i dati, i servizi e le organizzazioni della mappa dei sistemi."@it ;
-    sh:declare [
-        sh:prefix "schema" ;
-        sh:namespace "http://schema.org/"^^xsd:anyURI ;
-    ],
-    [
-        sh:prefix "systemmap" ;
-        sh:namespace "https://agriculture.ld.admin.ch/system-map/"^^xsd:anyURI ;
-    ],
-    [
-        sh:prefix "dcterms" ;
-        sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ;
-    ] .
+        "Modèle de données de la carte des systèmes"@fr ;
+    rdfs:comment "Dieses SHACL-Datenmodell beschreibt und validiert die IT-Systeme, Daten, Services und Organisationen der Systemlandkarte. Von zwei zueinander inversen Eigenschaften wird jeweils eine Richtung geprüft; die Gegenrichtung leitet der Reasoner ab."@de,
+        "This SHACL data model describes and validates the IT systems, data, services and organizations of the system map. Of two mutually inverse properties, one direction is validated; the reasoner derives the other one."@en,
+        "Ce modèle de données SHACL décrit et valide les systèmes informatiques, les données, les services et les organisations de la carte des systèmes. De deux propriétés inverses, une seule direction est validée ; le raisonneur déduit l'autre."@fr ;
+    dcterms:title "Datenmodell der Systemlandkarte"@de,
+        "System map data model"@en,
+        "Modèle de données de la carte des systèmes"@fr ;
+    dcterms:creator "Bundesamt für Landwirtschaft BLW" ;
+    dcterms:created "2026-02-13"^^xsd:date ;
+    dcterms:modified "2026-10-13"^^xsd:date ;
+    sh:declare [ sh:prefix "schema" ; sh:namespace "http://schema.org/"^^xsd:anyURI ] ,
+        [ sh:prefix "systemmap" ; sh:namespace "https://agriculture.ld.admin.ch/system-map/"^^xsd:anyURI ] ,
+        [ sh:prefix "dcterms" ; sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ] .
 
-shape:OrganizationShape a sh:NodeShape ;
-    rdfs:label "Organisation"@de,
-            "Organization"@en,
-            "Organisation"@fr,
-            "Organizzazione"@it ;
-    rdfs:comment "Organisationen der Verwaltung und der Privatwirtschaft, die IT-Systeme betreiben, besitzen oder entwickeln."@de,
-            "Public and private organizations that operate, own or develop IT systems."@en,
-            "Organisations publiques et privées qui exploitent, possèdent ou développent des systèmes informatiques."@fr,
-            "Organizzazioni pubbliche e private che gestiscono, possiedono o sviluppano sistemi IT."@it ;
+# ==============================================================================
+# ORGANIZATION
+# ==============================================================================
+
+shape:Organization a sh:NodeShape ;
     sh:targetClass schema:Organization ;
+    rdfs:label "Organisation"@de,
+        "Organization"@en,
+        "Organisation"@fr ;
+    rdfs:comment "Organisationen der Verwaltung und der Privatwirtschaft, die IT-Systeme betreiben, besitzen oder entwickeln. Unterschieden werden Organisationen des Bundes, kantonale Organisationen (darunter Landwirtschaftsämter, Veterinärdienste und Beratungsstellen der Kantone) und privatrechtliche Organisationen."@de,
+        "Public and private organizations that operate, own or develop IT systems. Federal organizations, cantonal organizations (including cantonal agricultural offices, veterinary services and advice centers) and private-sector organizations are distinguished."@en,
+        "Organisations publiques et privées qui exploitent, possèdent ou développent des systèmes informatiques. On distingue les organisations fédérales, les organisations cantonales (dont les offices agricoles, les services vétérinaires et les centres de conseil cantonaux) et les organisations de droit privé."@fr ;
     sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "Organisation: «Name» ist eine Pflichtangabe. Organisation: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Organization: 'Name' is required. Organization: 'Name' needs a language tag and at most one value per language."@en,
-            "Organisation: « Nom » est obligatoire. Organisation: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Organizzazione: «Nome» è obbligatorio. Organizzazione: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 2 ;
-        sh:name "Beschreibung"@de,
-            "Description"@en,
-            "Description"@fr,
-            "Descrizione"@it ;
-        sh:path schema:description ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:message "Organisation: «Beschreibung» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Organization: 'Description' needs a language tag and at most one value per language."@en,
-            "Organisation: « Description » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Organizzazione: «Descrizione» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 3 ;
-        sh:name "Abkürzung"@de,
-            "Abbreviation"@en,
-            "Abréviation"@fr,
-            "Abbreviazione"@it ;
-        sh:path systemmap:abbreviation ;
-        sh:nodeKind sh:Literal ;
-        sh:message "Organisation: «Abkürzung» muss ein Text sein."@de,
-            "Organization: 'Abbreviation' must be a literal."@en,
-            "Organisation: « Abréviation » doit être un texte."@fr,
-            "Organizzazione: «Abbreviazione» deve essere un testo."@it ;
-    ] ;
-    sh:property [
-        sh:order 4 ;
-        sh:name "hat Landingpage"@de,
-            "has landing page"@en,
-            "a page d'accueil"@fr,
-            "ha pagina di destinazione"@it ;
-        sh:path schema:url ;
-        sh:nodeKind sh:IRI ;
-        sh:message "Organisation: «hat Landingpage» muss eine IRI sein."@de,
-            "Organization: 'has landing page' must be an IRI."@en,
-            "Organisation: « a page d'accueil » doit être une IRI."@fr,
-            "Organizzazione: «ha pagina di destinazione» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 5 ;
+    sh:ignoredProperties ( rdf:type schema:subOrganization schema:member systemmap:ownedBy systemmap:operates systemmap:develops ) ;
+    sh:property shape:name, shape:abbreviation, shape:description, shape:url, shape:legalBasis ,
+    [
+        sh:order 10 ;
+        sh:path schema:sameAs ;
         sh:name "Registereintrag"@de,
             "Register entry"@en,
-            "Entrée de registre"@fr,
-            "Voce di registro"@it ;
-        sh:path schema:sameAs ;
+            "Entrée de registre"@fr ;
+        sh:description "Verweis auf den Eintrag derselben Organisation in einem amtlichen Register, etwa im Staatskalender oder im Handelsregister (Zefix). Die Angaben des Registers werden nicht kopiert."@de,
+            "Reference to the entry of the same organization in an official register, such as the federal directory (Staatskalender) or the commercial register (Zefix). The data of the register is not copied."@en,
+            "Renvoi à l'inscription de la même organisation dans un registre officiel, par exemple l'annuaire fédéral (Staatskalender) ou le registre du commerce (Zefix). Les données du registre ne sont pas copiées."@fr ;
         sh:nodeKind sh:IRI ;
-        sh:message "Organisation: «Registereintrag» muss eine IRI sein."@de,
-            "Organization: 'Register entry' must be an IRI."@en,
-            "Organisation: « Entrée de registre » doit être une IRI."@fr,
-            "Organizzazione: «Voce di registro» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 6 ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path schema:parentOrganization ;
         sh:name "gehört zu"@de,
             "belongs to"@en,
-            "fait partie de"@fr,
-            "fa parte di"@it ;
-        sh:path schema:parentOrganization ;
+            "fait partie de"@fr ;
+        sh:description "Zeigt an, dass die (Teil-)Organisation ein Teil von einer (Über-)Organisation Y ist."@de,
+            "Indicates that the (sub-)organization is part of a (parent) organization Y."@en,
+            "Indique que l'(sous-)organisation fait partie d'une (organisation parent) Y."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
-        sh:message "Organisation: «gehört zu» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "Organization: 'belongs to' must point to a Organization."@en,
-            "Organisation: « fait partie de » doit renvoyer à un objet de type Organisation."@fr,
-            "Organizzazione: «fa parte di» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 7 ;
-        sh:name "beinhaltet Suborganisation"@de,
-            "contains suborganization"@en,
-            "contient une sous-organisation"@fr,
-            "contiene un'organizzazione subordinata"@it ;
-        sh:path schema:subOrganization ;
-        sh:class schema:Organization ;
-        sh:message "Organisation: «beinhaltet Suborganisation» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "Organization: 'contains suborganization' must point to a Organization."@en,
-            "Organisation: « contient une sous-organisation » doit renvoyer à un objet de type Organisation."@fr,
-            "Organizzazione: «contiene un'organizzazione subordinata» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 8 ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path schema:memberOf ;
         sh:name "Mitglied von"@de,
             "member of"@en,
-            "membre de"@fr,
-            "membro di"@it ;
-        sh:path schema:memberOf ;
+            "membre de"@fr ;
+        sh:description "Gibt an, dass eine Organisation X eine Mitgliedsorganisation einer anderen Organisation Y ist. Die Beziehung soll Mitgliedschaften von Branchenorganisationen, Berufsverbänden oder anderen formellen Vereinigungen darstellen, bei denen Organisationen als Mitglieder teilnehmen. Informelle Beziehungen gehören nicht dazu."@de,
+            "Indicates that an organization X is a member organization of another organization Y. The relationship is used to represent memberships of industry organizations, professional associations, or other formal associations in which organizations participate as members. Informal relationships are not included."@en,
+            "Indique qu'une organisation X est une organisation membre d'une autre organisation Y. La relation est utilisée pour représenter les adhésions à des organisations sectorielles, des associations professionnelles ou d'autres associations formelles dans lesquelles les organisations participent en tant que membres. Les relations informelles ne sont pas incluses."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
-        sh:message "Organisation: «Mitglied von» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "Organization: 'member of' must point to a Organization."@en,
-            "Organisation: « membre de » doit renvoyer à un objet de type Organisation."@fr,
-            "Organizzazione: «membro di» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 9 ;
-        sh:name "hat Mitglied"@de,
-            "has member"@en,
-            "a des membres"@fr,
-            "ha membri"@it ;
-        sh:path schema:member ;
-        sh:class schema:Organization ;
-        sh:message "Organisation: «hat Mitglied» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "Organization: 'has member' must point to a Organization."@en,
-            "Organisation: « a des membres » doit renvoyer à un objet de type Organisation."@fr,
-            "Organizzazione: «ha membri» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 10 ;
+    ] ,
+    [
+        sh:order 13 ;
+        sh:path systemmap:owns ;
         sh:name "besitzt (teilweise)"@de,
             "(partially) owns"@en,
-            "possède (partiellement)"@fr,
-            "possiede (parzialmente)"@it ;
-        sh:path systemmap:owns ;
+            "possède (partiellement)"@fr ;
+        sh:description "Diese Beziehung zeigt an, dass eine Organisation X eine andere Organisation Y (teilweise) besitzt."@de,
+            "This relationship indicates that an organization X (partially) owns another organization Y."@en,
+            "Cette relation indique qu'une organisation X possède (partiellement) une autre organisation Y."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
-        sh:message "Organisation: «besitzt (teilweise)» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "Organization: '(partially) owns' must point to a Organization."@en,
-            "Organisation: « possède (partiellement) » doit renvoyer à un objet de type Organisation."@fr,
-            "Organizzazione: «possiede (parzialmente)» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 11 ;
-        sh:name "ist (teilweise) in Besitz von"@de,
-            "is (partially) owned by"@en,
-            "est (partiellement) détenu par"@fr,
-            "è (parzialmente) di proprietà di"@it ;
-        sh:path systemmap:ownedBy ;
-        sh:class schema:Organization ;
-        sh:message "Organisation: «ist (teilweise) in Besitz von» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "Organization: 'is (partially) owned by' must point to a Organization."@en,
-            "Organisation: « est (partiellement) détenu par » doit renvoyer à un objet de type Organisation."@fr,
-            "Organizzazione: «è (parzialmente) di proprietà di» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 12 ;
-        sh:name "betreibt"@de,
-            "operates"@en,
-            "exploite"@fr,
-            "gestisce"@it ;
-        sh:path systemmap:operates ;
-        sh:class schema:SoftwareApplication ;
-        sh:message "Organisation: «betreibt» muss auf ein Objekt vom Typ IT-System verweisen."@de,
-            "Organization: 'operates' must point to a IT system."@en,
-            "Organisation: « exploite » doit renvoyer à un objet de type Système informatique."@fr,
-            "Organizzazione: «gestisce» deve riferirsi a un oggetto di tipo Sistema IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 13 ;
-        sh:name "entwickelt"@de,
-            "develops"@en,
-            "développe"@fr,
-            "sviluppa"@it ;
-        sh:path systemmap:develops ;
-        sh:class schema:SoftwareApplication ;
-        sh:message "Organisation: «entwickelt» muss auf ein Objekt vom Typ IT-System verweisen."@de,
-            "Organization: 'develops' must point to a IT system."@en,
-            "Organisation: « développe » doit renvoyer à un objet de type Système informatique."@fr,
-            "Organizzazione: «sviluppa» deve riferirsi a un oggetto di tipo Sistema IT."@it ;
-    ] ;
-    sh:property [
+    ] ,
+    [
         sh:order 14 ;
+        sh:path systemmap:access ;
         sh:name "hat Zugriff auf"@de,
             "has access to"@en,
-            "a accès à"@fr,
-            "ha accesso a"@it ;
-        sh:path systemmap:access ;
+            "a accès à"@fr ;
+        sh:description "Zeigt an, dass eine Organisation X die Rechte zum Zugriff etwas hat."@de,
+            "Indicates that an organization X has the rights to access something."@en,
+            "Indique qu'une organisation dispose de droits d'accès à quelque chose."@fr ;
         sh:nodeKind sh:IRI ;
-        sh:message "Organisation: «hat Zugriff auf» muss eine IRI sein."@de,
-            "Organization: 'has access to' must be an IRI."@en,
-            "Organisation: « a accès à » doit être une IRI."@fr,
-            "Organizzazione: «ha accesso a» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 15 ;
-        sh:name "hat Rechtsgrundlage"@de,
-            "has legal basis"@en,
-            "a une base légale"@fr,
-            "ha una base legale"@it ;
-        sh:path systemmap:hasLegalBasis ;
-        sh:class schema:Legislation ;
-        sh:message "Organisation: «hat Rechtsgrundlage» muss auf ein Objekt vom Typ Gesetzgebung verweisen."@de,
-            "Organization: 'has legal basis' must point to a Legislation."@en,
-            "Organisation: « a une base légale » doit renvoyer à un objet de type Législation."@fr,
-            "Organizzazione: «ha una base legale» deve riferirsi a un oggetto di tipo Legislazione."@it ;
     ] .
 
-shape:SoftwareApplicationShape a sh:NodeShape ;
-    rdfs:label "IT-System"@de,
-            "IT system"@en,
-            "Système informatique"@fr,
-            "Sistema IT"@it ;
-    rdfs:comment "IT-Systeme, die Daten des Agrar- und Ernährungssektors verarbeiten. Jedes IT-System wird direkt oder über ein übergeordnetes System von einer Organisation betrieben."@de,
-            "IT systems processing data of the agri-food sector. Every IT system is operated by an organization, directly or via a parent system."@en,
-            "Systèmes informatiques traitant des données du secteur agroalimentaire. Chaque système informatique est exploité par une organisation, directement ou via un système parent."@fr,
-            "Sistemi IT che trattano dati del settore agroalimentare. Ogni sistema IT è gestito da un'organizzazione, direttamente o tramite un sistema padre."@it ;
+# ==============================================================================
+# IT SYSTEM
+# ==============================================================================
+
+shape:SoftwareApplication a sh:NodeShape ;
     sh:targetClass schema:SoftwareApplication ;
+    rdfs:label "IT-System"@de,
+        "IT system"@en,
+        "Système informatique"@fr ;
+    rdfs:comment "IT-Systeme, die Daten des Agrar- und Ernährungssektors verarbeiten. Jedes IT-System hat eine deutsche Beschreibung und wird direkt oder über ein übergeordnetes System von einer Organisation betrieben. Farm-Management-Informationssysteme (FMIS) bilden eine eigene Unterklasse."@de,
+        "IT systems processing data of the agri-food sector. Every IT system has a German description and is operated by an organization, directly or via a parent system. Farm management information systems (FMIS) form a separate subclass."@en,
+        "Systèmes informatiques traitant des données du secteur agroalimentaire. Chaque système informatique a une description en allemand et est exploité par une organisation, directement ou via un système parent. Les systèmes d'information pour la gestion agricole (FMIS) forment une sous-classe distincte."@fr ;
     sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "IT-System: «Name» ist eine Pflichtangabe. IT-System: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "IT system: 'Name' is required. IT system: 'Name' needs a language tag and at most one value per language."@en,
-            "Système informatique: « Nom » est obligatoire. Système informatique: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Sistema IT: «Nome» è obbligatorio. Sistema IT: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 2 ;
-        sh:name "Beschreibung"@de,
-            "Description"@en,
-            "Description"@fr,
-            "Descrizione"@it ;
-        sh:path schema:description ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "IT-System: «Beschreibung» ist eine Pflichtangabe. IT-System: «Beschreibung» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "IT system: 'Description' is required. IT system: 'Description' needs a language tag and at most one value per language."@en,
-            "Système informatique: « Description » est obligatoire. Système informatique: « Description » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Sistema IT: «Descrizione» è obbligatorio. Sistema IT: «Descrizione» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 3 ;
-        sh:name "Abkürzung"@de,
-            "Abbreviation"@en,
-            "Abréviation"@fr,
-            "Abbreviazione"@it ;
-        sh:path systemmap:abbreviation ;
-        sh:nodeKind sh:Literal ;
-        sh:message "IT-System: «Abkürzung» muss ein Text sein."@de,
-            "IT system: 'Abbreviation' must be a literal."@en,
-            "Système informatique: « Abréviation » doit être un texte."@fr,
-            "Sistema IT: «Abbreviazione» deve essere un testo."@it ;
-    ] ;
-    sh:property [
-        sh:order 4 ;
-        sh:name "Alternativer Name"@de,
-            "Alternative name"@en,
-            "Autre nom"@fr,
-            "Nome alternativo"@it ;
-        sh:path schema:alternateName ;
-        sh:datatype rdf:langString ;
-        sh:message "IT-System: «Alternativer Name» braucht ein Sprach-Tag."@de,
-            "IT system: 'Alternative name' needs a language tag."@en,
-            "Système informatique: « Autre nom » nécessite une balise de langue."@fr,
-            "Sistema IT: «Nome alternativo» richiede un tag di lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 5 ;
-        sh:name "hat Landingpage"@de,
-            "has landing page"@en,
-            "a page d'accueil"@fr,
-            "ha pagina di destinazione"@it ;
-        sh:path schema:url ;
-        sh:nodeKind sh:IRI ;
-        sh:message "IT-System: «hat Landingpage» muss eine IRI sein."@de,
-            "IT system: 'has landing page' must be an IRI."@en,
-            "Système informatique: « a page d'accueil » doit être une IRI."@fr,
-            "Sistema IT: «ha pagina di destinazione» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 6 ;
-        sh:name "Siehe auch"@de,
-            "See also"@en,
-            "Voir aussi"@fr,
-            "Vedi anche"@it ;
-        sh:path rdfs:seeAlso ;
-        sh:nodeKind sh:IRI ;
-        sh:message "IT-System: «Siehe auch» muss eine IRI sein."@de,
-            "IT system: 'See also' must be an IRI."@en,
-            "Système informatique: « Voir aussi » doit être une IRI."@fr,
-            "Sistema IT: «Vedi anche» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 7 ;
+    sh:ignoredProperties ( rdf:type systemmap:contains service:provides dcterms:hasPart ) ;
+    sh:property shape:name, shape:alternateName, shape:abbreviation, shape:requiredDescription, shape:url, shape:seeAlso, shape:keywords, shape:legalBasis ,
+    [
+        sh:order 10 ;
+        sh:path systemmap:operatedBy ;
         sh:name "wird betrieben von"@de,
             "is operated by"@en,
-            "est exploité par"@fr,
-            "è gestito da"@it ;
-        sh:path systemmap:operatedBy ;
+            "est exploité par"@fr ;
+        sh:description "Gibt an, dass ein IT-System X durch eine Organisation Y betrieben wird. Das bedeutet, dass die Organisation Y für den Betrieb von System X zuständig ist."@de,
+            "Indicates that an IT system X is operated by an organization Y. This means that organization Y is responsible for operating system X."@en,
+            "Indique qu'un système informatique X est exploité par une organisation Y. Cela signifie que l'organisation Y est responsable de l'exploitation du système X."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
-        sh:message "IT-System: «wird betrieben von» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "IT system: 'is operated by' must point to a Organization."@en,
-            "Système informatique: « est exploité par » doit renvoyer à un objet de type Organisation."@fr,
-            "Sistema IT: «è gestito da» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 8 ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path systemmap:developedBy ;
         sh:name "entwickelt von"@de,
             "developed by"@en,
-            "développé par"@fr,
-            "sviluppato da"@it ;
-        sh:path systemmap:developedBy ;
+            "développé par"@fr ;
+        sh:description "Gibt an, dass ein IT-System von einer Organisation entwickelt wird oder wurde."@de,
+            "States that an IT system is or was developed by an organization."@en,
+            "Indique qu'un système informatique est ou a été développé par une organisation."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
-        sh:message "IT-System: «entwickelt von» muss auf ein Objekt vom Typ Organisation verweisen."@de,
-            "IT system: 'developed by' must point to a Organization."@en,
-            "Système informatique: « développé par » doit renvoyer à un objet de type Organisation."@fr,
-            "Sistema IT: «sviluppato da» deve riferirsi a un oggetto di tipo Organizzazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 9 ;
-        sh:name "beinhaltet"@de,
-            "contains"@en,
-            "contient"@fr,
-            "contiene"@it ;
-        sh:path systemmap:contains ;
-        sh:class dcat:Dataset ;
-        sh:message "IT-System: «beinhaltet» muss auf ein Objekt vom Typ Datensatz verweisen."@de,
-            "IT system: 'contains' must point to a Dataset."@en,
-            "Système informatique: « contient » doit renvoyer à un objet de type Jeu de données."@fr,
-            "Sistema IT: «contiene» deve riferirsi a un oggetto di tipo Dataset."@it ;
-    ] ;
-    sh:property [
-        sh:order 10 ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path service:consumes ;
         sh:name "nutzt IT-Service"@de,
             "uses IT service"@en,
-            "utilise un service informatique"@fr,
-            "utilizza un servizio IT"@it ;
-        sh:path service:consumes ;
+            "utilise un service informatique"@fr ;
+        sh:description "Zeigt an, dass ein beliebiges Objekt (IT-System, Organisation etc.) einen bestimmten technischen IT-Service nutzt."@de,
+            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en,
+            "Indique qu'un objet quelconque (système informatique, organisation, etc.) utilise un service informatique technique spécifique."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class service:Service ;
-        sh:message "IT-System: «nutzt IT-Service» muss auf ein Objekt vom Typ IT-Service verweisen."@de,
-            "IT system: 'uses IT service' must point to a IT service."@en,
-            "Système informatique: « utilise un service informatique » doit renvoyer à un objet de type Service informatique."@fr,
-            "Sistema IT: «utilizza un servizio IT» deve riferirsi a un oggetto di tipo Servizio IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 11 ;
-        sh:name "bietet Service an"@de,
-            "provides service"@en,
-            "fournit un service"@fr,
-            "fornisce un servizio"@it ;
-        sh:path service:provides ;
-        sh:class service:Service ;
-        sh:message "IT-System: «bietet Service an» muss auf ein Objekt vom Typ IT-Service verweisen."@de,
-            "IT system: 'provides service' must point to a IT service."@en,
-            "Système informatique: « fournit un service » doit renvoyer à un objet de type Service informatique."@fr,
-            "Sistema IT: «fornisce un servizio» deve riferirsi a un oggetto di tipo Servizio IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 12 ;
+    ] ,
+    [
+        sh:order 13 ;
+        sh:path dcterms:isPartOf ;
         sh:name "ist Teil von"@de,
             "is part of"@en,
-            "fait partie de"@fr,
-            "fa parte di"@it ;
-        sh:path dcterms:isPartOf ;
+            "fait partie de"@fr ;
+        sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
+            "A related resource in which the described resource is physically or logically included."@en,
+            "Une ressource connexe dans laquelle la ressource décrite est incluse physiquement ou logiquement."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:SoftwareApplication ;
-        sh:message "IT-System: «ist Teil von» muss auf ein Objekt vom Typ IT-System verweisen."@de,
-            "IT system: 'is part of' must point to a IT system."@en,
-            "Système informatique: « fait partie de » doit renvoyer à un objet de type Système informatique."@fr,
-            "Sistema IT: «fa parte di» deve riferirsi a un oggetto di tipo Sistema IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 13 ;
-        sh:name "hat Teil"@de,
-            "has part"@en,
-            "a pour partie"@fr,
-            "ha parte"@it ;
-        sh:path dcterms:hasPart ;
-        sh:class schema:SoftwareApplication ;
-        sh:message "IT-System: «hat Teil» muss auf ein Objekt vom Typ IT-System verweisen."@de,
-            "IT system: 'has part' must point to a IT system."@en,
-            "Système informatique: « a pour partie » doit renvoyer à un objet de type Système informatique."@fr,
-            "Sistema IT: «ha parte» deve riferirsi a un oggetto di tipo Sistema IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 14 ;
-        sh:name "hat Rechtsgrundlage"@de,
-            "has legal basis"@en,
-            "a une base légale"@fr,
-            "ha una base legale"@it ;
-        sh:path systemmap:hasLegalBasis ;
-        sh:class schema:Legislation ;
-        sh:message "IT-System: «hat Rechtsgrundlage» muss auf ein Objekt vom Typ Gesetzgebung verweisen."@de,
-            "IT system: 'has legal basis' must point to a Legislation."@en,
-            "Système informatique: « a une base légale » doit renvoyer à un objet de type Législation."@fr,
-            "Sistema IT: «ha una base legale» deve riferirsi a un oggetto di tipo Legislazione."@it ;
-    ] ;
-    sh:property [
-        sh:order 15 ;
-        sh:name "Schlagwort"@de,
-            "Keyword"@en,
-            "Mot-clé"@fr,
-            "Parola chiave"@it ;
-        sh:path schema:keywords ;
-        sh:class schema:DefinedTerm ;
-        sh:message "IT-System: «Schlagwort» muss auf ein Objekt vom Typ Schlagwort verweisen."@de,
-            "IT system: 'Keyword' must point to a Keyword."@en,
-            "Système informatique: « Mot-clé » doit renvoyer à un objet de type Mot-clé."@fr,
-            "Sistema IT: «Parola chiave» deve riferirsi a un oggetto di tipo Parola chiave."@it ;
     ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:prefixes shape: ;
         sh:message "IT-System: Jedes IT-System muss direkt oder über ein übergeordnetes System von einer Organisation betrieben werden."@de,
             "IT system: Every IT system must be operated by an organization, directly or via a parent system."@en,
-            "Système informatique : chaque système informatique doit être exploité par une organisation, directement ou via un système parent."@fr,
-            "Sistema IT: ogni sistema IT deve essere gestito da un'organizzazione, direttamente o tramite un sistema padre."@it ;
+            "Système informatique : chaque système informatique doit être exploité par une organisation, directement ou via un système parent."@fr ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
@@ -479,199 +188,104 @@ shape:SoftwareApplicationShape a sh:NodeShape ;
                 }
             }
         """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes shape: ;
+        sh:message "IT-System: Eine deutsche Beschreibung ist Pflicht."@de,
+            "IT system: A German description is required."@en,
+            "Système informatique : une description en allemand est obligatoire."@fr ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this schema:description ?description .
+                    FILTER(LANG(?description) = "de")
+                }
+            }
+        """ ;
     ] .
 
-shape:DatasetShape a sh:NodeShape ;
-    rdfs:label "Datensatz"@de,
-            "Dataset"@en,
-            "Jeu de données"@fr,
-            "Dataset"@it ;
-    rdfs:comment "Informationseinheiten, die in IT-Systemen enthalten sind. Jeder Datensatz liegt direkt oder über einen übergeordneten Datensatz in einem IT-System."@de,
-            "Information units contained in IT systems. Every dataset is contained in an IT system, directly or via a parent dataset."@en,
-            "Unités d'information contenues dans des systèmes informatiques. Chaque jeu de données est contenu dans un système informatique, directement ou via un jeu de données parent."@fr,
-            "Unità di informazione contenute nei sistemi IT. Ogni dataset è contenuto in un sistema IT, direttamente o tramite un dataset padre."@it ;
+# ==============================================================================
+# DATASET
+# ==============================================================================
+
+shape:Dataset a sh:NodeShape ;
     sh:targetClass dcat:Dataset ;
+    rdfs:label "Datensatz"@de,
+        "Dataset"@en,
+        "Jeu de données"@fr ;
+    rdfs:comment "Informationseinheiten, die in IT-Systemen enthalten sind. Jeder Datensatz liegt direkt oder über einen übergeordneten Datensatz in einem IT-System. Gesondert ausgewiesen werden Stammdaten sowie Datensätze mit Personendaten und mit besonders schützenswerten Personendaten."@de,
+        "Information units contained in IT systems. Every dataset is contained in an IT system, directly or via a parent dataset. Master data as well as datasets containing personal data or sensitive personal data are marked separately."@en,
+        "Unités d'information contenues dans des systèmes informatiques. Chaque jeu de données est contenu dans un système informatique, directement ou via un jeu de données parent. Les données de base ainsi que les jeux de données contenant des données personnelles ou des données personnelles sensibles sont signalés séparément."@fr ;
     sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "Datensatz: «Name» ist eine Pflichtangabe. Datensatz: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Dataset: 'Name' is required. Dataset: 'Name' needs a language tag and at most one value per language."@en,
-            "Jeu de données: « Nom » est obligatoire. Jeu de données: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Dataset: «Nome» è obbligatorio. Dataset: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 2 ;
-        sh:name "Beschreibung"@de,
-            "Description"@en,
-            "Description"@fr,
-            "Descrizione"@it ;
-        sh:path schema:description ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:message "Datensatz: «Beschreibung» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Dataset: 'Description' needs a language tag and at most one value per language."@en,
-            "Jeu de données: « Description » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Dataset: «Descrizione» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 3 ;
-        sh:name "Abkürzung"@de,
-            "Abbreviation"@en,
-            "Abréviation"@fr,
-            "Abbreviazione"@it ;
-        sh:path systemmap:abbreviation ;
-        sh:nodeKind sh:Literal ;
-        sh:message "Datensatz: «Abkürzung» muss ein Text sein."@de,
-            "Dataset: 'Abbreviation' must be a literal."@en,
-            "Jeu de données: « Abréviation » doit être un texte."@fr,
-            "Dataset: «Abbreviazione» deve essere un testo."@it ;
-    ] ;
-    sh:property [
-        sh:order 4 ;
-        sh:name "hat Landingpage"@de,
-            "has landing page"@en,
-            "a page d'accueil"@fr,
-            "ha pagina di destinazione"@it ;
-        sh:path schema:url ;
-        sh:nodeKind sh:IRI ;
-        sh:message "Datensatz: «hat Landingpage» muss eine IRI sein."@de,
-            "Dataset: 'has landing page' must be an IRI."@en,
-            "Jeu de données: « a page d'accueil » doit être une IRI."@fr,
-            "Dataset: «ha pagina di destinazione» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 5 ;
-        sh:name "Siehe auch"@de,
-            "See also"@en,
-            "Voir aussi"@fr,
-            "Vedi anche"@it ;
-        sh:path rdfs:seeAlso ;
-        sh:nodeKind sh:IRI ;
-        sh:message "Datensatz: «Siehe auch» muss eine IRI sein."@de,
-            "Dataset: 'See also' must be an IRI."@en,
-            "Jeu de données: « Voir aussi » doit être une IRI."@fr,
-            "Dataset: «Vedi anche» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 6 ;
-        sh:name "Schlagwort"@de,
-            "Keyword"@en,
-            "Mot-clé"@fr,
-            "Parola chiave"@it ;
-        sh:path schema:keywords ;
-        sh:class schema:DefinedTerm ;
-        sh:message "Datensatz: «Schlagwort» muss auf ein Objekt vom Typ Schlagwort verweisen."@de,
-            "Dataset: 'Keyword' must point to a Keyword."@en,
-            "Jeu de données: « Mot-clé » doit renvoyer à un objet de type Mot-clé."@fr,
-            "Dataset: «Parola chiave» deve riferirsi a un oggetto di tipo Parola chiave."@it ;
-    ] ;
-    sh:property [
-        sh:order 7 ;
+    sh:ignoredProperties ( rdf:type dcterms:hasPart ) ;
+    sh:property shape:name, shape:abbreviation, shape:description, shape:url, shape:seeAlso, shape:keywords, shape:legalBasis ,
+    [
+        sh:order 10 ;
+        sh:path systemmap:containedIn ;
         sh:name "ist beinhaltet in"@de,
             "is contained in"@en,
-            "est contenu dans"@fr,
-            "è contenuto in"@it ;
-        sh:path systemmap:containedIn ;
+            "est contenu dans"@fr ;
+        sh:description "Gibt an, dass eine Informationseinheit X im IT-System Y enthalten ist. Beispielsweise sind Informationen über landwirtschaftliche Flächen in der Schweiz in AGIS enthalten."@de,
+            "Indicates that an information unit X is contained in the IT system Y. For example, information about farming areas in Switzerland is contained in AGIS."@en,
+            "Indique qu'une unité d'information X est contenue dans le système informatique Y. Par exemple, les informations sur les surfaces agricoles en Suisse sont contenues dans AGIS."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class schema:SoftwareApplication ;
-        sh:message "Datensatz: «ist beinhaltet in» muss auf ein Objekt vom Typ IT-System verweisen."@de,
-            "Dataset: 'is contained in' must point to a IT system."@en,
-            "Jeu de données: « est contenu dans » doit renvoyer à un objet de type Système informatique."@fr,
-            "Dataset: «è contenuto in» deve riferirsi a un oggetto di tipo Sistema IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 8 ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path dcterms:isPartOf ;
         sh:name "ist Teil von"@de,
             "is part of"@en,
-            "fait partie de"@fr,
-            "fa parte di"@it ;
-        sh:path dcterms:isPartOf ;
+            "fait partie de"@fr ;
+        sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
+            "A related resource in which the described resource is physically or logically included."@en,
+            "Une ressource connexe dans laquelle la ressource décrite est incluse physiquement ou logiquement."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
-        sh:message "Datensatz: «ist Teil von» muss auf ein Objekt vom Typ Datensatz verweisen."@de,
-            "Dataset: 'is part of' must point to a Dataset."@en,
-            "Jeu de données: « fait partie de » doit renvoyer à un objet de type Jeu de données."@fr,
-            "Dataset: «fa parte di» deve riferirsi a un oggetto di tipo Dataset."@it ;
-    ] ;
-    sh:property [
-        sh:order 9 ;
-        sh:name "hat Teil"@de,
-            "has part"@en,
-            "a pour partie"@fr,
-            "ha parte"@it ;
-        sh:path dcterms:hasPart ;
-        sh:class dcat:Dataset ;
-        sh:message "Datensatz: «hat Teil» muss auf ein Objekt vom Typ Datensatz verweisen."@de,
-            "Dataset: 'has part' must point to a Dataset."@en,
-            "Jeu de données: « a pour partie » doit renvoyer à un objet de type Jeu de données."@fr,
-            "Dataset: «ha parte» deve riferirsi a un oggetto di tipo Dataset."@it ;
-    ] ;
-    sh:property [
-        sh:order 10 ;
-        sh:name "hat Masterdaten"@de,
-            "has master data"@en,
-            "utilise des données de base"@fr,
-            "utilizza dati anagrafici"@it ;
-        sh:path systemmap:usesMasterData ;
-        sh:class dcat:Dataset ;
-        sh:message "Datensatz: «hat Masterdaten» muss auf ein Objekt vom Typ Datensatz verweisen."@de,
-            "Dataset: 'has master data' must point to a Dataset."@en,
-            "Jeu de données: « utilise des données de base » doit renvoyer à un objet de type Jeu de données."@fr,
-            "Dataset: «utilizza dati anagrafici» deve riferirsi a un oggetto di tipo Dataset."@it ;
-    ] ;
-    sh:property [
-        sh:order 11 ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path prov:wasDerivedFrom ;
         sh:name "wurde abgeleitet von"@de,
             "was derived from"@en,
-            "a été dérivé de"@fr,
-            "è stato derivato da"@it ;
-        sh:path prov:wasDerivedFrom ;
+            "a été dérivé de"@fr ;
+        sh:description "Eine Ableitung ist die Transformation einer Entität in eine andere, eine Aktualisierung einer Entität, die zu einer neuen führt, oder die Konstruktion einer neuen Entität auf der Grundlage einer bereits existierenden."@de,
+            "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."@en,
+            "Une dérivation est une transformation d'une entité en une autre, une mise à jour d'une entité aboutissant à une nouvelle, ou la construction d'une nouvelle entité basée sur une entité préexistante."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
-        sh:message "Datensatz: «wurde abgeleitet von» muss auf ein Objekt vom Typ Datensatz verweisen."@de,
-            "Dataset: 'was derived from' must point to a Dataset."@en,
-            "Jeu de données: « a été dérivé de » doit renvoyer à un objet de type Jeu de données."@fr,
-            "Dataset: «è stato derivato da» deve riferirsi a un oggetto di tipo Dataset."@it ;
-    ] ;
-    sh:property [
-        sh:order 12 ;
+    ] ,
+    [
+        sh:order 13 ;
+        sh:path systemmap:informs ;
         sh:name "informiert"@de,
             "informs"@en,
-            "informe"@fr,
-            "informa"@it ;
-        sh:path systemmap:informs ;
+            "informe"@fr ;
+        sh:description "Zeigt auf, dass Informationseinheit X durch eine andere Informationseinheit Y informiert wird; d.h. dass irgendwie Daten fliessen. Das kann über manuelles Abschreiben, E-Mail-Versandt von Tabellen, APIs etc. geschehen."@de,
+            "Indicates that information unit X is informed by another information unit Y, meaning that data flows in some way. This can happen through manual copying, emailing tables, APIs, etc."@en,
+            "Indique que l'unité d'information X est informée par une autre unité d'information Y, ce qui signifie que des données circulent d'une manière ou d'une autre. Cela peut se produire par copie manuelle, envoi de tableaux par e-mail, API, etc."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
-        sh:message "Datensatz: «informiert» muss auf ein Objekt vom Typ Datensatz verweisen."@de,
-            "Dataset: 'informs' must point to a Dataset."@en,
-            "Jeu de données: « informe » doit renvoyer à un objet de type Jeu de données."@fr,
-            "Dataset: «informa» deve riferirsi a un oggetto di tipo Dataset."@it ;
-    ] ;
-    sh:property [
-        sh:order 13 ;
-        sh:name "hat Rechtsgrundlage"@de,
-            "has legal basis"@en,
-            "a une base légale"@fr,
-            "ha una base legale"@it ;
-        sh:path systemmap:hasLegalBasis ;
-        sh:class schema:Legislation ;
-        sh:message "Datensatz: «hat Rechtsgrundlage» muss auf ein Objekt vom Typ Gesetzgebung verweisen."@de,
-            "Dataset: 'has legal basis' must point to a Legislation."@en,
-            "Jeu de données: « a une base légale » doit renvoyer à un objet de type Législation."@fr,
-            "Dataset: «ha una base legale» deve riferirsi a un oggetto di tipo Legislazione."@it ;
+    ] ,
+    [
+        sh:order 14 ;
+        sh:path systemmap:usesMasterData ;
+        sh:name "hat Masterdaten"@de,
+            "has master data"@en,
+            "utilise des données de base"@fr ;
+        sh:description "Gibt an, dass ein Datensatz Stammdaten verwendet, zum Beispiel eine Betriebsnummer, über die er mit anderen Datensätzen verknüpft ist."@de,
+            "States that a dataset uses master data, for example a farm identifier through which it is linked with other datasets."@en,
+            "Indique qu'un jeu de données utilise des données de base, par exemple un numéro d'exploitation qui le relie à d'autres jeux de données."@fr ;
+        sh:nodeKind sh:IRI ;
+        sh:class dcat:Dataset ;
     ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:prefixes shape: ;
         sh:message "Datensatz: Jeder Datensatz muss direkt oder über einen übergeordneten Datensatz in einem IT-System enthalten sein."@de,
             "Dataset: Every dataset must be contained in an IT system, directly or via a parent dataset."@en,
-            "Jeu de données : chaque jeu de données doit être contenu dans un système informatique, directement ou via un jeu de données parent."@fr,
-            "Dataset: ogni dataset deve essere contenuto in un sistema IT, direttamente o tramite un dataset padre."@it ;
+            "Jeu de données : chaque jeu de données doit être contenu dans un système informatique, directement ou via un jeu de données parent."@fr ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
@@ -682,259 +296,248 @@ shape:DatasetShape a sh:NodeShape ;
         """ ;
     ] .
 
-shape:ServiceShape a sh:NodeShape ;
-    rdfs:label "IT-Service"@de,
-            "IT service"@en,
-            "Service informatique"@fr,
-            "Servizio IT"@it ;
-    rdfs:comment "IT-Services, die von IT-Systemen bereitgestellt und genutzt werden."@de,
-            "IT services provided and consumed by IT systems."@en,
-            "Services informatiques fournis et utilisés par des systèmes informatiques."@fr,
-            "Servizi IT forniti e utilizzati da sistemi IT."@it ;
+# ==============================================================================
+# IT SERVICE
+# ==============================================================================
+
+shape:Service a sh:NodeShape ;
     sh:targetClass service:Service ;
+    rdfs:label "IT-Service"@de,
+        "IT service"@en,
+        "Service informatique"@fr ;
+    rdfs:comment "IT-Services, die von IT-Systemen bereitgestellt und von IT-Systemen oder anderen Services genutzt werden."@de,
+        "IT services provided by IT systems and used by IT systems or other services."@en,
+        "Services informatiques fournis par des systèmes informatiques et utilisés par des systèmes informatiques ou d'autres services."@fr ;
     sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "IT-Service: «Name» ist eine Pflichtangabe. IT-Service: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "IT service: 'Name' is required. IT service: 'Name' needs a language tag and at most one value per language."@en,
-            "Service informatique: « Nom » est obligatoire. Service informatique: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Servizio IT: «Nome» è obbligatorio. Servizio IT: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 2 ;
-        sh:name "Beschreibung"@de,
-            "Description"@en,
-            "Description"@fr,
-            "Descrizione"@it ;
-        sh:path schema:description ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:message "IT-Service: «Beschreibung» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "IT service: 'Description' needs a language tag and at most one value per language."@en,
-            "Service informatique: « Description » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Servizio IT: «Descrizione» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 3 ;
-        sh:name "hat Landingpage"@de,
-            "has landing page"@en,
-            "a page d'accueil"@fr,
-            "ha pagina di destinazione"@it ;
-        sh:path schema:url ;
-        sh:nodeKind sh:IRI ;
-        sh:message "IT-Service: «hat Landingpage» muss eine IRI sein."@de,
-            "IT service: 'has landing page' must be an IRI."@en,
-            "Service informatique: « a page d'accueil » doit être une IRI."@fr,
-            "Servizio IT: «ha pagina di destinazione» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 4 ;
+    sh:ignoredProperties ( rdf:type service:consumedBy dcterms:hasPart ) ;
+    sh:property shape:name, shape:description, shape:url, shape:keywords ,
+    [
+        sh:order 10 ;
+        sh:path service:providedBy ;
         sh:name "wird bereitgestellt von"@de,
             "is provided by"@en,
-            "est fourni par"@fr,
-            "è fornito da"@it ;
-        sh:path service:providedBy ;
-        sh:class schema:SoftwareApplication ;
-        sh:message "IT-Service: «wird bereitgestellt von» muss auf ein Objekt vom Typ IT-System verweisen."@de,
-            "IT service: 'is provided by' must point to a IT system."@en,
-            "Service informatique: « est fourni par » doit renvoyer à un objet de type Système informatique."@fr,
-            "Servizio IT: «è fornito da» deve riferirsi a un oggetto di tipo Sistema IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 5 ;
-        sh:name "wird verwendet von"@de,
-            "is used by"@en,
-            "est utilisé par"@fr,
-            "è utilizzato da"@it ;
-        sh:path service:consumedBy ;
+            "est fourni par"@fr ;
+        sh:description "Zeigt an, dass ein technischer Service von einem bestimmten IT-System bereitgestellt wird."@de,
+            "Indicates that a technical service is provided by a specific IT system."@en,
+            "Indique qu'un service technique est fourni par un système informatique spécifique."@fr ;
         sh:nodeKind sh:IRI ;
-        sh:message "IT-Service: «wird verwendet von» muss eine IRI sein."@de,
-            "IT service: 'is used by' must be an IRI."@en,
-            "Service informatique: « est utilisé par » doit être une IRI."@fr,
-            "Servizio IT: «è utilizzato da» deve essere un IRI."@it ;
-    ] ;
-    sh:property [
-        sh:order 6 ;
+        sh:class schema:SoftwareApplication ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path service:consumes ;
         sh:name "nutzt IT-Service"@de,
             "uses IT service"@en,
-            "utilise un service informatique"@fr,
-            "utilizza un servizio IT"@it ;
-        sh:path service:consumes ;
+            "utilise un service informatique"@fr ;
+        sh:description "Zeigt an, dass ein beliebiges Objekt (IT-System, Organisation etc.) einen bestimmten technischen IT-Service nutzt."@de,
+            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en,
+            "Indique qu'un objet quelconque (système informatique, organisation, etc.) utilise un service informatique technique spécifique."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class service:Service ;
-        sh:message "IT-Service: «nutzt IT-Service» muss auf ein Objekt vom Typ IT-Service verweisen."@de,
-            "IT service: 'uses IT service' must point to a IT service."@en,
-            "Service informatique: « utilise un service informatique » doit renvoyer à un objet de type Service informatique."@fr,
-            "Servizio IT: «utilizza un servizio IT» deve riferirsi a un oggetto di tipo Servizio IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 7 ;
-        sh:name "Schlagwort"@de,
-            "Keyword"@en,
-            "Mot-clé"@fr,
-            "Parola chiave"@it ;
-        sh:path schema:keywords ;
-        sh:class schema:DefinedTerm ;
-        sh:message "IT-Service: «Schlagwort» muss auf ein Objekt vom Typ Schlagwort verweisen."@de,
-            "IT service: 'Keyword' must point to a Keyword."@en,
-            "Service informatique: « Mot-clé » doit renvoyer à un objet de type Mot-clé."@fr,
-            "Servizio IT: «Parola chiave» deve riferirsi a un oggetto di tipo Parola chiave."@it ;
-    ] ;
-    sh:property [
-        sh:order 8 ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path dcterms:isPartOf ;
         sh:name "ist Teil von"@de,
             "is part of"@en,
-            "fait partie de"@fr,
-            "fa parte di"@it ;
-        sh:path dcterms:isPartOf ;
+            "fait partie de"@fr ;
+        sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
+            "A related resource in which the described resource is physically or logically included."@en,
+            "Une ressource connexe dans laquelle la ressource décrite est incluse physiquement ou logiquement."@fr ;
+        sh:nodeKind sh:IRI ;
         sh:class service:Service ;
-        sh:message "IT-Service: «ist Teil von» muss auf ein Objekt vom Typ IT-Service verweisen."@de,
-            "IT service: 'is part of' must point to a IT service."@en,
-            "Service informatique: « fait partie de » doit renvoyer à un objet de type Service informatique."@fr,
-            "Servizio IT: «fa parte di» deve riferirsi a un oggetto di tipo Servizio IT."@it ;
-    ] ;
-    sh:property [
-        sh:order 9 ;
-        sh:name "hat Teil"@de,
-            "has part"@en,
-            "a pour partie"@fr,
-            "ha parte"@it ;
-        sh:path dcterms:hasPart ;
-        sh:class service:Service ;
-        sh:message "IT-Service: «hat Teil» muss auf ein Objekt vom Typ IT-Service verweisen."@de,
-            "IT service: 'has part' must point to a IT service."@en,
-            "Service informatique: « a pour partie » doit renvoyer à un objet de type Service informatique."@fr,
-            "Servizio IT: «ha parte» deve riferirsi a un oggetto di tipo Servizio IT."@it ;
     ] .
 
-shape:LegislationShape a sh:NodeShape ;
-    rdfs:label "Gesetzgebung"@de,
-            "Legislation"@en,
-            "Législation"@fr,
-            "Legislazione"@it ;
-    rdfs:comment "Rechtsgrundlagen (Fedlex), auf die sich Systeme und Daten stützen."@de,
-            "Legal bases (Fedlex) of systems and data."@en,
-            "Bases légales (Fedlex) des systèmes et des données."@fr,
-            "Basi legali (Fedlex) di sistemi e dati."@it ;
+# ==============================================================================
+# LEGISLATION
+# ==============================================================================
+
+shape:Legislation a sh:NodeShape ;
     sh:targetClass schema:Legislation ;
+    rdfs:label "Gesetzgebung"@de,
+        "Legislation"@en,
+        "Législation"@fr ;
+    rdfs:comment "Rechtsgrundlagen (Fedlex), auf die sich Organisationen, IT-Systeme und Datensätze stützen. Ihre Namen sind die offiziellen Titel."@de,
+        "Legal bases (Fedlex) of organizations, IT systems and datasets. Their names are the official titles."@en,
+        "Bases légales (Fedlex) des organisations, des systèmes informatiques et des jeux de données. Leurs noms sont les titres officiels."@fr ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "Gesetzgebung: «Name» ist eine Pflichtangabe. Gesetzgebung: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Legislation: 'Name' is required. Legislation: 'Name' needs a language tag and at most one value per language."@en,
-            "Législation: « Nom » est obligatoire. Législation: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Legislazione: «Nome» è obbligatorio. Legislazione: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 2 ;
-        sh:name "Alternativer Name"@de,
-            "Alternative name"@en,
-            "Autre nom"@fr,
-            "Nome alternativo"@it ;
-        sh:path schema:alternateName ;
-        sh:datatype rdf:langString ;
-        sh:message "Gesetzgebung: «Alternativer Name» braucht ein Sprach-Tag."@de,
-            "Legislation: 'Alternative name' needs a language tag."@en,
-            "Législation: « Autre nom » nécessite une balise de langue."@fr,
-            "Legislazione: «Nome alternativo» richiede un tag di lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 3 ;
-        sh:name "Abkürzung"@de,
-            "Abbreviation"@en,
-            "Abréviation"@fr,
-            "Abbreviazione"@it ;
-        sh:path systemmap:abbreviation ;
-        sh:nodeKind sh:Literal ;
-        sh:message "Gesetzgebung: «Abkürzung» muss ein Text sein."@de,
-            "Legislation: 'Abbreviation' must be a literal."@en,
-            "Législation: « Abréviation » doit être un texte."@fr,
-            "Legislazione: «Abbreviazione» deve essere un testo."@it ;
-    ] .
+    sh:property shape:officialName, shape:alternateName, shape:abbreviation .
 
-shape:KeywordShape a sh:NodeShape ;
-    rdfs:label "Schlagwort"@de,
-            "Keyword"@en,
-            "Mot-clé"@fr,
-            "Parola chiave"@it ;
-    rdfs:comment "Schlagwörter zur thematischen Einordnung von Datensätzen."@de,
-            "Keywords for the thematic classification of datasets."@en,
-            "Mots-clés pour la classification thématique des jeux de données."@fr,
-            "Parole chiave per la classificazione tematica dei dataset."@it ;
+# ==============================================================================
+# KEYWORD
+# ==============================================================================
+
+shape:Keyword a sh:NodeShape ;
     sh:targetClass schema:DefinedTerm ;
+    rdfs:label "Schlagwort"@de,
+        "Keyword"@en,
+        "Mot-clé"@fr ;
+    rdfs:comment "Schlagwörter zur thematischen Einordnung."@de,
+        "Keywords for thematic classification."@en,
+        "Mots-clés pour la classification thématique."@fr ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "Schlagwort: «Name» ist eine Pflichtangabe. Schlagwort: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Keyword: 'Name' is required. Keyword: 'Name' needs a language tag and at most one value per language."@en,
-            "Mot-clé: « Nom » est obligatoire. Mot-clé: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Parola chiave: «Nome» è obbligatorio. Parola chiave: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] .
+    sh:property shape:name .
 
-shape:SubgraphShape a sh:NodeShape ;
-    rdfs:label "Subgraph"@de,
-            "Collection"@en,
-            "Sous-graphe"@fr,
-            "Sottografo"@it ;
-    rdfs:comment "Subgraphen, die einen Ausschnitt der Systemlandkarte zeigen."@de,
-            "Subgraphs showing a part of the system map."@en,
-            "Sous-graphes montrant une partie de la carte des systèmes."@fr,
-            "Sottografi che mostrano una parte della mappa dei sistemi."@it ;
+# ==============================================================================
+# COLLECTION
+# ==============================================================================
+
+shape:Subgraph a sh:NodeShape ;
     sh:targetClass dcmitype:Collection ;
+    rdfs:label "Subgraph"@de,
+        "Collection"@en,
+        "Sous-graphe"@fr ;
+    rdfs:comment "Subgraphen, die einen thematischen Ausschnitt der Systemlandkarte zusammenfassen."@de,
+        "Subgraphs that summarize a thematic part of the system map."@en,
+        "Sous-graphes qui résument une partie thématique de la carte des systèmes."@fr ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype rdf:langString ;
-        sh:uniqueLang true ;
-        sh:minCount 1 ;
-        sh:message "Subgraph: «Name» ist eine Pflichtangabe. Subgraph: «Name» braucht ein Sprach-Tag und höchstens einen Wert pro Sprache."@de,
-            "Collection: 'Name' is required. Collection: 'Name' needs a language tag and at most one value per language."@en,
-            "Sous-graphe: « Nom » est obligatoire. Sous-graphe: « Nom » nécessite une balise de langue et au plus une valeur par langue."@fr,
-            "Sottografo: «Nome» è obbligatorio. Sottografo: «Nome» richiede un tag di lingua e al massimo un valore per lingua."@it ;
-    ] ;
-    sh:property [
-        sh:order 2 ;
+    sh:property shape:name ,
+    [
+        sh:order 10 ;
+        sh:path systemmap:containsNodes ;
         sh:name "Elemente in diesem Subgraph"@de,
             "Elements in this subgraph"@en,
-            "Éléments de ce sous-graphe"@fr,
-            "Elementi di questo sottografo"@it ;
-        sh:path systemmap:containsNodes ;
-        sh:nodeKind sh:IRI ;
+            "Éléments de ce sous-graphe"@fr ;
+        sh:description "Ein Element, das zu diesem Subgraphen gehört: ein IT-System, ein Datensatz, ein Service oder eine Organisation."@de,
+            "An element that belongs to this subgraph: an IT system, a dataset, a service or an organization."@en,
+            "Un élément qui appartient à ce sous-graphe : un système informatique, un jeu de données, un service ou une organisation."@fr ;
         sh:minCount 1 ;
-        sh:message "Subgraph: «Elemente in diesem Subgraph» ist eine Pflichtangabe."@de,
-            "Collection: 'Elements in this subgraph' is required."@en,
-            "Sous-graphe: « Éléments de ce sous-graphe » est obligatoire."@fr,
-            "Sottografo: «Elementi di questo sottografo» è obbligatorio."@it ;
+        sh:nodeKind sh:IRI ;
     ] .
+
+# ==============================================================================
+# SHARED PROPERTY SHAPES
+# ==============================================================================
+
+shape:name a sh:PropertyShape ;
+    sh:order 1 ;
+    sh:path schema:name ;
+    sh:name "Name"@de,
+        "Name"@en,
+        "Nom"@fr ;
+    sh:description "Der bevorzugte Name, in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch. Je Sprache ist höchstens ein Name zulässig."@de,
+        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en,
+        "Le nom préféré, dans au moins une des langues allemand, français, italien ou anglais. Un seul nom par langue est admis."@fr ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true ;
+    sh:maxLength 125 .
+
+shape:officialName a sh:PropertyShape ;
+    sh:order 1 ;
+    sh:path schema:name ;
+    sh:name "Name"@de,
+        "Name"@en,
+        "Nom"@fr ;
+    sh:description "Der bevorzugte Name, in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch. Je Sprache ist höchstens ein Name zulässig."@de,
+        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en,
+        "Le nom préféré, dans au moins une des langues allemand, français, italien ou anglais. Un seul nom par langue est admis."@fr ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true .
+
+shape:alternateName a sh:PropertyShape ;
+    sh:order 2 ;
+    sh:path schema:alternateName ;
+    sh:name "Alternativer Name"@de,
+        "Alternative name"@en,
+        "Autre nom"@fr ;
+    sh:description "Eine weitere gebräuchliche Bezeichnung, zum Beispiel ein früherer oder ein umgangssprachlicher Name. Sie kann die Suche verbessern."@de,
+        "Another common name, for example a former or colloquial name. It can improve search."@en,
+        "Une autre dénomination usuelle, par exemple un ancien nom ou un nom familier. Elle peut améliorer la recherche."@fr ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) .
+
+shape:abbreviation a sh:PropertyShape ;
+    sh:order 3 ;
+    sh:path systemmap:abbreviation ;
+    sh:name "Abkürzung"@de,
+        "Abbreviation"@en,
+        "Abréviation"@fr ;
+    sh:description "Eine Abkürzung wird nur angegeben, wenn sie nicht bereits der bevorzugte Name ist. Beispiel: Die Fenaco Genossenschaft (fédération nationale des coopératives agricoles) wird üblicherweise als \"Fenaco\" bezeichnet, sodass keine separate Abkürzung erforderlich ist."@de,
+        "An abbreviation is only provided if it is not already the preferred name. Example: The Fenaco cooperative (fédération nationale des coopératives agricoles) is commonly referred to as \"Fenaco,\" making a separate abbreviation unnecessary."@en,
+        "Une abréviation n'est indiquée que si elle n'est pas déjà le nom préféré. Exemple : La coopérative Fenaco (fédération nationale des coopératives agricoles) est couramment appelée \"Fenaco\", rendant une abréviation distincte superflue."@fr ;
+    sh:nodeKind sh:Literal .
+
+shape:description a sh:PropertyShape ;
+    sh:order 4 ;
+    sh:path schema:description ;
+    sh:name "Beschreibung"@de,
+        "Description"@en,
+        "Description"@fr ;
+    sh:description "Eine Beschreibung in Worten, je Sprache höchstens eine."@de,
+        "A description in words, at most one per language."@en,
+        "Une description en mots, au plus une par langue."@fr ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true .
+
+shape:requiredDescription a sh:PropertyShape ;
+    sh:order 4 ;
+    sh:path schema:description ;
+    sh:name "Beschreibung"@de,
+        "Description"@en,
+        "Description"@fr ;
+    sh:description "Eine Beschreibung in Worten, je Sprache höchstens eine."@de,
+        "A description in words, at most one per language."@en,
+        "Une description en mots, au plus une par langue."@fr ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true .
+
+shape:url a sh:PropertyShape ;
+    sh:order 5 ;
+    sh:path schema:url ;
+    sh:name "hat Landingpage"@de,
+        "has landing page"@en,
+        "a page d'accueil"@fr ;
+    sh:description "Eine Webseite, die in einem Webbrowser aufgerufen werden kann, um auf den Katalog, ein Dataset, seine Distributionen und/oder zusätzliche Informationen zuzugreifen."@de,
+        "A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information."@en,
+        "Une page Web pouvant être consultée dans un navigateur pour accéder au catalogue, à un ensemble de données, à ses distributions et/ou à des informations supplémentaires."@fr ;
+    sh:nodeKind sh:IRI .
+
+shape:seeAlso a sh:PropertyShape ;
+    sh:order 6 ;
+    sh:path rdfs:seeAlso ;
+    sh:name "Siehe auch"@de,
+        "See also"@en,
+        "Voir aussi"@fr ;
+    sh:description "Verweis auf eine weiterführende Quelle, zum Beispiel eine Dokumentation oder eine Webseite."@de,
+        "Reference to a further source, for example documentation or a web page."@en,
+        "Renvoi à une source complémentaire, par exemple une documentation ou une page web."@fr ;
+    sh:nodeKind sh:IRI .
+
+shape:keywords a sh:PropertyShape ;
+    sh:order 20 ;
+    sh:path schema:keywords ;
+    sh:name "Schlagwort"@de,
+        "Keyword"@en,
+        "Mot-clé"@fr ;
+    sh:description "Ein Schlagwort, das den Gegenstand thematisch einordnet."@de,
+        "A keyword that classifies the item thematically."@en,
+        "Un mot-clé qui classe l'élément par thème."@fr ;
+    sh:nodeKind sh:IRI ;
+    sh:class schema:DefinedTerm .
+
+shape:legalBasis a sh:PropertyShape ;
+    sh:order 21 ;
+    sh:path systemmap:hasLegalBasis ;
+    sh:name "hat Rechtsgrundlage"@de,
+        "has legal basis"@en,
+        "a une base légale"@fr ;
+    sh:description "Zeigt an, dass irgendetwas X eine Rechtsgrundlage mit (einem bestimmten Teil) der Legislation Y hat."@de,
+        "Indicates that anything X has a legal basis in a (particular part of) legislation Y."@en,
+        "Indique que tout X a une base légale dans une (partie particulière de) législation Y."@fr ;
+    sh:nodeKind sh:IRI ;
+    sh:class schema:Legislation .
