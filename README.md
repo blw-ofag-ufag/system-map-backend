@@ -1,28 +1,28 @@
-# Semantic web project template
+# System map backend
 
-[![CI](https://github.com/blw-ofag-ufag/semantic-web-template/actions/workflows/ci.yml/badge.svg)](https://github.com/blw-ofag-ufag/semantic-web-template/actions/workflows/ci.yml)
-[![GitHub last commit](https://img.shields.io/github/last-commit/blw-ofag-ufag/semantic-web-template.svg)](https://github.com/blw-ofag-ufag/semantic-web-template/commits)
-[![GitHub issues](https://img.shields.io/github/issues/blw-ofag-ufag/semantic-web-template.svg)](https://github.com/blw-ofag-ufag/semantic-web-template/issues)
+[![CI](https://github.com/blw-ofag-ufag/system-map-backend/actions/workflows/ci.yml/badge.svg)](https://github.com/blw-ofag-ufag/system-map-backend/actions/workflows/ci.yml)
+[![GitHub last commit](https://img.shields.io/github/last-commit/blw-ofag-ufag/system-map-backend.svg)](https://github.com/blw-ofag-ufag/system-map-backend/commits)
+[![GitHub issues](https://img.shields.io/github/issues/blw-ofag-ufag/system-map-backend.svg)](https://github.com/blw-ofag-ufag/system-map-backend/issues)
 
-For demonstrative purposes, this template repository includes a full semantic web pipeline, including
- 
+This repository contains the knowledge graph of the system map of the Federal Office for Agriculture: IT systems of the Swiss agri-food sector, the data they contain, the services they provide and consume, and the organizations that operate, own or develop them.
+It is built on the [semantic-web-template](https://github.com/blw-ofag-ufag/semantic-web-template) and uses its semantic web pipeline, including
+
 1. manual data curation (data files in `src/rdf/data`),
-2. data integration from a relational database (using python, specifically `src/python/pipeline/...`),
-3. OWL-based inferencing (using the ontology in `src/rdf/model.owl.ttl`),
-4. SPARQL-based processing of the graph (using rules in `src/sparql/processing/...`)
-5. SHACL-based graph data validation (using `src/rdf/shapes/model.shacl.ttl`)
-6. a even more customizable Pytest test suite,
-7. uploading of the final graph to LINDAS
-8. a documentation building pipeline using Quarto
+2. OWL-based inferencing (using the ontology in `src/rdf/ontology/model.owl.ttl`),
+3. SPARQL-based processing of the graph (using rules in `src/sparql/processing/...`),
+4. SHACL-based graph data validation (using `src/rdf/shapes/model.shacl.ttl`),
+5. a Pytest test suite,
+6. uploading of the final graph to LINDAS (named graph `https://lindas.admin.ch/foag/system-map`),
+7. a documentation building pipeline using Quarto, which describes the data model based on the SHACL shapes.
 
-Specifically, this demo project creates a graph of around 120k triples from the Chinook database, makes some inferences, processes and validates the graph.
+The published graph is visualized by the [system map frontend](https://github.com/damian-oswald/system-map-frontend), which queries it live from LINDAS.
 
-> [!IMPORTANT]
-> After using this template repository for a project, you probably want to delete/overwrite any of the aforementioned turtle/sparql/python files.
+> [!NOTE]
+> This repository was migrated from [system-map](https://github.com/blw-ofag-ufag/system-map); its full commit history is preserved here.
 
 ## Development tools
 
-This template uses a variety of tools to ensure robust data integration, reasoning, validation, and documentation.
+This project uses a variety of tools to ensure robust reasoning, validation, and documentation.
 
 - [HermiT](http://www.hermit-reasoner.com/): An OWL reasoner used for logical reasoning and inferring new knowledge from the ontology and data.
 - [Pytest](https://docs.pytest.org/): A testing framework used to run syntax checks and evaluate SHACL validation reports.
@@ -43,15 +43,15 @@ The project relies on core W3C Semantic Web standards to model, link, and valida
 
 ## Build and deployment orchestration
 
-To streamline the workflow, this project uses `make` as its primary orchestration tool, automating everything from setup to deployment. The `Makefile` defines a single entry point to sequentially execute data integration, logical reasoning, SPARQL updates, SHACL validation, testing, and documentation rendering. `make help` lists all available targets with a short description.
+To streamline the workflow, this project uses `make` as its primary orchestration tool, automating everything from setup to deployment. The `Makefile` defines a single entry point to sequentially execute logical reasoning, SPARQL updates, SHACL validation, testing, and documentation rendering. `make help` lists all available targets with a short description.
 
 1. Add variables to `.env` (for local execution)
 
     ``` sh
-    USER=********
+    USER=lindas-foag-system-map
     PASSWORD=********
-    GRAPH=********
-    ENDPOINT=********
+    GRAPH=https://lindas.admin.ch/foag/system-map
+    ENDPOINT=https://graphdb.lindas.admin.ch/repositories/lindas/rdf-graphs/service
     ```
 
 2. Set up dependencies:
@@ -70,28 +70,30 @@ To streamline the workflow, this project uses `make` as its primary orchestratio
 
     **Run tests**
 
-    To build the graph (data integration, reasoning, SPARQL processing and SHACL validation) and run the Pytest suite, run:
+    To build the graph (reasoning, SPARQL processing and SHACL validation) and run the Pytest suite, run:
 
     ``` sh
     make test
     ```
 
+    The processed graph is written to `build/rdf/03-processed.ttl`.
+
     **Build documentation**
 
-    To render the model UML diagram, and builds the Quarto website into `build/docs/`:
-    
+    To generate the data model pages from the SHACL shapes and build the Quarto website into `build/docs/`, run:
+
     ``` sh
     make docs
     ```
-    
+
     Note that this step requires [Quarto](https://quarto.org/) to be installed.
 
 4. Upload the final data to [LINDAS](https://lindas.admin.ch/), the linked data service by the federal archives:
 
     **Automatic deployment**
 
-    The deployment is automatically triggered via GitHub Actions whenever changes are pushed or merged to the `main` branch. 
-    To enable this, configure the environment variables listed in step 1 as **repository secrets** in your GitHub project settings (`Settings > Secrets and variables > Actions > New repository secret`):
+    The deployment is automatically triggered via GitHub Actions whenever changes are pushed or merged to the `main` branch.
+    To enable this, configure the environment variables listed in step 1 as **repository secrets** in your GitHub project settings (`Settings > Secrets and variables > Actions > New repository secret`).
 
     **Manual deployment**
 
@@ -114,6 +116,20 @@ To streamline the workflow, this project uses `make` as its primary orchestratio
     make clean
     ```
 
+## Subgraphs
+
+Subgraphs of the system map show one part of the overall system without the multitude of connected nodes around it, for example [MARS III](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=SaAA0IQkj02jgbLEb), [digiFLUX](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=Si8UnIQkj02jgbLEb), [Acontrol](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=Sa9PcqsvnAMuiYCjx), [AGIS](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=SAAAX37V802JgbLEb) or [NTGS](https://blw-ofag-ufag.github.io/system-map/index.html?lang=en&subgraph=SH7U7SUsgqWmNqXA5).
+An up-to-date list of all subgraphs is returned by the query `src/sparql/queries/subgraphs.rq`.
+
+## Modelling decisions and deviations from the template
+
+The repository follows the structure and pipeline of the semantic-web-template. These decisions are deliberate:
+
+- **Namespace and IRIs:** The project keeps its existing namespace `https://agriculture.ld.admin.ch/system-map/` and its random identifiers (e.g. `systemmap:SvDlxaJ5YMkuZGH6k`), instead of a versioned namespace and readable IRIs. Changing them would break the frontend, saved queries and external links.
+- **Hierarchy properties are not transitive:** `schema:parentOrganization`, `schema:subOrganization`, `dcterms:isPartOf` and `dcterms:hasPart` describe direct relations only, as in schema.org and Dublin Core. Indirect relations can be queried with property paths, e.g. `schema:parentOrganization+`.
+- **Links to registers use `schema:sameAs`:** Organizations point to their entries in the Staatskalender and in Zefix with `schema:sameAs`, not `owl:sameAs`. `owl:sameAs` declares two IRIs to be the same individual, so the reasoner would copy all statements onto the register IRIs and create duplicate organizations.
+- **Not an eCH standard:** The documentation uses the layout of the template, but the system map has no eCH number, version or category (`docs/_ech.yml`).
+
 ## Contact
 
-Do you have questions? Please do not hesitate to contact us at [agridata.ch@blw.admin.ch](mailto:agridata.ch@blw.admin.ch), open an [issue in this repository](../../issues), or directly submit a [Request for Change (RFC) via the official eCH feedback form](https://ech.ch/de/ech-standards/standardisierungsprozess/request-change-rfc).
+Do you have questions? Please do not hesitate to contact us at [agridata.ch@blw.admin.ch](mailto:agridata.ch@blw.admin.ch) or open an [issue in this repository](../../issues).

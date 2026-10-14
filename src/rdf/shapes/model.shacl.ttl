@@ -1,733 +1,467 @@
 # ==============================================================================
-# PREFIXES USED FOR THIS PROJECT
+# PREFIXES
 # ==============================================================================
 
-# Project-specific namespaces/qnames
-@prefix :                <https://agriculture.ld.admin.ch/eCH-1234/2/> .
-@prefix address:         <https://agriculture.ld.admin.ch/eCH-1234/2/address/> .
-@prefix album:           <https://agriculture.ld.admin.ch/eCH-1234/2/album/> .
-@prefix artist:          <https://agriculture.ld.admin.ch/eCH-1234/2/artist/> .
-@prefix customer:        <https://agriculture.ld.admin.ch/eCH-1234/2/customer/> .
-@prefix employee:        <https://agriculture.ld.admin.ch/eCH-1234/2/employee/> .
-@prefix genre:           <https://agriculture.ld.admin.ch/eCH-1234/2/genre/> .
-@prefix invline:         <https://agriculture.ld.admin.ch/eCH-1234/2/invoiceline/> .
-@prefix invoice:         <https://agriculture.ld.admin.ch/eCH-1234/2/invoice/> .
-@prefix media:           <https://agriculture.ld.admin.ch/eCH-1234/2/mediatype/> .
-@prefix playlist:        <https://agriculture.ld.admin.ch/eCH-1234/2/playlist/> .
-@prefix track:           <https://agriculture.ld.admin.ch/eCH-1234/2/tracks/> .
-@prefix person:          <https://agriculture.ld.admin.ch/eCH-1234/2/person/> .
-
-# LINDAS-specific namespaces/qnames
-@prefix country:         <https://ld.admin.ch/country/> .
-@prefix org:             <https://register.ld.admin.ch/opendataswiss/org/> .
-@prefix cube:            <https://cube.link/> .
-@prefix meta:            <https://cube.link/meta/> .
-@prefix status:          <https://ld.admin.ch/vocabulary/CreativeWorkStatus/> .
-@prefix theme:           <https://register.ld.admin.ch/opendataswiss/category/> .
-
-# Globally used namespaces/qnames
-@prefix adms:            <https://www.w3.org/ns/adms#> .
 @prefix dcat:            <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype:        <http://purl.org/dc/dcmitype/> .
 @prefix dcterms:         <http://purl.org/dc/terms/> .
-@prefix doap:            <http://usefulinc.com/ns/doap#> .
-@prefix frequency:       <https://publications.europa.eu/resource/authority/frequency/> .
 @prefix owl:             <http://www.w3.org/2002/07/owl#> .
-@prefix qudt:            <http://qudt.org/schema/qudt/> .
+@prefix prov:            <http://www.w3.org/ns/prov#> .
 @prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema:          <http://schema.org/> .
+@prefix service:         <http://purl.org/ontology/service#> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
-@prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
-@prefix unit:            <http://qudt.org/vocab/unit/> .
-@prefix vcard:           <http://www.w3.org/2006/vcard/ns#> .
-@prefix void:            <http://rdfs.org/ns/void#> .
-@prefix wikidata:        <http://www.wikidata.org/entity/> .
+@prefix shape:           <https://agriculture.ld.admin.ch/system-map/shapes/> .
+@prefix systemmap:       <https://agriculture.ld.admin.ch/system-map/> .
 @prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
 
 # ==============================================================================
-# SHACL DATA MODEL METADATA
+# DATA MODEL METADATA
 # ==============================================================================
 
-: a owl:Ontology ;
-    rdfs:label "Chinook-Datenmodell"@de,
-        "Chinook Data Model"@en,
-        "Modèle de données Chinook"@fr,
-        "Modello di dati Chinook"@it ;
-    rdfs:comment "Dieses SHACL-Datenmodell beschreibt und validiert den integrierten Chinook-Datensatz und benutzerdefinierte Personendaten."@de,
-        "This SHACL data model describes and validates the integrated Chinook dataset and custom person data."@en,
-        "Ce modèle de données SHACL décrit et valide le jeu de données Chinook intégré et les données de personnes personnalisées."@fr,
-        "Questo modello di dati SHACL descrive e convalida il set di dati Chinook integrato e i dati personali personalizzati."@it ;
-    sh:declare [
-        sh:prefix "schema" ;
-        sh:namespace "http://schema.org/"^^xsd:anyURI ;
-    ],
-    [
-        sh:prefix "" ;
-        sh:namespace "https://agriculture.ld.admin.ch/eCH-1234/2/"^^xsd:anyURI ;
-    ] .
+shape: a owl:Ontology ;
+    rdfs:label "Datenmodell der Systemlandkarte"@de,
+        "System map data model"@en ;
+    rdfs:comment "Dieses SHACL-Datenmodell beschreibt und validiert die IT-Systeme, Daten, Services und Organisationen der Systemlandkarte. Von zwei zueinander inversen Eigenschaften wird jeweils eine Richtung geprüft; die Gegenrichtung leitet der Reasoner ab."@de,
+        "This SHACL data model describes and validates the IT systems, data, services and organizations of the system map. Of two mutually inverse properties, one direction is validated; the reasoner derives the other one."@en ;
+    dcterms:title "Datenmodell der Systemlandkarte"@de,
+        "System map data model"@en ;
+    dcterms:creator "Bundesamt für Landwirtschaft BLW" ;
+    dcterms:created "2026-02-13"^^xsd:date ;
+    dcterms:modified "2026-10-13"^^xsd:date ;
+    sh:declare [ sh:prefix "schema" ; sh:namespace "http://schema.org/"^^xsd:anyURI ] ,
+        [ sh:prefix "systemmap" ; sh:namespace "https://agriculture.ld.admin.ch/system-map/"^^xsd:anyURI ] ,
+        [ sh:prefix "dcterms" ; sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ] .
 
-:PersonShape a sh:NodeShape ;
-    rdfs:label "Person"@de,
-        "Person"@en,
-        "Personne"@fr,
-        "Persona"@it ;
-    rdfs:comment """Jede Person (Mitarbeiter, Kunde oder benutzerdefinierte Person) im Datensatz.
+# ==============================================================================
+# ORGANIZATION
+# ==============================================================================
 
-Personen werden unabhängig von ihrer Rolle einheitlich beschrieben: Angestellte des Musikhandels, Kundinnen und Kunden sowie manuell erfasste Personen teilen dieselben Eigenschaften. Die Rolle ergibt sich aus den Beziehungen, etwa `schema:worksFor` für Angestellte oder `schema:customer` auf einer Rechnung für Kundschaft.
-
-Namen werden so erfasst, wie sie die Person selbst verwendet; akademische Titel gehören nicht in den Vornamen. E-Mail-Adressen und Geburtsdaten sind freiwillige Angaben und werden bei Verstössen gegen die Regeln lediglich als Warnung gemeldet."""@de,
-        """Any person (employee, customer, or custom person) present in the dataset.
-
-Persons are described uniformly regardless of their role: employees of the music store, customers and manually recorded persons share the same properties. The role follows from the relationships, for example `schema:worksFor` for employees or `schema:customer` on an invoice for customers.
-
-Names are recorded as the person uses them; academic titles do not belong in the given name. Email addresses and birth dates are optional and rule violations are reported as warnings only."""@en,
-        """Toute personne (employé, client ou personne personnalisée) présente dans le jeu de données.
-
-Les personnes sont décrites de manière uniforme, quel que soit leur rôle: le personnel du magasin de musique, la clientèle et les personnes saisies manuellement partagent les mêmes propriétés. Le rôle découle des relations, par exemple `schema:worksFor` pour le personnel ou `schema:customer` sur une facture pour la clientèle.
-
-Les noms sont saisis tels que la personne les utilise; les titres académiques ne font pas partie du prénom. Les adresses e-mail et les dates de naissance sont facultatives et les infractions aux règles ne sont signalées que comme avertissements."""@fr,
-        """Qualsiasi persona (dipendente, cliente o persona personalizzata) presente nel set di dati.
-
-Le persone sono descritte in modo uniforme indipendentemente dal loro ruolo: il personale del negozio di musica, la clientela e le persone registrate manualmente condividono le stesse proprietà. Il ruolo deriva dalle relazioni, ad esempio `schema:worksFor` per il personale o `schema:customer` su una fattura per la clientela.
-
-I nomi sono registrati come li usa la persona stessa; i titoli accademici non fanno parte del nome. Gli indirizzi e-mail e le date di nascita sono facoltativi e le violazioni delle regole sono segnalate solo come avvertimenti."""@it ;
-    sh:targetClass schema:Person ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Vorname"@de,
-            "Given Name"@en,
-            "Prénom"@fr,
-            "Nome"@it ;
-        sh:path schema:givenName ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Jede Person muss einen Vornamen haben."@de,
-            "Every person must have a given name."@en,
-            "Chaque personne doit avoir un prénom."@fr,
-            "Ogni persona deve avere un nome."@it ;
-    ],
-    [
-        sh:order 2 ;
-        sh:name "Nachname"@de,
-            "Family Name"@en,
-            "Nom de famille"@fr,
-            "Cognome"@it ;
-        sh:path schema:familyName ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Jede Person muss einen Nachnamen haben."@de,
-            "Every person must have a family name."@en,
-            "Chaque personne doit avoir un nom de famille."@fr,
-            "Ogni persona deve avere un cognome."@it ;
-    ],
-    [
-        sh:order 3 ;
-        sh:name "E-Mail-Adresse"@de,
-            "Email Address"@en,
-            "Adresse e-mail"@fr,
-            "Indirizzo email"@it ;
-        sh:path schema:email ;
-        sh:datatype xsd:string ;
-        sh:pattern "^.+@.+\\..+$" ;
-        sh:flags "i" ;
-        sh:maxLength 254 ;
-        sh:severity sh:Warning ;
-        sh:message "Falls angegeben, muss die E-Mail-Adresse einem Standardformat entsprechen."@de,
-            "If an email is provided, it must follow a standard email format."@en,
-            "Si une adresse e-mail est fournie, elle doit respecter un format standard."@fr,
-            "Se viene fornita un'email, deve seguire un formato standard."@it ;
-    ],
-    [
-        sh:order 4 ;
-        sh:name "Geburtsdatum"@de,
-            "Birth date"@en,
-            "Date de naissance"@fr,
-            "Data di nascita"@it ;
-        sh:path schema:birthDate ;
-        sh:datatype xsd:date ;
-        sh:minInclusive "1900-01-01"^^xsd:date ;
-        sh:maxInclusive "2025-12-31"^^xsd:date ;
-        sh:severity sh:Warning ;
-        sh:message "Eine Person sollte ein gültiges Geburtsdatum haben."@de,
-            "A person should have a valid birth date."@en,
-            "Une personne doit avoir une date de naissance valide."@fr,
-            "Una persona dovrebbe avere una data di nascita valida."@it ;
-    ],
-    [
-        sh:order 5 ;
-        sh:name "Adresse"@de,
-            "Address"@en,
-            "Adresse"@fr,
-            "Indirizzo"@it ;
-        sh:path schema:address ;
-        sh:class schema:PostalAddress ;
-        sh:node :PostalAddressShape ;
-    ],
-    [
-        sh:order 6 ;
-        sh:name "Arbeitet für"@de,
-            "Works for"@en,
-            "Travaille pour"@fr,
-            "Lavora per"@it ;
-        sh:path schema:worksFor ;
-        sh:or (
-            [ sh:class schema:Person ]
-            [ sh:class schema:Organization ]
-        ) ;
-        sh:message "Ein Mitarbeiter kann einer anderen Person unterstellt sein."@de,
-            "An employee can report to another person."@en,
-            "Un employé peut relever d'une autre personne."@fr,
-            "Un dipendente può fare riferimento a un'altra persona."@it ;
-    ],
-    [
-        sh:name "Berufsbezeichnung"@de,
-            "Job title"@en,
-            "Titre du poste"@fr,
-            "Titolo di lavoro"@it ;
-        sh:order 7 ;
-        sh:path schema:jobTitle ;
-        sh:datatype xsd:string ;
-        sh:minLength 2 ;
-        sh:maxLength 100 ;
-        sh:maxCount 1 ;
-    ],
-    [
-        sh:name "Kennt"@de,
-            "knows"@en,
-            "Connaît"@fr,
-            "Conosce"@it ;
-        sh:order 8 ;
-        sh:path schema:knows ;
-        sh:class schema:Person ;
-    ] ;
-    sh:sparql [
-        a sh:SPARQLConstraint ;
-        sh:name "Keine Selbstunterstellung"@de,
-            "No self-reporting"@en,
-            "Pas d'auto-subordination"@fr,
-            "Nessuna auto-subordinazione"@it ;
-        dcterms:description "Ein Mitarbeiter kann nicht sich selbst unterstellt sein."@de,
-            "An employee cannot report to themselves."@en,
-            "Un employé ne peut pas relever de lui-même."@fr,
-            "Un dipendente non può fare riferimento a se stesso."@it ;
-        sh:prefixes : ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this schema:worksFor $this .
-            }
-        """
-    ] .
-
-:TrackShape a sh:NodeShape ;
-    rdfs:label "Musikaufnahme"@de,
-        "Music Recording"@en,
-        "Enregistrement musical"@fr,
-        "Registrazione musicale"@it ;
-    rdfs:comment "Ein einzelner Musiktitel im Chinook-Datensatz."@de,
-        "A single music track in the Chinook dataset."@en,
-        "Une piste musicale unique dans le jeu de données Chinook."@fr,
-        "Un singolo brano musicale nel set di dati Chinook."@it ;
-    sh:targetClass schema:MusicRecording ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype xsd:string ;
-        sh:minLength 1 ;
-        sh:maxLength 200 ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Jeder Titel muss einen Namen haben."@de,
-            "Every track must have a name."@en,
-            "Chaque piste doit avoir un nom."@fr,
-            "Ogni brano deve avere un nome."@it ;
-    ],
-    [
-        sh:order 2 ;
-        sh:name "In Album"@de,
-            "In Album"@en,
-            "Dans l'album"@fr,
-            "Nell'album"@it ;
-        sh:path schema:inAlbum ;
-        sh:class schema:MusicAlbum ;
-        sh:message "Ein Titel kann nur zu einem gültigen schema:MusicAlbum gehören."@de,
-            "A track can only belong to a valid schema:MusicAlbum."@en,
-            "Une piste ne peut appartenir qu'à un schema:MusicAlbum valide."@fr,
-            "Un brano può appartenere solo a un schema:MusicAlbum valido."@it ;
-    ],
-    [
-        sh:order 3 ;
-        sh:name "Autor"@de,
-            "Author"@en,
-            "Auteur"@fr,
-            "Autore"@it ;
-        sh:description "Die Person oder Gruppe, die den Titel geschrieben hat."@de,
-            "The person or group who wrote the track."@en,
-            "La personne ou le groupe qui a écrit la piste."@fr,
-            "La persona o il gruppo che ha scritto il brano."@it ;
-        sh:path schema:author ;
-    ],
-    [
-        sh:order 4 ;
-        sh:name "Genre"@de,
-            "Genre"@en,
-            "Genre"@fr,
-            "Genere"@it ;
-        sh:path schema:genre ;
-        sh:class :Genre ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-    ],
-    [
-        sh:order 5 ;
-        sh:name "Dauer"@de,
-            "Duration"@en,
-            "Durée"@fr,
-            "Durata"@it ;
-        sh:path schema:duration ;
-        sh:class schema:QuantitativeValue ;
-        sh:message "Die Dauer muss als schema:QuantitativeValue ausgedrückt werden."@de,
-            "Track duration must be expressed as a schema:QuantitativeValue."@en,
-            "La durée doit être exprimée en tant que schema:QuantitativeValue."@fr,
-            "La durata deve essere espressa come schema:QuantitativeValue."@it ;
-    ],
-    [
-        sh:order 6 ;
-        sh:name "Dateigrösse"@de,
-            "Content Size"@en,
-            "Taille du contenu"@fr,
-            "Dimensione del contenuto"@it ;
-        sh:path schema:contentSize ;
-        sh:class schema:QuantitativeValue ;
-    ] .
-
-:MusicAlbumShape a sh:NodeShape ;
-    rdfs:label "Musikalbum"@de,
-        "Music album"@en,
-        "Album de musique"@fr,
-        "Album musicale"@it ;
-    rdfs:comment "Eine Sammlung von Titeln im Chinook-Datensatz."@de,
-        "A collection of tracks in the Chinook dataset."@en,
-        "Une collection de pistes dans le jeu de données Chinook."@fr,
-        "Una raccolta di brani nel set di dati Chinook."@it ;
-    sh:targetClass schema:MusicAlbum ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype xsd:string ;
-        sh:maxLength 200 ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Jedes Album muss einen Namen haben."@de,
-            "Every album must have a name."@en,
-            "Chaque album doit avoir un nom."@fr,
-            "Ogni album deve avere un nome."@it ;
-    ],
-    [
-        sh:order 2 ;
-        sh:name "Künstler"@de,
-            "Artist"@en,
-            "Artiste"@fr,
-            "Artista"@it ;
-        sh:description "Person oder Musikgruppe, die das Album erstellt hat."@de,
-            "Person or music group who created the album."@en,
-            "Personne ou groupe de musique ayant créé l'album."@fr,
-            "Persona o gruppo musicale che ha creato l'album."@it ;
-        sh:path schema:byArtist ;
-        sh:or (
-            [ sh:class schema:Person ]
-            [ sh:class schema:MusicGroup ]
-        ) ;
-    ] .
-
-:OrganisationShape a sh:NodeShape ;
+shape:Organization a sh:NodeShape ;
+    sh:targetClass schema:Organization ;
     rdfs:label "Organisation"@de,
-        "Organisation"@en,
-        "Organisation"@fr,
-        "Organizzazione"@it ;
-    rdfs:comment "Ein Unternehmen oder eine Organisation im Chinook-Datensatz."@de,
-        "A company or organization in the Chinook dataset."@en,
-        "Une entreprise ou organisation dans le jeu de données Chinook."@fr,
-        "Un'azienda o organizzazione nel set di dati Chinook."@it ;
-    sh:targetClass schema:Organisation ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype xsd:string ;
-        sh:minLength 2 ;
-        sh:maxLength 100 ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Jede Organisation muss einen Namen haben."@de,
-            "Every organisation must have a name."@en,
-            "Chaque organisation doit avoir un nom."@fr,
-            "Ogni organizzazione deve avere un nome."@it ;
+        "Organization"@en ;
+    rdfs:comment "Organisationen der Verwaltung und der Privatwirtschaft, die IT-Systeme betreiben, besitzen oder entwickeln. Unterschieden werden Organisationen des Bundes, kantonale Organisationen (darunter Landwirtschaftsämter, Veterinärdienste und Beratungsstellen der Kantone) und privatrechtliche Organisationen."@de,
+        "Public and private organizations that operate, own or develop IT systems. Federal organizations, cantonal organizations (including cantonal agricultural offices, veterinary services and advice centers) and private-sector organizations are distinguished."@en ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type schema:subOrganization schema:member systemmap:ownedBy systemmap:operates systemmap:develops ) ;
+    sh:property shape:name, shape:abbreviation, shape:description, shape:url, shape:legalBasis ,
+    [
+        sh:order 10 ;
+        sh:path schema:sameAs ;
+        sh:name "Registereintrag"@de,
+            "Register entry"@en ;
+        sh:description "Verweis auf den Eintrag derselben Organisation in einem amtlichen Register, etwa im Staatskalender oder im Handelsregister (Zefix). Die Angaben des Registers werden nicht kopiert."@de,
+            "Reference to the entry of the same organization in an official register, such as the federal directory (Staatskalender) or the commercial register (Zefix). The data of the register is not copied."@en ;
+        sh:nodeKind sh:IRI ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path schema:parentOrganization ;
+        sh:name "gehört zu"@de,
+            "belongs to"@en ;
+        sh:description "Zeigt an, dass die (Teil-)Organisation ein Teil von einer (Über-)Organisation Y ist."@de,
+            "Indicates that the (sub-)organization is part of a (parent) organization Y."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:Organization ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path schema:memberOf ;
+        sh:name "Mitglied von"@de,
+            "member of"@en ;
+        sh:description "Gibt an, dass eine Organisation X eine Mitgliedsorganisation einer anderen Organisation Y ist. Die Beziehung soll Mitgliedschaften von Branchenorganisationen, Berufsverbänden oder anderen formellen Vereinigungen darstellen, bei denen Organisationen als Mitglieder teilnehmen. Informelle Beziehungen gehören nicht dazu."@de,
+            "Indicates that an organization X is a member organization of another organization Y. The relationship is used to represent memberships of industry organizations, professional associations, or other formal associations in which organizations participate as members. Informal relationships are not included."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:Organization ;
+    ] ,
+    [
+        sh:order 13 ;
+        sh:path systemmap:owns ;
+        sh:name "besitzt (teilweise)"@de,
+            "(partially) owns"@en ;
+        sh:description "Diese Beziehung zeigt an, dass eine Organisation X eine andere Organisation Y (teilweise) besitzt."@de,
+            "This relationship indicates that an organization X (partially) owns another organization Y."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:Organization ;
+    ] ,
+    [
+        sh:order 14 ;
+        sh:path systemmap:access ;
+        sh:name "hat Zugriff auf"@de,
+            "has access to"@en ;
+        sh:description "Zeigt an, dass eine Organisation X die Rechte zum Zugriff etwas hat."@de,
+            "Indicates that an organization X has the rights to access something."@en ;
+        sh:nodeKind sh:IRI ;
     ] .
 
-:InvoiceShape a sh:NodeShape ;
-    rdfs:label "Rechnung"@de,
-        "Invoice"@en,
-        "Facture"@fr,
-        "Fattura"@it ;
-    rdfs:comment """Ein Kaufbeleg im Chinook-Datensatz. Eine Rechnung fasst die Positionen eines Kaufs zusammen. Der Rechnungsbetrag wird nicht nur als Wert erfasst, sondern auch gegen die Summe der Positionen geprüft; Abweichungen von mehr als fünf Rappen gelten als Fehler. Rechnungen vor dem Jahr 2000 stammen aus einem Altsystem und sind in diesem Datensatz nicht zulässig."""@de,
-        """A purchase receipt in the Chinook dataset. An invoice groups the items of one purchase. The invoice total is not only recorded as a value but also checked against the sum of its items; differences of more than five cents count as errors. Invoices dated before the year 2000 stem from a legacy system and are not permitted in this dataset."""@en,
-        """Un reçu d'achat dans le jeu de données Chinook. Une facture regroupe les positions d'un achat. Le montant de la facture n'est pas seulement saisi comme valeur, il est aussi vérifié par rapport à la somme des positions; des écarts de plus de cinq centimes sont considérés comme des erreurs. Les factures antérieures à l'an 2000 proviennent d'un ancien système et ne sont pas admises dans ce jeu de données."""@fr,
-        """Una ricevuta di acquisto nel set di dati Chinook. Una fattura raggruppa le posizioni di un acquisto. L'importo della fattura non viene solo registrato come valore, ma anche verificato rispetto alla somma delle posizioni; differenze superiori a cinque centesimi sono considerate errori. Le fatture antecedenti all'anno 2000 provengono da un sistema precedente e non sono ammesse in questo set di dati."""@it ;
-    sh:targetClass schema:Invoice ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Kunde"@de,
-            "Customer"@en,
-            "Client"@fr,
-            "Cliente"@it ;
-        sh:path schema:customer ;
-        sh:class schema:Person ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Eine Rechnung muss genau einem Kunden zugeordnet sein."@de,
-            "An invoice must be linked to exactly one customer."@en,
-            "Une facture doit être liée à exactement un client."@fr,
-            "Una fattura deve essere collegata a esattamente un cliente."@it ;
-    ],
+# ==============================================================================
+# IT SYSTEM
+# ==============================================================================
+
+shape:SoftwareApplication a sh:NodeShape ;
+    sh:targetClass schema:SoftwareApplication ;
+    rdfs:label "IT-System"@de,
+        "IT system"@en ;
+    rdfs:comment "IT-Systeme, die Daten des Agrar- und Ernährungssektors verarbeiten. Jedes IT-System hat eine deutsche Beschreibung und wird direkt oder über ein übergeordnetes System von einer Organisation betrieben. Farm-Management-Informationssysteme (FMIS) bilden eine eigene Unterklasse."@de,
+        "IT systems processing data of the agri-food sector. Every IT system has a German description and is operated by an organization, directly or via a parent system. Farm management information systems (FMIS) form a separate subclass."@en ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type systemmap:contains service:provides dcterms:hasPart ) ;
+    sh:property shape:name, shape:alternateName, shape:abbreviation, shape:requiredDescription, shape:url, shape:seeAlso, shape:keywords, shape:legalBasis ,
     [
-        sh:order 2 ;
-        sh:name "Fälliger Gesamtbetrag"@de,
-            "Total payment due"@en,
-            "Paiement total dû"@fr,
-            "Pagamento totale dovuto"@it ;
-        sh:path schema:totalPaymentDue ;
-        sh:class schema:QuantitativeValue ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Eine Rechnung muss einen fälligen Gesamtbetrag als schema:QuantitativeValue definieren."@de,
-            "An invoice must define a total payment due as a schema:QuantitativeValue."@en,
-            "Une facture doit définir un paiement total dû en tant que schema:QuantitativeValue."@fr,
-            "Una fattura deve definire un pagamento totale dovuto come schema:QuantitativeValue."@it ;
-    ],
+        sh:order 10 ;
+        sh:path systemmap:operatedBy ;
+        sh:name "wird betrieben von"@de,
+            "is operated by"@en ;
+        sh:description "Gibt an, dass ein IT-System X durch eine Organisation Y betrieben wird. Das bedeutet, dass die Organisation Y für den Betrieb von System X zuständig ist."@de,
+            "Indicates that an IT system X is operated by an organization Y. This means that organization Y is responsible for operating system X."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:Organization ;
+    ] ,
     [
-        sh:order 3 ;
-        sh:name "Enthält"@de,
-            "Has part"@en,
-            "Contient"@fr,
-            "Contiene"@it ;
-        sh:path schema:hasPart ;
-        sh:class schema:OrderItem ;
-        sh:minCount 1 ;
-        sh:message "Eine Rechnung muss mindestens eine Position (OrderItem) enthalten."@de,
-            "An invoice must have at least one line item (OrderItem)."@en,
-            "Une facture doit avoir au moins un article (OrderItem)."@fr,
-            "Una fattura deve avere almeno una riga di ordine (OrderItem)."@it ;
-    ],
+        sh:order 11 ;
+        sh:path systemmap:developedBy ;
+        sh:name "entwickelt von"@de,
+            "developed by"@en ;
+        sh:description "Gibt an, dass ein IT-System von einer Organisation entwickelt wird oder wurde."@de,
+            "States that an IT system is or was developed by an organization."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:Organization ;
+    ] ,
     [
-        sh:order 4 ;
-        sh:name "Erstellungsdatum"@de,
-            "Date created"@en,
-            "Date de création"@fr,
-            "Data di creazione"@it ;
-        sh:path schema:dateCreated ;
-        sh:datatype xsd:date ;
-        sh:minInclusive "2000-01-01"^^xsd:date ;
-        skos:example "2024-05-21"^^xsd:date,
-            "2001-01-01"^^xsd:date ;
+        sh:order 12 ;
+        sh:path service:consumes ;
+        sh:name "nutzt IT-Service"@de,
+            "uses IT service"@en ;
+        sh:description "Zeigt an, dass ein beliebiges Objekt (IT-System, Organisation etc.) einen bestimmten technischen IT-Service nutzt."@de,
+            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class service:Service ;
+    ] ,
+    [
+        sh:order 13 ;
+        sh:path dcterms:isPartOf ;
+        sh:name "ist Teil von"@de,
+            "is part of"@en ;
+        sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
+            "A related resource in which the described resource is physically or logically included."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:SoftwareApplication ;
     ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:name "Rechnungssumme"@de,
-            "Invoice total"@en,
-            "Total de la facture"@fr,
-            "Totale della fattura"@it ;
-        dcterms:description "Die Rechnungssumme muss exakt mit der Summe ihrer Positionen übereinstimmen (Toleranz 0.05)."@de,
-            "Invoice total payment due must exactly match the sum of its lines (within 0.05 tolerance)."@en,
-            "Le total de la facture doit correspondre exactement à la somme de ses lignes (tolérance de 0.05)."@fr,
-            "Il totale della fattura deve corrispondere esattamente alla somma delle sue righe (tolleranza di 0.05)."@it ;
-        sh:prefixes : ;
+        sh:prefixes shape: ;
+        sh:message "IT-System: Jedes IT-System muss direkt oder über ein übergeordnetes System von einer Organisation betrieben werden."@de,
+            "IT system: Every IT system must be operated by an organization, directly or via a parent system."@en ;
         sh:select """
-            SELECT $this
-            WHERE {
-                $this schema:totalPaymentDue/schema:value ?invoiceTotal .
-                {
-                    SELECT $this (SUM(?price * ?qty) AS ?calculatedTotal)
-                    WHERE {
-                        $this schema:hasPart ?line .
-                        ?line schema:price/schema:value ?price .
-                        ?line schema:orderQuantity/schema:value ?qty .
-                    }
-                    GROUP BY $this
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this dcterms:isPartOf*/systemmap:operatedBy ?organization .
+                    ?organization a schema:Organization .
                 }
-                FILTER(ABS(?invoiceTotal - ?calculatedTotal) > 0.05)
             }
-        """
-    ],
-    [
-        a sh:SPARQLConstraint ;
-        sh:name "Rechnungsdatum"@de,
-            "Invoice date"@en,
-            "Date de la facture"@fr,
-            "Data della fattura"@it ;
-        dcterms:description "Eine Rechnung darf nicht vor dem Jahr 2000 datiert sein."@de,
-            "An invoice cannot be dated before the year 2000."@en,
-            "Une facture ne peut pas être datée d'avant l'année 2000."@fr,
-            "Una fattura non può essere datata prima dell'anno 2000."@it ;
-        sh:prefixes : ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this schema:dateCreated ?date .
-                FILTER(?date < "2000-01-01"^^xsd:date)
-            }
-        """
-    ] .
-
-:QuantitativeValueShape a sh:NodeShape ;
-    rdfs:label "Quantitativer Wert"@de,
-        "Quantitative Value"@en,
-        "Valeur quantitative"@fr,
-        "Valore quantitativo"@it ;
-    rdfs:comment """Ein numerischer Wert mit einer dazugehörigen Einheit.
-
-Quantitative Werte werden nie als blosse Zahl erfasst, sondern immer zusammen mit einer Einheit aus dem QUDT-Vokabular. So bleibt eindeutig, ob eine Dauer in Millisekunden oder eine Dateigrösse in Bytes gemeint ist. Negative Werte sind in diesem Datensatz nicht vorgesehen."""@de,
-        """A numerical value with an associated unit.
-
-Quantitative values are never recorded as a bare number but always together with a unit from the QUDT vocabulary. This keeps it unambiguous whether a duration is meant in milliseconds or a file size in bytes. Negative values are not foreseen in this dataset."""@en,
-        """Une valeur numérique avec une unité associée.
-
-Les valeurs quantitatives ne sont jamais saisies comme un simple nombre, mais toujours avec une unité du vocabulaire QUDT. Il reste ainsi clair si une durée est exprimée en millisecondes ou une taille de fichier en octets. Les valeurs négatives ne sont pas prévues dans ce jeu de données."""@fr,
-        """Un valore numerico con un'unità associata.
-
-I valori quantitativi non vengono mai registrati come semplice numero, ma sempre insieme a un'unità del vocabolario QUDT. Resta così chiaro se una durata è espressa in millisecondi o una dimensione di file in byte. I valori negativi non sono previsti in questo set di dati."""@it ;
-    sh:targetClass schema:QuantitativeValue ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Wert"@de,
-            "Value"@en,
-            "Valeur"@fr,
-            "Valore"@it ;
-        sh:path schema:value ;
-        sh:or (
-            [ sh:datatype xsd:decimal ]
-            [ sh:datatype xsd:integer ]
-        ) ;
-        sh:minInclusive 0 ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Ein quantitativer Wert muss genau einen numerischen Wert haben."@de,
-            "A quantitative value must have exactly one numeric value."@en,
-            "Une valeur quantitative doit avoir exactement une valeur numérique."@fr,
-            "Un valore quantitativo deve avere esattamente un valore numerico."@it ;
-    ],
-    [
-        sh:order 2 ;
-        sh:name "Einheitencode"@de,
-            "Unit Code"@en,
-            "Code d'unité"@fr,
-            "Codice unità"@it ;
-        sh:path schema:unitCode ;
-        sh:nodeKind sh:IRI ;
-        sh:in ( unit:USD unit:EA unit:BYTE unit:MilliSEC ) ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Ein quantitativer Wert muss seine Einheit über eine unitCode-URI angeben."@de,
-            "A quantitative value must specify its unit via a unitCode URI."@en,
-            "Une valeur quantitative doit spécifier son unité via une URI unitCode."@fr,
-            "Un valore quantitativo deve specificare la sua unità tramite un'URI unitCode."@it ;
-    ] .
-
-:GenreShape a sh:NodeShape ;
-    rdfs:label "Genre"@de,
-        "Genre"@en,
-        "Genre"@fr,
-        "Genere"@it ;
-    rdfs:comment "Eine musikalische Kategorie im Chinook-Datensatz."@de,
-        "A musical category in the Chinook dataset."@en,
-        "Une catégorie musicale dans le jeu de données Chinook."@fr,
-        "Una categoria musicale nel set di dati Chinook."@it ;
-    sh:targetClass :Genre ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Name"@de,
-            "Name"@en,
-            "Nom"@fr,
-            "Nome"@it ;
-        sh:path schema:name ;
-        sh:datatype xsd:string ;
-        sh:minLength 2 ;
-        sh:maxLength 50 ;
-        sh:pattern "^[A-Z]" ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-    ],
-    [
-        sh:order 2 ;
-        sh:name "Teil von"@de,
-            "Part of"@en,
-            "Partie de"@fr,
-            "Parte di"@it ;
-        sh:path schema:partOf ;
-        sh:nodeKind sh:IRI ;
-        sh:class :Genre ;
-    ],
-    [
-        sh:order 3 ;
-        sh:name "Alternative Bezeichnung"@de,
-            "Alternate name"@en,
-            "Dénomination alternative"@fr,
-            "Denominazione alternativa"@it ;
-        sh:description "Übersetzte oder umgangssprachliche Bezeichnung des Genres, höchstens eine pro Sprache."@de,
-            "Translated or colloquial name of the genre, at most one per language."@en,
-            "Dénomination traduite ou familière du genre, au plus une par langue."@fr,
-            "Denominazione tradotta o colloquiale del genere, al massimo una per lingua."@it ;
-        sh:path schema:alternateName ;
-        sh:datatype rdf:langString ;
-        sh:languageIn ( "de" "fr" "it" "en" ) ;
-        sh:uniqueLang true ;
-        sh:maxLength 50 ;
-        sh:message "Alternative Bezeichnungen müssen eine der Landessprachen oder Englisch als Sprache tragen, je Sprache höchstens eine."@de,
-            "Alternate names must carry a national language or English as language tag, at most one per language."@en,
-            "Les dénominations alternatives doivent porter une langue nationale ou l'anglais, au plus une par langue."@fr,
-            "Le denominazioni alternative devono avere una lingua nazionale o l'inglese come lingua, al massimo una per lingua."@it ;
+        """ ;
     ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:name "Keine zyklische Hierarchie"@de,
-            "No cyclic hierarchy"@en,
-            "Pas de hiérarchie cyclique"@fr,
-            "Nessuna gerarchia ciclica"@it ;
-        dcterms:description "Ein Genre darf weder direkt noch transitiv ein Teil von sich selbst sein."@de,
-            "A genre cannot be a part of itself, either directly or transitively."@en,
-            "Un genre ne peut pas faire partie de lui-même, ni directement ni transitivement."@fr,
-            "Un genere non può essere parte di se stesso, né direttamente né transitivamente."@it ;
-        sh:prefixes : ;
+        sh:prefixes shape: ;
+        sh:message "IT-System: Eine deutsche Beschreibung ist Pflicht."@de,
+            "IT system: A German description is required."@en ;
         sh:select """
-            SELECT $this
-            WHERE {
-                $this schema:partOf+ $this .
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this schema:description ?description .
+                    FILTER(LANG(?description) = "de")
+                }
             }
-        """
+        """ ;
     ] .
 
-:PostalAddressShape a sh:NodeShape ;
-    rdfs:label "Postadresse"@de,
-        "Postal address"@en,
-        "Adresse postale"@fr,
-        "Indirizzo postale"@it ;
-    rdfs:comment """Die Postadresse einer Person.
+# ==============================================================================
+# DATASET
+# ==============================================================================
 
-Adressen folgen dem Aufbau von schema.org und nicht dem Schweizer Adressstandard eCH-0010, da der Datensatz überwiegend ausländische Adressen enthält. Postleitzahlen werden deshalb nur auf ein plausibles Format geprüft, nicht gegen ein Verzeichnis."""@de,
-        """The postal address of a person.
+shape:Dataset a sh:NodeShape ;
+    sh:targetClass dcat:Dataset ;
+    rdfs:label "Datensatz"@de,
+        "Dataset"@en ;
+    rdfs:comment "Informationseinheiten, die in IT-Systemen enthalten sind. Jeder Datensatz liegt direkt oder über einen übergeordneten Datensatz in einem IT-System. Gesondert ausgewiesen werden Stammdaten sowie Datensätze mit Personendaten und mit besonders schützenswerten Personendaten."@de,
+        "Information units contained in IT systems. Every dataset is contained in an IT system, directly or via a parent dataset. Master data as well as datasets containing personal data or sensitive personal data are marked separately."@en ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type dcterms:hasPart ) ;
+    sh:property shape:name, shape:abbreviation, shape:description, shape:url, shape:seeAlso, shape:keywords, shape:legalBasis ,
+    [
+        sh:order 10 ;
+        sh:path systemmap:containedIn ;
+        sh:name "ist beinhaltet in"@de,
+            "is contained in"@en ;
+        sh:description "Gibt an, dass eine Informationseinheit X im IT-System Y enthalten ist. Beispielsweise sind Informationen über landwirtschaftliche Flächen in der Schweiz in AGIS enthalten."@de,
+            "Indicates that an information unit X is contained in the IT system Y. For example, information about farming areas in Switzerland is contained in AGIS."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:SoftwareApplication ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path dcterms:isPartOf ;
+        sh:name "ist Teil von"@de,
+            "is part of"@en ;
+        sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
+            "A related resource in which the described resource is physically or logically included."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class dcat:Dataset ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path prov:wasDerivedFrom ;
+        sh:name "wurde abgeleitet von"@de,
+            "was derived from"@en ;
+        sh:description "Eine Ableitung ist die Transformation einer Entität in eine andere, eine Aktualisierung einer Entität, die zu einer neuen führt, oder die Konstruktion einer neuen Entität auf der Grundlage einer bereits existierenden."@de,
+            "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class dcat:Dataset ;
+    ] ,
+    [
+        sh:order 13 ;
+        sh:path systemmap:informs ;
+        sh:name "informiert"@de,
+            "informs"@en ;
+        sh:description "Zeigt auf, dass Informationseinheit X durch eine andere Informationseinheit Y informiert wird; d.h. dass irgendwie Daten fliessen. Das kann über manuelles Abschreiben, E-Mail-Versandt von Tabellen, APIs etc. geschehen."@de,
+            "Indicates that information unit X is informed by another information unit Y, meaning that data flows in some way. This can happen through manual copying, emailing tables, APIs, etc."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class dcat:Dataset ;
+    ] ,
+    [
+        sh:order 14 ;
+        sh:path systemmap:usesMasterData ;
+        sh:name "hat Masterdaten"@de,
+            "has master data"@en ;
+        sh:description "Gibt an, dass ein Datensatz Stammdaten verwendet, zum Beispiel eine Betriebsnummer, über die er mit anderen Datensätzen verknüpft ist."@de,
+            "States that a dataset uses master data, for example a farm identifier through which it is linked with other datasets."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class dcat:Dataset ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes shape: ;
+        sh:message "Datensatz: Jeder Datensatz muss direkt oder über einen übergeordneten Datensatz in einem IT-System enthalten sein."@de,
+            "Dataset: Every dataset must be contained in an IT system, directly or via a parent dataset."@en ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this dcterms:isPartOf*/systemmap:containedIn ?system .
+                    ?system a schema:SoftwareApplication .
+                }
+            }
+        """ ;
+    ] .
 
-Addresses follow the structure of schema.org rather than the Swiss address standard eCH-0010, since the dataset contains mostly foreign addresses. Postal codes are therefore only checked for a plausible format, not against a directory."""@en,
-        """L'adresse postale d'une personne.
+# ==============================================================================
+# IT SERVICE
+# ==============================================================================
 
-Les adresses suivent la structure de schema.org et non la norme suisse d'adresse eCH-0010, car le jeu de données contient surtout des adresses étrangères. Les codes postaux ne sont donc vérifiés que quant à leur format plausible, et non par rapport à un répertoire."""@fr,
-        """L'indirizzo postale di una persona.
+shape:Service a sh:NodeShape ;
+    sh:targetClass service:Service ;
+    rdfs:label "IT-Service"@de,
+        "IT service"@en ;
+    rdfs:comment "IT-Services, die von IT-Systemen bereitgestellt und von IT-Systemen oder anderen Services genutzt werden."@de,
+        "IT services provided by IT systems and used by IT systems or other services."@en ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type service:consumedBy dcterms:hasPart ) ;
+    sh:property shape:name, shape:description, shape:url, shape:keywords ,
+    [
+        sh:order 10 ;
+        sh:path service:providedBy ;
+        sh:name "wird bereitgestellt von"@de,
+            "is provided by"@en ;
+        sh:description "Zeigt an, dass ein technischer Service von einem bestimmten IT-System bereitgestellt wird."@de,
+            "Indicates that a technical service is provided by a specific IT system."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class schema:SoftwareApplication ;
+    ] ,
+    [
+        sh:order 11 ;
+        sh:path service:consumes ;
+        sh:name "nutzt IT-Service"@de,
+            "uses IT service"@en ;
+        sh:description "Zeigt an, dass ein beliebiges Objekt (IT-System, Organisation etc.) einen bestimmten technischen IT-Service nutzt."@de,
+            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class service:Service ;
+    ] ,
+    [
+        sh:order 12 ;
+        sh:path dcterms:isPartOf ;
+        sh:name "ist Teil von"@de,
+            "is part of"@en ;
+        sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
+            "A related resource in which the described resource is physically or logically included."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:class service:Service ;
+    ] .
 
-Gli indirizzi seguono la struttura di schema.org e non lo standard svizzero eCH-0010, poiché il set di dati contiene soprattutto indirizzi esteri. I codici postali vengono quindi verificati solo per un formato plausibile, non rispetto a un elenco."""@it ;
-    sh:targetClass schema:PostalAddress ;
+# ==============================================================================
+# LEGISLATION
+# ==============================================================================
+
+shape:Legislation a sh:NodeShape ;
+    sh:targetClass schema:Legislation ;
+    rdfs:label "Gesetzgebung"@de,
+        "Legislation"@en ;
+    rdfs:comment "Rechtsgrundlagen (Fedlex), auf die sich Organisationen, IT-Systeme und Datensätze stützen. Ihre Namen sind die offiziellen Titel."@de,
+        "Legal bases (Fedlex) of organizations, IT systems and datasets. Their names are the official titles."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:order 1 ;
-        sh:name "Strasse und Hausnummer"@de,
-            "Street address"@en,
-            "Rue et numéro"@fr,
-            "Via e numero civico"@it ;
-        sh:path schema:streetAddress ;
-        sh:datatype xsd:string ;
+    sh:property shape:officialName, shape:alternateName, shape:abbreviation .
+
+# ==============================================================================
+# KEYWORD
+# ==============================================================================
+
+shape:Keyword a sh:NodeShape ;
+    sh:targetClass schema:DefinedTerm ;
+    rdfs:label "Schlagwort"@de,
+        "Keyword"@en ;
+    rdfs:comment "Schlagwörter zur thematischen Einordnung."@de,
+        "Keywords for thematic classification."@en ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shape:name .
+
+# ==============================================================================
+# COLLECTION
+# ==============================================================================
+
+shape:Subgraph a sh:NodeShape ;
+    sh:targetClass dcmitype:Collection ;
+    rdfs:label "Subgraph"@de,
+        "Collection"@en ;
+    rdfs:comment "Subgraphen, die einen thematischen Ausschnitt der Systemlandkarte zusammenfassen."@de,
+        "Subgraphs that summarize a thematic part of the system map."@en ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shape:name ,
+    [
+        sh:order 10 ;
+        sh:path systemmap:containsNodes ;
+        sh:name "Elemente in diesem Subgraph"@de,
+            "Elements in this subgraph"@en ;
+        sh:description "Ein Element, das zu diesem Subgraphen gehört: ein IT-System, ein Datensatz, ein Service oder eine Organisation."@de,
+            "An element that belongs to this subgraph: an IT system, a dataset, a service or an organization."@en ;
         sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minLength 3 ;
-        sh:maxLength 100 ;
-        skos:example "Schwarzenburgstrasse 165" ;
-    ],
-    [
-        sh:order 2 ;
-        sh:name "Postleitzahl"@de,
-            "Postal code"@en,
-            "Code postal"@fr,
-            "Codice postale"@it ;
-        sh:description "Buchstaben, Ziffern, Leerzeichen und Bindestriche, zwei bis zehn Zeichen."@de,
-            "Letters, digits, spaces and hyphens, two to ten characters."@en,
-            "Lettres, chiffres, espaces et traits d'union, de deux à dix caractères."@fr,
-            "Lettere, cifre, spazi e trattini, da due a dieci caratteri."@it ;
-        sh:path schema:postalCode ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:pattern "^[A-Za-z0-9][A-Za-z0-9 -]{1,9}$" ;
-        sh:severity sh:Warning ;
-        sh:message "Die Postleitzahl hat kein plausibles Format."@de,
-            "The postal code does not have a plausible format."@en,
-            "Le code postal n'a pas un format plausible."@fr,
-            "Il codice postale non ha un formato plausibile."@it ;
-    ],
-    [
-        sh:order 3 ;
-        sh:name "Ort"@de,
-            "Locality"@en,
-            "Localité"@fr,
-            "Località"@it ;
-        sh:path schema:addressLocality ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:maxLength 100 ;
-        sh:message "Jede Adresse braucht genau einen Ort."@de,
-            "Every address needs exactly one locality."@en,
-            "Chaque adresse requiert exactement une localité."@fr,
-            "Ogni indirizzo richiede esattamente una località."@it ;
-    ],
-    [
-        sh:order 4 ;
-        sh:name "Region"@de,
-            "Region"@en,
-            "Région"@fr,
-            "Regione"@it ;
-        sh:description "Kanton, Bundesstaat oder Provinz, sofern im Land üblich."@de,
-            "Canton, state or province where customary in the country."@en,
-            "Canton, État ou province, lorsque c'est l'usage dans le pays."@fr,
-            "Cantone, stato o provincia, se consuetudinario nel paese."@it ;
-        sh:path schema:addressRegion ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:maxLength 100 ;
-    ],
-    [
-        sh:order 5 ;
-        sh:name "Land"@de,
-            "Country"@en,
-            "Pays"@fr,
-            "Paese"@it ;
-        sh:description "Land als IRI aus dem Länderverzeichnis des Bundesarchivs auf LINDAS (ISO 3166-1 alpha-3)."@de,
-            "Country as an IRI from the country list of the Swiss Federal Archives on LINDAS (ISO 3166-1 alpha-3)."@en,
-            "Pays sous forme d'IRI tirée de la liste des pays des Archives fédérales sur LINDAS (ISO 3166-1 alpha-3)."@fr,
-            "Paese come IRI dall'elenco dei paesi dell'Archivio federale su LINDAS (ISO 3166-1 alpha-3)."@it ;
-        sh:path schema:addressCountry ;
         sh:nodeKind sh:IRI ;
-        sh:pattern "^https://ld\\.admin\\.ch/country/[A-Z]{3}$" ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        skos:example country:FRA, country:ITA, country:CHE ;
-        sh:message "Jede Adresse braucht genau ein Land als Länder-IRI von LINDAS."@de,
-            "Every address needs exactly one country as a LINDAS country IRI."@en,
-            "Chaque adresse requiert exactement un pays sous forme d'IRI de pays LINDAS."@fr,
-            "Ogni indirizzo richiede esattamente un paese come IRI di paese LINDAS."@it ;
     ] .
+
+# ==============================================================================
+# SHARED PROPERTY SHAPES
+# ==============================================================================
+
+shape:name a sh:PropertyShape ;
+    sh:order 1 ;
+    sh:path schema:name ;
+    sh:name "Name"@de,
+        "Name"@en ;
+    sh:description "Der bevorzugte Name, in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch. Je Sprache ist höchstens ein Name zulässig."@de,
+        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true ;
+    sh:maxLength 125 .
+
+shape:officialName a sh:PropertyShape ;
+    sh:order 1 ;
+    sh:path schema:name ;
+    sh:name "Name"@de,
+        "Name"@en ;
+    sh:description "Der bevorzugte Name, in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch. Je Sprache ist höchstens ein Name zulässig."@de,
+        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true .
+
+shape:alternateName a sh:PropertyShape ;
+    sh:order 2 ;
+    sh:path schema:alternateName ;
+    sh:name "Alternativer Name"@de,
+        "Alternative name"@en ;
+    sh:description "Eine weitere gebräuchliche Bezeichnung, zum Beispiel ein früherer oder ein umgangssprachlicher Name. Sie kann die Suche verbessern."@de,
+        "Another common name, for example a former or colloquial name. It can improve search."@en ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) .
+
+shape:abbreviation a sh:PropertyShape ;
+    sh:order 3 ;
+    sh:path systemmap:abbreviation ;
+    sh:name "Abkürzung"@de,
+        "Abbreviation"@en ;
+    sh:description "Eine Abkürzung wird nur angegeben, wenn sie nicht bereits der bevorzugte Name ist. Beispiel: Die Fenaco Genossenschaft (fédération nationale des coopératives agricoles) wird üblicherweise als \"Fenaco\" bezeichnet, sodass keine separate Abkürzung erforderlich ist."@de,
+        "An abbreviation is only provided if it is not already the preferred name. Example: The Fenaco cooperative (fédération nationale des coopératives agricoles) is commonly referred to as \"Fenaco,\" making a separate abbreviation unnecessary."@en ;
+    sh:nodeKind sh:Literal .
+
+shape:description a sh:PropertyShape ;
+    sh:order 4 ;
+    sh:path schema:description ;
+    sh:name "Beschreibung"@de,
+        "Description"@en ;
+    sh:description "Eine Beschreibung in Worten, je Sprache höchstens eine."@de,
+        "A description in words, at most one per language."@en ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true .
+
+shape:requiredDescription a sh:PropertyShape ;
+    sh:order 4 ;
+    sh:path schema:description ;
+    sh:name "Beschreibung"@de,
+        "Description"@en ;
+    sh:description "Eine Beschreibung in Worten, je Sprache höchstens eine."@de,
+        "A description in words, at most one per language."@en ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:languageIn ( "de" "fr" "it" "en" ) ;
+    sh:uniqueLang true .
+
+shape:url a sh:PropertyShape ;
+    sh:order 5 ;
+    sh:path schema:url ;
+    sh:name "Webseite"@de,
+        "Website"@en ;
+    sh:description "Eine Webseite mit weiteren Informationen."@de,
+        "A web page with further information."@en ;
+    sh:nodeKind sh:IRI .
+
+shape:seeAlso a sh:PropertyShape ;
+    sh:order 6 ;
+    sh:path rdfs:seeAlso ;
+    sh:name "Siehe auch"@de,
+        "See also"@en ;
+    sh:description "Verweis auf eine weiterführende Quelle, zum Beispiel eine Dokumentation oder eine Webseite."@de,
+        "Reference to a further source, for example documentation or a web page."@en ;
+    sh:nodeKind sh:IRI .
+
+shape:keywords a sh:PropertyShape ;
+    sh:order 20 ;
+    sh:path schema:keywords ;
+    sh:name "Schlagwort"@de,
+        "Keyword"@en ;
+    sh:description "Ein Schlagwort, das den Gegenstand thematisch einordnet."@de,
+        "A keyword that classifies the item thematically."@en ;
+    sh:nodeKind sh:IRI ;
+    sh:class schema:DefinedTerm .
+
+shape:legalBasis a sh:PropertyShape ;
+    sh:order 21 ;
+    sh:path systemmap:hasLegalBasis ;
+    sh:name "hat Rechtsgrundlage"@de,
+        "has legal basis"@en ;
+    sh:description "Zeigt an, dass irgendetwas X eine Rechtsgrundlage mit (einem bestimmten Teil) der Legislation Y hat."@de,
+        "Indicates that anything X has a legal basis in a (particular part of) legislation Y."@en ;
+    sh:nodeKind sh:IRI ;
+    sh:class schema:Legislation .

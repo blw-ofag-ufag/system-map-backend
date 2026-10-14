@@ -3,8 +3,8 @@
 # ==============================================================================
 
 # Project-specific namespaces/qnames
-@prefix :                <https://agriculture.ld.admin.ch/eCH-1234/2/> .
-@prefix term:            <https://agriculture.ld.admin.ch/eCH-1234/2/term/> .
+@prefix :                <https://agriculture.ld.admin.ch/system-map/> .
+@prefix term:            <https://agriculture.ld.admin.ch/system-map/term/> .
 
 # Globally used namespaces/qnames
 @prefix schema:          <http://schema.org/> .
@@ -15,9 +15,9 @@
 # ==============================================================================
 
 :glossary a skos:ConceptScheme ;
-    schema:name "Glossar des Standards eCH-1234"@de,
-        "Glossary of the eCH-1234 standard"@en,
-        "Glossaire de la norme eCH-1234"@fr .
+    schema:name "Glossar der Systemlandkarte"@de,
+        "Glossary of the system map"@en,
+        "Glossaire de la carte des systèmes"@fr .
 
 # ==============================================================================
 # GLOSSARY TERMS
@@ -284,3 +284,57 @@ term:skos a skos:Concept ;
     schema:description "Ein Vokabular des W3C für Thesauri, Klassifikationen und Glossare. Dieses Glossar ist selbst in SKOS erfasst."@de,
         "A W3C vocabulary for thesauri, classifications and glossaries. This glossary is itself recorded in SKOS."@en,
         "Un vocabulaire du W3C pour les thésaurus, les classifications et les glossaires. Ce glossaire est lui-même rédigé en SKOS."@fr .
+
+term:itsystem a skos:Concept ;
+    skos:inScheme :glossary ;
+    skos:topConceptOf :glossary ;
+    schema:name "IT-System"@de,
+        "IT system"@en,
+        "Système informatique"@fr ;
+    schema:description "Eine eigenständige Anwendung, die Daten verarbeitet, oft mit einer oder mehreren dazugehörigen Datenbanken, und von einer Organisation betrieben wird."@de,
+        "A self-contained application that processes data, often with one or more associated databases, and is operated by an organization."@en,
+        "Une application autonome qui traite des données, souvent avec une ou plusieurs bases de données associées, et qui est exploitée par une organisation."@fr .
+
+term:itservice a skos:Concept ;
+    skos:inScheme :glossary ;
+    skos:topConceptOf :glossary ;
+    schema:name "IT-Service"@de,
+        "IT service"@en,
+        "Service informatique"@fr ;
+    schema:description "Eine technische Softwarekomponente, die über klar definierte Schnittstellen Funktionen für andere Systeme bereitstellt."@de,
+        "A technical software component that provides functions to other systems through clearly defined interfaces."@en,
+        "Un composant logiciel technique qui fournit des fonctions à d'autres systèmes par des interfaces clairement définies."@fr ;
+    skos:related term:itsystem .
+
+term:dataset a skos:Concept ;
+    skos:inScheme :glossary ;
+    skos:topConceptOf :glossary ;
+    schema:name "Datensatz"@de,
+        "Dataset"@en,
+        "Jeu de données"@fr ;
+    schema:description "Eine Informationseinheit, die in einem IT-System enthalten ist, zum Beispiel eine Datenbank, eine Tabelle oder ein Dokument."@de,
+        "A unit of information contained in an IT system, for example a database, a table or a document."@en,
+        "Une unité d'information contenue dans un système informatique, par exemple une base de données, un tableau ou un document."@fr ;
+    skos:related term:itsystem .
+
+term:masterdata a skos:Concept ;
+    skos:inScheme :glossary ;
+    skos:topConceptOf :glossary ;
+    schema:name "Stammdaten"@de,
+        "Master data"@en,
+        "Données de base"@fr ;
+    schema:description "Grundlegende Daten, die von vielen Systemen gemeinsam genutzt werden und sich selten ändern, etwa die Identifikatoren von Betrieben oder Unternehmen."@de,
+        "Fundamental data that is shared by many systems and rarely changes, such as the identifiers of farms or companies."@en,
+        "Données fondamentales partagées par de nombreux systèmes et qui changent rarement, comme les identifiants d'exploitations ou d'entreprises."@fr ;
+    skos:related term:dataset .
+
+term:subgraph a skos:Concept ;
+    skos:inScheme :glossary ;
+    skos:topConceptOf :glossary ;
+    schema:name "Subgraph"@de,
+        "Subgraph"@en,
+        "Sous-graphe"@fr ;
+    schema:description "Ein thematischer Ausschnitt der Systemlandkarte, zum Beispiel die Architektur rund um ein System."@de,
+        "A thematic part of the system map, for example the architecture around a system."@en,
+        "Une partie thématique de la carte des systèmes, par exemple l'architecture autour d'un système."@fr ;
+    skos:related term:graph .
