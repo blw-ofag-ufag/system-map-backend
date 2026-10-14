@@ -198,6 +198,7 @@ Es wird automatisch aus den SHACL-Shapes erzeugt, mit denen die Daten geprüft w
 | Name              | Organisation                 |
 |:------------------|:-----------------------------|
 | Marc Beringer     | Bundesamt für Landwirtschaft |
+| Linus Degen       | Berner Fachhochschule        |
 | Pascal Hurni      | Bundesamt für Landwirtschaft |
 | Damian Oswald     | Bundesamt für Landwirtschaft |
 | Michael Schüpbach | Bundesamt für Landwirtschaft |
