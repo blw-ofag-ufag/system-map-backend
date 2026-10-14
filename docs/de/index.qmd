@@ -46,10 +46,10 @@ Ebenfalls nicht enthalten sind technische Details wie Server, Netzwerke oder Sch
 
 ## Aufbau des Dokuments {#sec-structure}
 
-- **@sec-content** erklärt, was die Systemlandkarte abbildet, und zeigt die Begriffe an Beispielen.
-- **@sec-data-model** gibt einen Überblick über die Beziehungen und die Qualitätssicherung.
-- **@sec-data-retrieval** zeigt, wie die Daten bezogen und gepflegt werden.
-- **@sec-class-reference** dokumentiert alle Klassen und Eigenschaften.
+- @sec-content erklärt, was die Systemlandkarte abbildet, und zeigt die Begriffe an Beispielen.
+- @sec-data-model beschreibt, wie diese Begriffe modelliert und miteinander verknüpft sind.
+- @sec-data-retrieval zeigt, wie die Daten bezogen und gepflegt werden.
+- @sec-class-reference dokumentiert alle Klassen und Eigenschaften.
 
 # Was die Systemlandkarte abbildet {#sec-content}
 
@@ -61,18 +61,14 @@ Eine eigene Gruppe bilden die Farm-Management-Informationssysteme (FMIS), die la
 
 Ein Service ist eine technische Softwarekomponente, die über klar definierte Schnittstellen Funktionen für andere Systeme bereitstellt.
 So stellt Agate den zentralen Authentifizierungs- und Rollenverwaltungsdienst bereit, über den sich Nutzende bei verschiedenen Systemen anmelden, und der Beitragsberechnungsservice berechnet die Direktzahlungen der Landwirtschaftsbetriebe.
-Die Systemlandkarte hält fest, welches System einen Service anbietet und welche Systeme ihn nutzen.
 
 ## Datensätze und Datenflüsse {#sec-datasets}
 
 Ein Datensatz ist eine Informationseinheit, die in einem IT-System enthalten ist.
 Der Begriff ist bewusst weit gefasst: Ein Datensatz kann eine ganze Datenbank sein, eine einzelne Tabelle oder ein Dokument, zum Beispiel die Beitragsdaten in AGIS.
-Jeder Datensatz liegt in mindestens einem System.
 
-Datenflüsse zwischen Systemen werden über Datensätze abgebildet:
-Erhält ein System Daten aus einem anderen, wird der erhaltene Datensatz im empfangenden System erfasst und mit dem Datensatz verknüpft, aus dem er stammt.
-So ist nicht nur sichtbar, *dass* Daten fliessen, sondern auch *welche*.
-Wie die Daten fliessen, spielt dabei keine Rolle: über eine technische Schnittstelle, per E-Mail-Versand von Tabellen oder durch manuelles Abschreiben.
+Fliessen Daten von einem System in ein anderes, zeigt die Systemlandkarte nicht nur, *dass* Daten fliessen, sondern auch *welche* und woher sie stammen.
+Wie die Daten übertragen werden, spielt dabei keine Rolle: über eine technische Schnittstelle, per E-Mail-Versand von Tabellen oder durch manuelles Abschreiben.
 
 Einige Datensätze werden gesondert ausgewiesen:
 Stammdaten wie die BUR-Nummer oder die UID, die von vielen Systemen gemeinsam genutzt werden, sowie Datensätze mit Personendaten oder mit besonders schützenswerten Personendaten.
@@ -82,18 +78,11 @@ Stammdaten wie die BUR-Nummer oder die UID, die von vielen Systemen gemeinsam ge
 Organisationen sind juristische Personen wie Behörden, Unternehmen oder Verbände sowie deren Untereinheiten.
 Sie betreiben, besitzen oder entwickeln IT-Systeme.
 Unterschieden werden Organisationen des Bundes, kantonale Organisationen, darunter Landwirtschaftsämter, Veterinärdienste und Beratungsstellen, sowie privatrechtliche Organisationen.
-Organisationen können hierarchisch gegliedert sein; so gehören die Abteilungen eines kantonalen Landwirtschaftsamts zu diesem Amt.
-
-Neben dem Betrieb eines Systems kann festgehalten werden, dass eine Organisation Zugriff auf bestimmte Daten hat.
-Das ist vor allem dann nützlich, wenn eine andere Organisation als die Betreiberin auf die Daten zugreift.
-
-Wo eine Organisation in einem amtlichen Register geführt wird, verweist die Systemlandkarte auf diesen Eintrag, statt die Angaben zu kopieren:
-Verwaltungseinheiten des Bundes auf den Staatskalender, Unternehmen auf das Handelsregister (Zefix).
+Organisationen können hierarchisch gegliedert sein, etwa in Abteilungen.
 
 ## Rechtsgrundlagen {#sec-legal-basis}
 
-Organisationen, IT-Systeme und Datensätze können auf ihre Rechtsgrundlage verweisen, etwa auf einen Artikel des Landwirtschaftsgesetzes (LwG).
-Die Rechtsgrundlagen verweisen direkt auf die Fassung in der Systematischen Rechtssammlung des Bundes (Fedlex).
+Organisationen, IT-Systeme und Datensätze können sich auf eine Rechtsgrundlage stützen, etwa auf einen Artikel des Landwirtschaftsgesetzes (LwG).
 
 ## Subgraphen {#sec-subgraphs}
 
@@ -114,7 +103,56 @@ So lässt sich ein Teilbereich zeigen, ohne die Vielzahl der übrigen Knoten.
 
 # Datenmodell {#sec-data-model}
 
-Dieses Kapitel gibt einen Überblick über die Beziehungen und die Qualitätssicherung.
+Dieses Kapitel beschreibt, wie die Begriffe aus @sec-content modelliert sind: welche Angaben erfasst werden, welche davon Pflicht sind und wie die Elemente miteinander verknüpft werden.
+Die technische Referenz mit allen Eigenschaften ist in @sec-class-reference dokumentiert.
+
+## IT-Systeme {#sec-model-systems}
+
+Jedes IT-System hat einen Namen in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch, höchstens einen pro Sprache, sowie eine deutsche Beschreibung.
+Zudem muss jedes System von einer Organisation betrieben werden.
+Bei 149 der 154 Systeme ist der Betreiber direkt erfasst; die übrigen sind Teilsysteme und werden vom Betreiber ihres übergeordneten Systems betrieben.
+
+Optional sind eine Abkürzung, weitere Namen, eine Webseite, die entwickelnde Organisation, die Rechtsgrundlage und Schlagwörter.
+Über «ist Teil von» wird ein System einem übergeordneten System zugeordnet, über «nutzt IT-Service» den Services, die es verwendet.
+
+Ein Beispiel: Das Agrarpolitische Informationssystem (AGIS) wird von der Gruppe Agrarinformationssystem AGIS des BLW betrieben, enthält fünf Datensätze und stützt sich auf Art. 165c des Landwirtschaftsgesetzes.
+
+## Datensätze {#sec-model-datasets}
+
+Jeder Datensatz liegt in einem IT-System, entweder direkt (89 Datensätze) oder als Teil eines übergeordneten Datensatzes (38).
+So lässt sich eine Datenbank mit ihren Tabellen abbilden.
+
+Datenflüsse werden über die Beziehung «wurde abgeleitet von» erfasst:
+Der Datensatz im empfangenden System verweist auf den Datensatz, aus dem er stammt.
+So sind etwa die Kontaktdaten der Milchproduzenten aus den Registerdaten in AGIS abgeleitet.
+Die Gegenrichtung «informiert» wird automatisch ergänzt.
+
+13 Datensätze sind als Stammdaten gekennzeichnet; andere Datensätze verweisen über «hat Masterdaten» darauf.
+26 Datensätze sind als Personendaten gekennzeichnet, 2 als besonders schützenswerte Personendaten.
+
+## IT-Services {#sec-model-services}
+
+Ein Service wird von einem IT-System bereitgestellt und von IT-Systemen oder anderen Services genutzt.
+Erfasst sind zehn Services; 67 Systeme nutzen mindestens einen davon.
+
+## Organisationen {#sec-model-organizations}
+
+Jede Organisation hat einen Namen.
+Von den 270 Organisationen sind 70 Organisationen des Bundes, 51 kantonale Organisationen und 88 privatrechtliche Organisationen.
+Wo eine Organisation in einem amtlichen Register geführt wird, verweist die Systemlandkarte auf diesen Eintrag, statt die Angaben zu kopieren:
+Unternehmen werden direkt über ihren Eintrag im Handelsregister (Zefix) identifiziert, Verwaltungseinheiten verweisen über «Registereintrag» auf den Staatskalender.
+
+Die Hierarchie wird über «gehört zu» abgebildet, jeweils nur die direkte Zugehörigkeit.
+So gehört die Abteilung Direktzahlungen und Beiträge zu Landwirtschaft Aargau.
+Ausserdem lässt sich festhalten, dass eine Organisation Mitglied einer anderen ist, sie (teilweise) besitzt oder Zugriff auf bestimmte Daten hat, etwa wenn eine andere Organisation als die Betreiberin auf die Daten zugreift.
+
+## Rechtsgrundlagen, Schlagwörter und Subgraphen {#sec-model-other}
+
+Rechtsgrundlagen werden über ihre Adresse in der Systematischen Rechtssammlung des Bundes (Fedlex) identifiziert und tragen ihren offiziellen Titel.
+Erfasst sind 49 Rechtsgrundlagen, auf die Organisationen, IT-Systeme und Datensätze verweisen.
+
+Schlagwörter ordnen IT-Systeme, Datensätze und Services thematisch ein.
+Ein Subgraph hat einen Namen und enthält mindestens ein Element.
 
 ## Beziehungen {#sec-relations}
 
@@ -216,12 +254,6 @@ Dieses Glossar ist auch maschinenlesbar verfügbar, auf LINDAS und im Repository
 
 Die Systemlandkarte wurde bisher im Repository [system-map](https://github.com/blw-ofag-ufag/system-map) gepflegt.
 Mit dem Wechsel in das vorliegende Repository blieb die vollständige Versionsgeschichte erhalten.
-Inhaltlich wurden folgende Punkte geändert:
-
-- Verweise auf den Staatskalender und das Handelsregister verwenden `schema:sameAs` statt `owl:sameAs`. Mit `owl:sameAs` hätte die Verarbeitung alle Angaben einer Organisation auf den Registereintrag übertragen und so Duplikate erzeugt.
-- Die Beziehungen «gehört zu» und «ist Teil von» beschreiben nur noch die direkte Zugehörigkeit. Indirekte Zugehörigkeiten über mehrere Stufen lassen sich abfragen.
-- Abkürzungen dürfen eine Sprachangabe tragen.
-- Die Prüfregeln sind neu je Klasse formuliert. Dabei aufgefallene Fehler in den Daten wurden korrigiert.
 
 # Anhang E – Tabellenverzeichnis {#sec-appendix-e .appendix .unnumbered}
 

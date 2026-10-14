@@ -13,4 +13,7 @@ ech:
     original: de
     translations: []
   group: AgriFood         # name of the Fachgruppe, the prefix is added per language
+  publisher:            # replaces the eCH association as publisher on the title page
+    - Bundesamt für Landwirtschaft BLW, Schwarzenburgstrasse 165, 3003 Bern
+    - "[agridata.ch@blw.admin.ch](mailto:agridata.ch@blw.admin.ch)"
   graph: https://lindas.admin.ch/foag/system-map   # named graph on LINDAS holding the published data
