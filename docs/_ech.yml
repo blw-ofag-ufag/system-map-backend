@@ -7,13 +7,10 @@
 # The system map is not an eCH standard, so it has no eCH number, version or
 # category; only the fields needed for the documentation are set.
 
-date: 2026-10-12          # date of issue (Ausgabedatum)
-date-format: iso
 
 ech:
-  status: in-progress     # in-progress | draft | proposal | approved | replaced | repealed | suspended
   languages:
     original: de
-    translations: [fr, en]
+    translations: []
   group: AgriFood         # name of the Fachgruppe, the prefix is added per language
   graph: https://lindas.admin.ch/foag/system-map   # named graph on LINDAS holding the published data
