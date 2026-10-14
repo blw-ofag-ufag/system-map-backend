@@ -1,66 +1,227 @@
 ---
 title: DigiAgriFoodCH Systemlandkarte
-abstract: Die Systemlandkarte ist ein Wissensgraph der IT-Systeme, Daten, IT-Services und Organisationen des Schweizer Agrar- und Ernährungssektors. Dieses Dokument beschreibt ihr Datenmodell und zeigt, wie die Daten auf LINDAS bezogen werden können.
+abstract: |
+  Die Systemlandkarte beschreibt die IT-Systeme des Schweizer Agrar- und Ernährungssektors, die Daten, die sie enthalten, die Services, die sie anbieten und nutzen, sowie die Organisationen, die sie betreiben, besitzen oder entwickeln.
+  Sie macht sichtbar, wo welche Daten liegen, woher sie stammen und wer dafür zuständig ist.
+  Sämtliche Inhalte stehen als maschinenlesbare _Linked Data_ zur Verfügung.
 lang: de
 ---
 
 # Einleitung {#sec-introduction}
 
-## Status {#sec-status}
+Im Schweizer Agrar- und Ernährungssektor betreiben Bund, Kantone und private Organisationen eine Vielzahl von IT-Systemen: für Direktzahlungen, für den Tierverkehr, für Kontrollen, für die Nährstoffbilanz oder für die Betriebsführung.
+Viele dieser Systeme tauschen Daten miteinander aus oder beziehen Daten voneinander.
+Welche Daten in welchem System liegen, woher sie stammen und wer für ein System zuständig ist, ist jedoch selten an einem Ort zusammenhängend beschrieben.
+Das erschwert es, Datenflüsse zu verstehen, Mehrfacherhebungen zu vermeiden und die Auswirkungen von Änderungen an einem System abzuschätzen.
 
-{{< ech status >}}
+Die Systemlandkarte schliesst diese Lücke.
+Sie beschreibt die Systeme, ihre Daten und ihre Beziehungen in einem gemeinsamen Wissensgraphen.
 
-## Geltungsbereich {#sec-scope-of-application}
+## Anwendungsgebiet {#sec-scope}
 
-Die Systemlandkarte erfasst IT-Systeme von Bund, Kantonen und Privatwirtschaft, die Daten des Agrar- und Ernährungssektors verarbeiten, sowie die Datensätze, die diese Systeme enthalten, und die Organisationen, die sie betreiben, besitzen oder entwickeln.
-Sie dient als gemeinsame Referenz, um Datenflüsse und Zuständigkeiten sichtbar zu machen.
+Die Systemlandkarte richtet sich an Fachpersonen, Architektinnen und Architekten sowie Entwickelnde, die sich einen Überblick über die IT-Landschaft des Agrar- und Ernährungssektors verschaffen oder Datenflüsse zwischen Systemen nachvollziehen wollen.
+Sie umfasst (@tbl-content):
 
-## Visualisierung {#sec-visualisation}
+- IT-Systeme und die Services, die sie anbieten und nutzen,
+- die Datensätze, die in den Systemen enthalten sind, und deren Herkunft,
+- die Organisationen, die Systeme betreiben, besitzen oder entwickeln,
+- die Rechtsgrundlagen, auf die sich Systeme und Daten stützen, sowie
+- Subgraphen, die einen thematischen Ausschnitt der Systemlandkarte zusammenfassen.
 
-Das [Frontend der Systemlandkarte](https://github.com/damian-oswald/system-map-frontend) zeigt den Graphen direkt im Browser an; es fragt die Daten live von LINDAS ab.
+Nicht Gegenstand sind die Daten selbst:
+Die Systemlandkarte beschreibt, *welche* Daten ein System enthält, nicht deren Inhalt.
+Ebenfalls nicht enthalten sind technische Details wie Server, Netzwerke oder Schnittstellenspezifikationen.
 
-# Hinweise zur Verwendung {#sec-usage-notes}
+| Inhalt           | Anzahl |
+|:-----------------|-------:|
+| IT-Systeme       |    154 |
+| Datensätze       |    127 |
+| Services         |     10 |
+| Organisationen   |    270 |
+| Rechtsgrundlagen |     49 |
+| Schlagwörter     |     20 |
+| Subgraphen       |      6 |
 
-Die Daten werden in Turtle [@Turtle] gepflegt, mit einer OWL-Ontologie [@OWL2] beschrieben und mit SHACL [@SHACL] validiert; Datensätze folgen dem DCAT-Vokabular [@DCAT].
+: Inhalte der Systemlandkarte (Stand Oktober 2026). {#tbl-content tbl-colwidths="[70,30]"}
 
-## Namespaces {#sec-namespaces}
+## Aufbau des Dokuments {#sec-structure}
 
-@tbl-namespaces listet die Präfixe und Namespaces, die in diesem Dokument verwendet werden.
+- **@sec-content** erklärt, was die Systemlandkarte abbildet, und zeigt die Begriffe an Beispielen.
+- **@sec-data-model** gibt einen Überblick über die Beziehungen und die Qualitätssicherung.
+- **@sec-data-retrieval** zeigt, wie die Daten bezogen und gepflegt werden.
+- **@sec-class-reference** dokumentiert alle Klassen und Eigenschaften.
 
-{{< include namespaces.md >}}
+# Was die Systemlandkarte abbildet {#sec-content}
+
+## IT-Systeme und Services {#sec-systems}
+
+Ein IT-System ist eine eigenständige Anwendung, die Daten verarbeitet, oft mit einer oder mehreren dazugehörigen Datenbanken, und von einer Organisation betrieben wird, zum Beispiel das Agrarpolitische Informationssystem (AGIS) des BLW.
+Grössere Systeme können aus Teilsystemen bestehen.
+Eine eigene Gruppe bilden die Farm-Management-Informationssysteme (FMIS), die landwirtschaftliche Daten erfassen, verarbeiten und bereitstellen, um betriebliche Entscheidungen zu unterstützen, etwa elektronische Feldkalender.
+
+Ein Service ist eine technische Softwarekomponente, die über klar definierte Schnittstellen Funktionen für andere Systeme bereitstellt.
+So stellt Agate den zentralen Authentifizierungs- und Rollenverwaltungsdienst bereit, über den sich Nutzende bei verschiedenen Systemen anmelden, und der Beitragsberechnungsservice berechnet die Direktzahlungen der Landwirtschaftsbetriebe.
+Die Systemlandkarte hält fest, welches System einen Service anbietet und welche Systeme ihn nutzen.
+
+## Datensätze und Datenflüsse {#sec-datasets}
+
+Ein Datensatz ist eine Informationseinheit, die in einem IT-System enthalten ist.
+Der Begriff ist bewusst weit gefasst: Ein Datensatz kann eine ganze Datenbank sein, eine einzelne Tabelle oder ein Dokument, zum Beispiel die Beitragsdaten in AGIS.
+Jeder Datensatz liegt in mindestens einem System.
+
+Datenflüsse zwischen Systemen werden über Datensätze abgebildet:
+Erhält ein System Daten aus einem anderen, wird der erhaltene Datensatz im empfangenden System erfasst und mit dem Datensatz verknüpft, aus dem er stammt.
+So ist nicht nur sichtbar, *dass* Daten fliessen, sondern auch *welche*.
+Wie die Daten fliessen, spielt dabei keine Rolle: über eine technische Schnittstelle, per E-Mail-Versand von Tabellen oder durch manuelles Abschreiben.
+
+Einige Datensätze werden gesondert ausgewiesen:
+Stammdaten wie die BUR-Nummer oder die UID, die von vielen Systemen gemeinsam genutzt werden, sowie Datensätze mit Personendaten oder mit besonders schützenswerten Personendaten.
+
+## Organisationen {#sec-organizations}
+
+Organisationen sind juristische Personen wie Behörden, Unternehmen oder Verbände sowie deren Untereinheiten.
+Sie betreiben, besitzen oder entwickeln IT-Systeme.
+Unterschieden werden Organisationen des Bundes, kantonale Organisationen, darunter Landwirtschaftsämter, Veterinärdienste und Beratungsstellen, sowie privatrechtliche Organisationen.
+Organisationen können hierarchisch gegliedert sein; so gehören die Abteilungen eines kantonalen Landwirtschaftsamts zu diesem Amt.
+
+Neben dem Betrieb eines Systems kann festgehalten werden, dass eine Organisation Zugriff auf bestimmte Daten hat.
+Das ist vor allem dann nützlich, wenn eine andere Organisation als die Betreiberin auf die Daten zugreift.
+
+Wo eine Organisation in einem amtlichen Register geführt wird, verweist die Systemlandkarte auf diesen Eintrag, statt die Angaben zu kopieren:
+Verwaltungseinheiten des Bundes auf den Staatskalender, Unternehmen auf das Handelsregister (Zefix).
+
+## Rechtsgrundlagen {#sec-legal-basis}
+
+Organisationen, IT-Systeme und Datensätze können auf ihre Rechtsgrundlage verweisen, etwa auf einen Artikel des Landwirtschaftsgesetzes (LwG).
+Die Rechtsgrundlagen verweisen direkt auf die Fassung in der Systematischen Rechtssammlung des Bundes (Fedlex).
+
+## Subgraphen {#sec-subgraphs}
+
+Ein Subgraph fasst einen thematischen Ausschnitt der Systemlandkarte zusammen, zum Beispiel die Architektur rund um ein bestimmtes System.
+So lässt sich ein Teilbereich zeigen, ohne die Vielzahl der übrigen Knoten.
+@tbl-subgraphs listet die bestehenden Subgraphen.
+
+| Subgraph                                        | Knoten |
+|:------------------------------------------------|-------:|
+| IT-Systemlandschaft im Schweizer Nutztiersektor |    139 |
+| Systemlandschaft des BLW                        |     99 |
+| digiFLUX Systemarchitektur                      |     50 |
+| Acontrol Systemarchitektur                      |     38 |
+| AGIS Systemarchitektur                          |     33 |
+| MARS III Systemarchitektur                      |     27 |
+
+: Subgraphen der Systemlandkarte mit der Anzahl enthaltener Knoten (Stand Oktober 2026). {#tbl-subgraphs tbl-colwidths="[80,20]"}
 
 # Datenmodell {#sec-data-model}
 
-{{< include entities.md >}}
+Dieses Kapitel gibt einen Überblick über die Beziehungen und die Qualitätssicherung.
 
-# Datenbezug {#sec-data-retrieval}
+## Beziehungen {#sec-relations}
 
-Die Systemlandkarte ist als _Linked Data_ auf [LINDAS](https://lindas.admin.ch/), dem Linked-Data-Dienst der Bundesverwaltung, publiziert und kann mit SPARQL [@SPARQL] abgefragt werden.
-Die folgende Abfrage listet IT-Systeme mit ihren betreibenden Organisationen.
+@tbl-relations zeigt die Beziehungen der Systemlandkarte.
+Zu den meisten gibt es eine Gegenrichtung, die bei der Verarbeitung automatisch ergänzt wird.
+
+| Beziehung               | Gegenrichtung                 | Von                                | Zu                   |
+|:------------------------|:------------------------------|:-----------------------------------|:---------------------|
+| wird betrieben von      | betreibt                      | IT-System                          | Organisation         |
+| entwickelt von          | entwickelt                    | IT-System                          | Organisation         |
+| ist Teil von            | hat Teil                      | IT-System, Datensatz, Service      | dieselbe Klasse      |
+| nutzt IT-Service        | wird verwendet von            | IT-System, Service                 | Service              |
+| wird bereitgestellt von | bietet Service an             | Service                            | IT-System            |
+| ist beinhaltet in       | beinhaltet                    | Datensatz                          | IT-System            |
+| wurde abgeleitet von    | informiert                    | Datensatz                          | Datensatz            |
+| hat Masterdaten         | –                             | Datensatz                          | Datensatz            |
+| gehört zu               | beinhaltet Suborganisation    | Organisation                       | Organisation         |
+| Mitglied von            | hat Mitglied                  | Organisation                       | Organisation         |
+| besitzt (teilweise)     | ist (teilweise) in Besitz von | Organisation                       | Organisation         |
+| hat Zugriff auf         | –                             | Organisation                       | IT-System, Datensatz |
+| hat Rechtsgrundlage     | –                             | Organisation, IT-System, Datensatz | Rechtsgrundlage      |
+
+: Die Beziehungen der Systemlandkarte mit ihrer Gegenrichtung. {#tbl-relations tbl-colwidths="[22,26,28,24]"}
+
+## Qualitätssicherung {#sec-quality}
+
+Bei jeder Änderung werden die Daten automatisch geprüft, bevor sie publiziert werden.
+Die Regeln dafür sind in der *Shapes Constraint Language* (SHACL) formuliert [@SHACL].
+Sie legen zum Beispiel fest, dass jedes IT-System eine deutsche Beschreibung hat und von einer Organisation betrieben wird, dass jeder Datensatz in einem IT-System liegt und dass jede Beziehung auf ein Objekt der passenden Klasse zeigt.
+Nur Daten, die alle Regeln erfüllen, werden publiziert.
+
+# Datenbezug und Nutzung {#sec-data-retrieval}
+
+## Bezug über LINDAS {#sec-lindas}
+
+Die Systemlandkarte ist auf [LINDAS](https://lindas.admin.ch/), dem Linked Data Service der Bundesverwaltung, publiziert und kann mit SPARQL abgefragt werden [@SPARQL].
+Das folgende Beispiel listet alle Subgraphen mit der Anzahl ihrer Knoten:
 
 ``` rq
-{{< include ../data/example.rq >}}
+{{< include ../../src/sparql/queries/subgraphs.rq >}}
 ```
 
-Die Daten selbst werden auf GitHub als Turtle-Dateien gepflegt, wie der folgende Auszug zeigt.
+Solche Abfragen lassen sich auf <https://lindas.admin.ch/sparql/> ausprobieren.
+Weitere Beispiele liegen im Repository unter `src/sparql/queries/`.
 
-``` ttl
-{{< include ../data/example.ttl >}}
-```
+## Visualisierung {#sec-visualisation}
+
+Ein separates [Frontend](https://github.com/damian-oswald/system-map-frontend) zeigt die Systemlandkarte als interaktiven Graphen im Browser an und kann auf einzelne Subgraphen gefiltert werden.
+
+## Einschränkungen {#sec-limitations}
+
+Fehlt in der Systemlandkarte eine Angabe, heisst das nicht, dass es sie nicht gibt, sondern nur, dass sie nicht erfasst ist.
+Ist ein Datensatz nicht als Personendaten gekennzeichnet, kann er dennoch Personendaten enthalten.
+
+## Pflege {#sec-maintenance}
+
+Die Systemlandkarte wird auf GitHub gepflegt.
+Fehler oder fehlende Einträge können als [Issue](https://github.com/blw-ofag-ufag/system-map-backend/issues) gemeldet werden.
+Die Inhalte stehen unter der Lizenz [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) und dürfen unter Nennung der Quelle frei verwendet werden.
+
+# Klassen des Datenmodells {#sec-class-reference}
+
+Dieses Kapitel dokumentiert alle Klassen der Systemlandkarte mit ihren Eigenschaften.
+Es wird automatisch aus den SHACL-Shapes erzeugt, mit denen die Daten geprüft werden, und ist deshalb immer auf dem Stand der Regeln.
+
+## Namespaces {#sec-namespaces}
+
+@tbl-namespaces listet die Präfixe und die zugehörigen Namespaces, die in diesem Kapitel verwendet werden.
+
+{{< include namespaces.md >}}
+
+{{< include entities.md >}}
 
 # Anhang A – Referenzen {#sec-appendix-a .appendix .unnumbered}
 
 ::: {#refs}
 :::
 
-# Anhang B – Abkürzungen und Glossar {#sec-appendix-b .appendix .unnumbered}
+# Anhang B – Mitwirkung {#sec-appendix-b .appendix .unnumbered}
+
+| Name              | Organisation                 |
+|:------------------|:-----------------------------|
+| Marc Beringer     | Bundesamt für Landwirtschaft |
+| Pascal Hurni      | Bundesamt für Landwirtschaft |
+| Damian Oswald     | Bundesamt für Landwirtschaft |
+| Michael Schüpbach | Bundesamt für Landwirtschaft |
+| Lea Stauber       | Bundesamt für Landwirtschaft |
+
+: Mitwirkende {#tbl-authors tbl-colwidths="[50,50]"}
+
+# Anhang C – Abkürzungen und Glossar {#sec-appendix-c .appendix .unnumbered}
+
+Dieses Glossar ist auch maschinenlesbar verfügbar, auf LINDAS und im Repository unter `src/rdf/data/glossary.skos.ttl`.
 
 {{< include glossary.md >}}
 
-# Anhang C – Abbildungsverzeichnis {#sec-appendix-c .appendix .unnumbered}
+# Anhang D – Änderungen gegenüber dem bisherigen Repository {#sec-appendix-d .appendix .unnumbered}
 
-{{< ech figures >}}
+Die Systemlandkarte wurde bisher im Repository [system-map](https://github.com/blw-ofag-ufag/system-map) gepflegt.
+Mit dem Wechsel in das vorliegende Repository blieb die vollständige Versionsgeschichte erhalten.
+Inhaltlich wurden folgende Punkte geändert:
 
-# Anhang D – Tabellenverzeichnis {#sec-appendix-d .appendix .unnumbered}
+- Verweise auf den Staatskalender und das Handelsregister verwenden `schema:sameAs` statt `owl:sameAs`. Mit `owl:sameAs` hätte die Verarbeitung alle Angaben einer Organisation auf den Registereintrag übertragen und so Duplikate erzeugt.
+- Die Beziehungen «gehört zu» und «ist Teil von» beschreiben nur noch die direkte Zugehörigkeit. Indirekte Zugehörigkeiten über mehrere Stufen lassen sich abfragen.
+- Abkürzungen dürfen eine Sprachangabe tragen.
+- Die Prüfregeln sind neu je Klasse formuliert. Dabei aufgefallene Fehler in den Daten wurden korrigiert.
+
+# Anhang E – Tabellenverzeichnis {#sec-appendix-e .appendix .unnumbered}
 
 {{< ech tables >}}
