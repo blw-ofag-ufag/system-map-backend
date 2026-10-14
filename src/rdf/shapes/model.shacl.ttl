@@ -22,14 +22,11 @@
 
 shape: a owl:Ontology ;
     rdfs:label "Datenmodell der Systemlandkarte"@de,
-        "System map data model"@en,
-        "Modèle de données de la carte des systèmes"@fr ;
+        "System map data model"@en ;
     rdfs:comment "Dieses SHACL-Datenmodell beschreibt und validiert die IT-Systeme, Daten, Services und Organisationen der Systemlandkarte. Von zwei zueinander inversen Eigenschaften wird jeweils eine Richtung geprüft; die Gegenrichtung leitet der Reasoner ab."@de,
-        "This SHACL data model describes and validates the IT systems, data, services and organizations of the system map. Of two mutually inverse properties, one direction is validated; the reasoner derives the other one."@en,
-        "Ce modèle de données SHACL décrit et valide les systèmes informatiques, les données, les services et les organisations de la carte des systèmes. De deux propriétés inverses, une seule direction est validée ; le raisonneur déduit l'autre."@fr ;
+        "This SHACL data model describes and validates the IT systems, data, services and organizations of the system map. Of two mutually inverse properties, one direction is validated; the reasoner derives the other one."@en ;
     dcterms:title "Datenmodell der Systemlandkarte"@de,
-        "System map data model"@en,
-        "Modèle de données de la carte des systèmes"@fr ;
+        "System map data model"@en ;
     dcterms:creator "Bundesamt für Landwirtschaft BLW" ;
     dcterms:created "2026-02-13"^^xsd:date ;
     dcterms:modified "2026-10-13"^^xsd:date ;
@@ -44,11 +41,9 @@ shape: a owl:Ontology ;
 shape:Organization a sh:NodeShape ;
     sh:targetClass schema:Organization ;
     rdfs:label "Organisation"@de,
-        "Organization"@en,
-        "Organisation"@fr ;
+        "Organization"@en ;
     rdfs:comment "Organisationen der Verwaltung und der Privatwirtschaft, die IT-Systeme betreiben, besitzen oder entwickeln. Unterschieden werden Organisationen des Bundes, kantonale Organisationen (darunter Landwirtschaftsämter, Veterinärdienste und Beratungsstellen der Kantone) und privatrechtliche Organisationen."@de,
-        "Public and private organizations that operate, own or develop IT systems. Federal organizations, cantonal organizations (including cantonal agricultural offices, veterinary services and advice centers) and private-sector organizations are distinguished."@en,
-        "Organisations publiques et privées qui exploitent, possèdent ou développent des systèmes informatiques. On distingue les organisations fédérales, les organisations cantonales (dont les offices agricoles, les services vétérinaires et les centres de conseil cantonaux) et les organisations de droit privé."@fr ;
+        "Public and private organizations that operate, own or develop IT systems. Federal organizations, cantonal organizations (including cantonal agricultural offices, veterinary services and advice centers) and private-sector organizations are distinguished."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type schema:subOrganization schema:member systemmap:ownedBy systemmap:operates systemmap:develops ) ;
     sh:property shape:name, shape:abbreviation, shape:description, shape:url, shape:legalBasis ,
@@ -56,22 +51,18 @@ shape:Organization a sh:NodeShape ;
         sh:order 10 ;
         sh:path schema:sameAs ;
         sh:name "Registereintrag"@de,
-            "Register entry"@en,
-            "Entrée de registre"@fr ;
+            "Register entry"@en ;
         sh:description "Verweis auf den Eintrag derselben Organisation in einem amtlichen Register, etwa im Staatskalender oder im Handelsregister (Zefix). Die Angaben des Registers werden nicht kopiert."@de,
-            "Reference to the entry of the same organization in an official register, such as the federal directory (Staatskalender) or the commercial register (Zefix). The data of the register is not copied."@en,
-            "Renvoi à l'inscription de la même organisation dans un registre officiel, par exemple l'annuaire fédéral (Staatskalender) ou le registre du commerce (Zefix). Les données du registre ne sont pas copiées."@fr ;
+            "Reference to the entry of the same organization in an official register, such as the federal directory (Staatskalender) or the commercial register (Zefix). The data of the register is not copied."@en ;
         sh:nodeKind sh:IRI ;
     ] ,
     [
         sh:order 11 ;
         sh:path schema:parentOrganization ;
         sh:name "gehört zu"@de,
-            "belongs to"@en,
-            "fait partie de"@fr ;
+            "belongs to"@en ;
         sh:description "Zeigt an, dass die (Teil-)Organisation ein Teil von einer (Über-)Organisation Y ist."@de,
-            "Indicates that the (sub-)organization is part of a (parent) organization Y."@en,
-            "Indique que l'(sous-)organisation fait partie d'une (organisation parent) Y."@fr ;
+            "Indicates that the (sub-)organization is part of a (parent) organization Y."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
     ] ,
@@ -79,11 +70,9 @@ shape:Organization a sh:NodeShape ;
         sh:order 12 ;
         sh:path schema:memberOf ;
         sh:name "Mitglied von"@de,
-            "member of"@en,
-            "membre de"@fr ;
+            "member of"@en ;
         sh:description "Gibt an, dass eine Organisation X eine Mitgliedsorganisation einer anderen Organisation Y ist. Die Beziehung soll Mitgliedschaften von Branchenorganisationen, Berufsverbänden oder anderen formellen Vereinigungen darstellen, bei denen Organisationen als Mitglieder teilnehmen. Informelle Beziehungen gehören nicht dazu."@de,
-            "Indicates that an organization X is a member organization of another organization Y. The relationship is used to represent memberships of industry organizations, professional associations, or other formal associations in which organizations participate as members. Informal relationships are not included."@en,
-            "Indique qu'une organisation X est une organisation membre d'une autre organisation Y. La relation est utilisée pour représenter les adhésions à des organisations sectorielles, des associations professionnelles ou d'autres associations formelles dans lesquelles les organisations participent en tant que membres. Les relations informelles ne sont pas incluses."@fr ;
+            "Indicates that an organization X is a member organization of another organization Y. The relationship is used to represent memberships of industry organizations, professional associations, or other formal associations in which organizations participate as members. Informal relationships are not included."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
     ] ,
@@ -91,11 +80,9 @@ shape:Organization a sh:NodeShape ;
         sh:order 13 ;
         sh:path systemmap:owns ;
         sh:name "besitzt (teilweise)"@de,
-            "(partially) owns"@en,
-            "possède (partiellement)"@fr ;
+            "(partially) owns"@en ;
         sh:description "Diese Beziehung zeigt an, dass eine Organisation X eine andere Organisation Y (teilweise) besitzt."@de,
-            "This relationship indicates that an organization X (partially) owns another organization Y."@en,
-            "Cette relation indique qu'une organisation X possède (partiellement) une autre organisation Y."@fr ;
+            "This relationship indicates that an organization X (partially) owns another organization Y."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
     ] ,
@@ -103,11 +90,9 @@ shape:Organization a sh:NodeShape ;
         sh:order 14 ;
         sh:path systemmap:access ;
         sh:name "hat Zugriff auf"@de,
-            "has access to"@en,
-            "a accès à"@fr ;
+            "has access to"@en ;
         sh:description "Zeigt an, dass eine Organisation X die Rechte zum Zugriff etwas hat."@de,
-            "Indicates that an organization X has the rights to access something."@en,
-            "Indique qu'une organisation dispose de droits d'accès à quelque chose."@fr ;
+            "Indicates that an organization X has the rights to access something."@en ;
         sh:nodeKind sh:IRI ;
     ] .
 
@@ -118,11 +103,9 @@ shape:Organization a sh:NodeShape ;
 shape:SoftwareApplication a sh:NodeShape ;
     sh:targetClass schema:SoftwareApplication ;
     rdfs:label "IT-System"@de,
-        "IT system"@en,
-        "Système informatique"@fr ;
+        "IT system"@en ;
     rdfs:comment "IT-Systeme, die Daten des Agrar- und Ernährungssektors verarbeiten. Jedes IT-System hat eine deutsche Beschreibung und wird direkt oder über ein übergeordnetes System von einer Organisation betrieben. Farm-Management-Informationssysteme (FMIS) bilden eine eigene Unterklasse."@de,
-        "IT systems processing data of the agri-food sector. Every IT system has a German description and is operated by an organization, directly or via a parent system. Farm management information systems (FMIS) form a separate subclass."@en,
-        "Systèmes informatiques traitant des données du secteur agroalimentaire. Chaque système informatique a une description en allemand et est exploité par une organisation, directement ou via un système parent. Les systèmes d'information pour la gestion agricole (FMIS) forment une sous-classe distincte."@fr ;
+        "IT systems processing data of the agri-food sector. Every IT system has a German description and is operated by an organization, directly or via a parent system. Farm management information systems (FMIS) form a separate subclass."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type systemmap:contains service:provides dcterms:hasPart ) ;
     sh:property shape:name, shape:alternateName, shape:abbreviation, shape:requiredDescription, shape:url, shape:seeAlso, shape:keywords, shape:legalBasis ,
@@ -130,11 +113,9 @@ shape:SoftwareApplication a sh:NodeShape ;
         sh:order 10 ;
         sh:path systemmap:operatedBy ;
         sh:name "wird betrieben von"@de,
-            "is operated by"@en,
-            "est exploité par"@fr ;
+            "is operated by"@en ;
         sh:description "Gibt an, dass ein IT-System X durch eine Organisation Y betrieben wird. Das bedeutet, dass die Organisation Y für den Betrieb von System X zuständig ist."@de,
-            "Indicates that an IT system X is operated by an organization Y. This means that organization Y is responsible for operating system X."@en,
-            "Indique qu'un système informatique X est exploité par une organisation Y. Cela signifie que l'organisation Y est responsable de l'exploitation du système X."@fr ;
+            "Indicates that an IT system X is operated by an organization Y. This means that organization Y is responsible for operating system X."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
     ] ,
@@ -142,11 +123,9 @@ shape:SoftwareApplication a sh:NodeShape ;
         sh:order 11 ;
         sh:path systemmap:developedBy ;
         sh:name "entwickelt von"@de,
-            "developed by"@en,
-            "développé par"@fr ;
+            "developed by"@en ;
         sh:description "Gibt an, dass ein IT-System von einer Organisation entwickelt wird oder wurde."@de,
-            "States that an IT system is or was developed by an organization."@en,
-            "Indique qu'un système informatique est ou a été développé par une organisation."@fr ;
+            "States that an IT system is or was developed by an organization."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:Organization ;
     ] ,
@@ -154,11 +133,9 @@ shape:SoftwareApplication a sh:NodeShape ;
         sh:order 12 ;
         sh:path service:consumes ;
         sh:name "nutzt IT-Service"@de,
-            "uses IT service"@en,
-            "utilise un service informatique"@fr ;
+            "uses IT service"@en ;
         sh:description "Zeigt an, dass ein beliebiges Objekt (IT-System, Organisation etc.) einen bestimmten technischen IT-Service nutzt."@de,
-            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en,
-            "Indique qu'un objet quelconque (système informatique, organisation, etc.) utilise un service informatique technique spécifique."@fr ;
+            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en ;
         sh:nodeKind sh:IRI ;
         sh:class service:Service ;
     ] ,
@@ -166,11 +143,9 @@ shape:SoftwareApplication a sh:NodeShape ;
         sh:order 13 ;
         sh:path dcterms:isPartOf ;
         sh:name "ist Teil von"@de,
-            "is part of"@en,
-            "fait partie de"@fr ;
+            "is part of"@en ;
         sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
-            "A related resource in which the described resource is physically or logically included."@en,
-            "Une ressource connexe dans laquelle la ressource décrite est incluse physiquement ou logiquement."@fr ;
+            "A related resource in which the described resource is physically or logically included."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:SoftwareApplication ;
     ] ;
@@ -178,8 +153,7 @@ shape:SoftwareApplication a sh:NodeShape ;
         a sh:SPARQLConstraint ;
         sh:prefixes shape: ;
         sh:message "IT-System: Jedes IT-System muss direkt oder über ein übergeordnetes System von einer Organisation betrieben werden."@de,
-            "IT system: Every IT system must be operated by an organization, directly or via a parent system."@en,
-            "Système informatique : chaque système informatique doit être exploité par une organisation, directement ou via un système parent."@fr ;
+            "IT system: Every IT system must be operated by an organization, directly or via a parent system."@en ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
@@ -193,8 +167,7 @@ shape:SoftwareApplication a sh:NodeShape ;
         a sh:SPARQLConstraint ;
         sh:prefixes shape: ;
         sh:message "IT-System: Eine deutsche Beschreibung ist Pflicht."@de,
-            "IT system: A German description is required."@en,
-            "Système informatique : une description en allemand est obligatoire."@fr ;
+            "IT system: A German description is required."@en ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
@@ -212,11 +185,9 @@ shape:SoftwareApplication a sh:NodeShape ;
 shape:Dataset a sh:NodeShape ;
     sh:targetClass dcat:Dataset ;
     rdfs:label "Datensatz"@de,
-        "Dataset"@en,
-        "Jeu de données"@fr ;
+        "Dataset"@en ;
     rdfs:comment "Informationseinheiten, die in IT-Systemen enthalten sind. Jeder Datensatz liegt direkt oder über einen übergeordneten Datensatz in einem IT-System. Gesondert ausgewiesen werden Stammdaten sowie Datensätze mit Personendaten und mit besonders schützenswerten Personendaten."@de,
-        "Information units contained in IT systems. Every dataset is contained in an IT system, directly or via a parent dataset. Master data as well as datasets containing personal data or sensitive personal data are marked separately."@en,
-        "Unités d'information contenues dans des systèmes informatiques. Chaque jeu de données est contenu dans un système informatique, directement ou via un jeu de données parent. Les données de base ainsi que les jeux de données contenant des données personnelles ou des données personnelles sensibles sont signalés séparément."@fr ;
+        "Information units contained in IT systems. Every dataset is contained in an IT system, directly or via a parent dataset. Master data as well as datasets containing personal data or sensitive personal data are marked separately."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type dcterms:hasPart ) ;
     sh:property shape:name, shape:abbreviation, shape:description, shape:url, shape:seeAlso, shape:keywords, shape:legalBasis ,
@@ -224,11 +195,9 @@ shape:Dataset a sh:NodeShape ;
         sh:order 10 ;
         sh:path systemmap:containedIn ;
         sh:name "ist beinhaltet in"@de,
-            "is contained in"@en,
-            "est contenu dans"@fr ;
+            "is contained in"@en ;
         sh:description "Gibt an, dass eine Informationseinheit X im IT-System Y enthalten ist. Beispielsweise sind Informationen über landwirtschaftliche Flächen in der Schweiz in AGIS enthalten."@de,
-            "Indicates that an information unit X is contained in the IT system Y. For example, information about farming areas in Switzerland is contained in AGIS."@en,
-            "Indique qu'une unité d'information X est contenue dans le système informatique Y. Par exemple, les informations sur les surfaces agricoles en Suisse sont contenues dans AGIS."@fr ;
+            "Indicates that an information unit X is contained in the IT system Y. For example, information about farming areas in Switzerland is contained in AGIS."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:SoftwareApplication ;
     ] ,
@@ -236,11 +205,9 @@ shape:Dataset a sh:NodeShape ;
         sh:order 11 ;
         sh:path dcterms:isPartOf ;
         sh:name "ist Teil von"@de,
-            "is part of"@en,
-            "fait partie de"@fr ;
+            "is part of"@en ;
         sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
-            "A related resource in which the described resource is physically or logically included."@en,
-            "Une ressource connexe dans laquelle la ressource décrite est incluse physiquement ou logiquement."@fr ;
+            "A related resource in which the described resource is physically or logically included."@en ;
         sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
     ] ,
@@ -248,11 +215,9 @@ shape:Dataset a sh:NodeShape ;
         sh:order 12 ;
         sh:path prov:wasDerivedFrom ;
         sh:name "wurde abgeleitet von"@de,
-            "was derived from"@en,
-            "a été dérivé de"@fr ;
+            "was derived from"@en ;
         sh:description "Eine Ableitung ist die Transformation einer Entität in eine andere, eine Aktualisierung einer Entität, die zu einer neuen führt, oder die Konstruktion einer neuen Entität auf der Grundlage einer bereits existierenden."@de,
-            "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."@en,
-            "Une dérivation est une transformation d'une entité en une autre, une mise à jour d'une entité aboutissant à une nouvelle, ou la construction d'une nouvelle entité basée sur une entité préexistante."@fr ;
+            "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."@en ;
         sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
     ] ,
@@ -260,11 +225,9 @@ shape:Dataset a sh:NodeShape ;
         sh:order 13 ;
         sh:path systemmap:informs ;
         sh:name "informiert"@de,
-            "informs"@en,
-            "informe"@fr ;
+            "informs"@en ;
         sh:description "Zeigt auf, dass Informationseinheit X durch eine andere Informationseinheit Y informiert wird; d.h. dass irgendwie Daten fliessen. Das kann über manuelles Abschreiben, E-Mail-Versandt von Tabellen, APIs etc. geschehen."@de,
-            "Indicates that information unit X is informed by another information unit Y, meaning that data flows in some way. This can happen through manual copying, emailing tables, APIs, etc."@en,
-            "Indique que l'unité d'information X est informée par une autre unité d'information Y, ce qui signifie que des données circulent d'une manière ou d'une autre. Cela peut se produire par copie manuelle, envoi de tableaux par e-mail, API, etc."@fr ;
+            "Indicates that information unit X is informed by another information unit Y, meaning that data flows in some way. This can happen through manual copying, emailing tables, APIs, etc."@en ;
         sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
     ] ,
@@ -272,11 +235,9 @@ shape:Dataset a sh:NodeShape ;
         sh:order 14 ;
         sh:path systemmap:usesMasterData ;
         sh:name "hat Masterdaten"@de,
-            "has master data"@en,
-            "utilise des données de base"@fr ;
+            "has master data"@en ;
         sh:description "Gibt an, dass ein Datensatz Stammdaten verwendet, zum Beispiel eine Betriebsnummer, über die er mit anderen Datensätzen verknüpft ist."@de,
-            "States that a dataset uses master data, for example a farm identifier through which it is linked with other datasets."@en,
-            "Indique qu'un jeu de données utilise des données de base, par exemple un numéro d'exploitation qui le relie à d'autres jeux de données."@fr ;
+            "States that a dataset uses master data, for example a farm identifier through which it is linked with other datasets."@en ;
         sh:nodeKind sh:IRI ;
         sh:class dcat:Dataset ;
     ] ;
@@ -284,8 +245,7 @@ shape:Dataset a sh:NodeShape ;
         a sh:SPARQLConstraint ;
         sh:prefixes shape: ;
         sh:message "Datensatz: Jeder Datensatz muss direkt oder über einen übergeordneten Datensatz in einem IT-System enthalten sein."@de,
-            "Dataset: Every dataset must be contained in an IT system, directly or via a parent dataset."@en,
-            "Jeu de données : chaque jeu de données doit être contenu dans un système informatique, directement ou via un jeu de données parent."@fr ;
+            "Dataset: Every dataset must be contained in an IT system, directly or via a parent dataset."@en ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
@@ -303,11 +263,9 @@ shape:Dataset a sh:NodeShape ;
 shape:Service a sh:NodeShape ;
     sh:targetClass service:Service ;
     rdfs:label "IT-Service"@de,
-        "IT service"@en,
-        "Service informatique"@fr ;
+        "IT service"@en ;
     rdfs:comment "IT-Services, die von IT-Systemen bereitgestellt und von IT-Systemen oder anderen Services genutzt werden."@de,
-        "IT services provided by IT systems and used by IT systems or other services."@en,
-        "Services informatiques fournis par des systèmes informatiques et utilisés par des systèmes informatiques ou d'autres services."@fr ;
+        "IT services provided by IT systems and used by IT systems or other services."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type service:consumedBy dcterms:hasPart ) ;
     sh:property shape:name, shape:description, shape:url, shape:keywords ,
@@ -315,11 +273,9 @@ shape:Service a sh:NodeShape ;
         sh:order 10 ;
         sh:path service:providedBy ;
         sh:name "wird bereitgestellt von"@de,
-            "is provided by"@en,
-            "est fourni par"@fr ;
+            "is provided by"@en ;
         sh:description "Zeigt an, dass ein technischer Service von einem bestimmten IT-System bereitgestellt wird."@de,
-            "Indicates that a technical service is provided by a specific IT system."@en,
-            "Indique qu'un service technique est fourni par un système informatique spécifique."@fr ;
+            "Indicates that a technical service is provided by a specific IT system."@en ;
         sh:nodeKind sh:IRI ;
         sh:class schema:SoftwareApplication ;
     ] ,
@@ -327,11 +283,9 @@ shape:Service a sh:NodeShape ;
         sh:order 11 ;
         sh:path service:consumes ;
         sh:name "nutzt IT-Service"@de,
-            "uses IT service"@en,
-            "utilise un service informatique"@fr ;
+            "uses IT service"@en ;
         sh:description "Zeigt an, dass ein beliebiges Objekt (IT-System, Organisation etc.) einen bestimmten technischen IT-Service nutzt."@de,
-            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en,
-            "Indique qu'un objet quelconque (système informatique, organisation, etc.) utilise un service informatique technique spécifique."@fr ;
+            "Indicates that any object (IT system, organisation, etc.) uses a specific technical IT service."@en ;
         sh:nodeKind sh:IRI ;
         sh:class service:Service ;
     ] ,
@@ -339,11 +293,9 @@ shape:Service a sh:NodeShape ;
         sh:order 12 ;
         sh:path dcterms:isPartOf ;
         sh:name "ist Teil von"@de,
-            "is part of"@en,
-            "fait partie de"@fr ;
+            "is part of"@en ;
         sh:description "Eine verwandte Ressource, in der die beschriebene Ressource physisch oder logisch enthalten ist."@de,
-            "A related resource in which the described resource is physically or logically included."@en,
-            "Une ressource connexe dans laquelle la ressource décrite est incluse physiquement ou logiquement."@fr ;
+            "A related resource in which the described resource is physically or logically included."@en ;
         sh:nodeKind sh:IRI ;
         sh:class service:Service ;
     ] .
@@ -355,11 +307,9 @@ shape:Service a sh:NodeShape ;
 shape:Legislation a sh:NodeShape ;
     sh:targetClass schema:Legislation ;
     rdfs:label "Gesetzgebung"@de,
-        "Legislation"@en,
-        "Législation"@fr ;
+        "Legislation"@en ;
     rdfs:comment "Rechtsgrundlagen (Fedlex), auf die sich Organisationen, IT-Systeme und Datensätze stützen. Ihre Namen sind die offiziellen Titel."@de,
-        "Legal bases (Fedlex) of organizations, IT systems and datasets. Their names are the official titles."@en,
-        "Bases légales (Fedlex) des organisations, des systèmes informatiques et des jeux de données. Leurs noms sont les titres officiels."@fr ;
+        "Legal bases (Fedlex) of organizations, IT systems and datasets. Their names are the official titles."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property shape:officialName, shape:alternateName, shape:abbreviation .
@@ -371,11 +321,9 @@ shape:Legislation a sh:NodeShape ;
 shape:Keyword a sh:NodeShape ;
     sh:targetClass schema:DefinedTerm ;
     rdfs:label "Schlagwort"@de,
-        "Keyword"@en,
-        "Mot-clé"@fr ;
+        "Keyword"@en ;
     rdfs:comment "Schlagwörter zur thematischen Einordnung."@de,
-        "Keywords for thematic classification."@en,
-        "Mots-clés pour la classification thématique."@fr ;
+        "Keywords for thematic classification."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property shape:name .
@@ -387,11 +335,9 @@ shape:Keyword a sh:NodeShape ;
 shape:Subgraph a sh:NodeShape ;
     sh:targetClass dcmitype:Collection ;
     rdfs:label "Subgraph"@de,
-        "Collection"@en,
-        "Sous-graphe"@fr ;
+        "Collection"@en ;
     rdfs:comment "Subgraphen, die einen thematischen Ausschnitt der Systemlandkarte zusammenfassen."@de,
-        "Subgraphs that summarize a thematic part of the system map."@en,
-        "Sous-graphes qui résument une partie thématique de la carte des systèmes."@fr ;
+        "Subgraphs that summarize a thematic part of the system map."@en ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property shape:name ,
@@ -399,11 +345,9 @@ shape:Subgraph a sh:NodeShape ;
         sh:order 10 ;
         sh:path systemmap:containsNodes ;
         sh:name "Elemente in diesem Subgraph"@de,
-            "Elements in this subgraph"@en,
-            "Éléments de ce sous-graphe"@fr ;
+            "Elements in this subgraph"@en ;
         sh:description "Ein Element, das zu diesem Subgraphen gehört: ein IT-System, ein Datensatz, ein Service oder eine Organisation."@de,
-            "An element that belongs to this subgraph: an IT system, a dataset, a service or an organization."@en,
-            "Un élément qui appartient à ce sous-graphe : un système informatique, un jeu de données, un service ou une organisation."@fr ;
+            "An element that belongs to this subgraph: an IT system, a dataset, a service or an organization."@en ;
         sh:minCount 1 ;
         sh:nodeKind sh:IRI ;
     ] .
@@ -416,11 +360,9 @@ shape:name a sh:PropertyShape ;
     sh:order 1 ;
     sh:path schema:name ;
     sh:name "Name"@de,
-        "Name"@en,
-        "Nom"@fr ;
+        "Name"@en ;
     sh:description "Der bevorzugte Name, in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch. Je Sprache ist höchstens ein Name zulässig."@de,
-        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en,
-        "Le nom préféré, dans au moins une des langues allemand, français, italien ou anglais. Un seul nom par langue est admis."@fr ;
+        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en ;
     sh:minCount 1 ;
     sh:nodeKind sh:Literal ;
     sh:datatype rdf:langString ;
@@ -432,11 +374,9 @@ shape:officialName a sh:PropertyShape ;
     sh:order 1 ;
     sh:path schema:name ;
     sh:name "Name"@de,
-        "Name"@en,
-        "Nom"@fr ;
+        "Name"@en ;
     sh:description "Der bevorzugte Name, in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch. Je Sprache ist höchstens ein Name zulässig."@de,
-        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en,
-        "Le nom préféré, dans au moins une des langues allemand, français, italien ou anglais. Un seul nom par langue est admis."@fr ;
+        "The preferred name, in at least one of the languages German, French, Italian or English. At most one name per language is allowed."@en ;
     sh:minCount 1 ;
     sh:nodeKind sh:Literal ;
     sh:datatype rdf:langString ;
@@ -447,11 +387,9 @@ shape:alternateName a sh:PropertyShape ;
     sh:order 2 ;
     sh:path schema:alternateName ;
     sh:name "Alternativer Name"@de,
-        "Alternative name"@en,
-        "Autre nom"@fr ;
+        "Alternative name"@en ;
     sh:description "Eine weitere gebräuchliche Bezeichnung, zum Beispiel ein früherer oder ein umgangssprachlicher Name. Sie kann die Suche verbessern."@de,
-        "Another common name, for example a former or colloquial name. It can improve search."@en,
-        "Une autre dénomination usuelle, par exemple un ancien nom ou un nom familier. Elle peut améliorer la recherche."@fr ;
+        "Another common name, for example a former or colloquial name. It can improve search."@en ;
     sh:nodeKind sh:Literal ;
     sh:datatype rdf:langString ;
     sh:languageIn ( "de" "fr" "it" "en" ) .
@@ -460,22 +398,18 @@ shape:abbreviation a sh:PropertyShape ;
     sh:order 3 ;
     sh:path systemmap:abbreviation ;
     sh:name "Abkürzung"@de,
-        "Abbreviation"@en,
-        "Abréviation"@fr ;
+        "Abbreviation"@en ;
     sh:description "Eine Abkürzung wird nur angegeben, wenn sie nicht bereits der bevorzugte Name ist. Beispiel: Die Fenaco Genossenschaft (fédération nationale des coopératives agricoles) wird üblicherweise als \"Fenaco\" bezeichnet, sodass keine separate Abkürzung erforderlich ist."@de,
-        "An abbreviation is only provided if it is not already the preferred name. Example: The Fenaco cooperative (fédération nationale des coopératives agricoles) is commonly referred to as \"Fenaco,\" making a separate abbreviation unnecessary."@en,
-        "Une abréviation n'est indiquée que si elle n'est pas déjà le nom préféré. Exemple : La coopérative Fenaco (fédération nationale des coopératives agricoles) est couramment appelée \"Fenaco\", rendant une abréviation distincte superflue."@fr ;
+        "An abbreviation is only provided if it is not already the preferred name. Example: The Fenaco cooperative (fédération nationale des coopératives agricoles) is commonly referred to as \"Fenaco,\" making a separate abbreviation unnecessary."@en ;
     sh:nodeKind sh:Literal .
 
 shape:description a sh:PropertyShape ;
     sh:order 4 ;
     sh:path schema:description ;
     sh:name "Beschreibung"@de,
-        "Description"@en,
-        "Description"@fr ;
+        "Description"@en ;
     sh:description "Eine Beschreibung in Worten, je Sprache höchstens eine."@de,
-        "A description in words, at most one per language."@en,
-        "Une description en mots, au plus une par langue."@fr ;
+        "A description in words, at most one per language."@en ;
     sh:nodeKind sh:Literal ;
     sh:datatype rdf:langString ;
     sh:languageIn ( "de" "fr" "it" "en" ) ;
@@ -485,11 +419,9 @@ shape:requiredDescription a sh:PropertyShape ;
     sh:order 4 ;
     sh:path schema:description ;
     sh:name "Beschreibung"@de,
-        "Description"@en,
-        "Description"@fr ;
+        "Description"@en ;
     sh:description "Eine Beschreibung in Worten, je Sprache höchstens eine."@de,
-        "A description in words, at most one per language."@en,
-        "Une description en mots, au plus une par langue."@fr ;
+        "A description in words, at most one per language."@en ;
     sh:minCount 1 ;
     sh:nodeKind sh:Literal ;
     sh:datatype rdf:langString ;
@@ -499,34 +431,28 @@ shape:requiredDescription a sh:PropertyShape ;
 shape:url a sh:PropertyShape ;
     sh:order 5 ;
     sh:path schema:url ;
-    sh:name "hat Landingpage"@de,
-        "has landing page"@en,
-        "a page d'accueil"@fr ;
-    sh:description "Eine Webseite, die in einem Webbrowser aufgerufen werden kann, um auf den Katalog, ein Dataset, seine Distributionen und/oder zusätzliche Informationen zuzugreifen."@de,
-        "A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information."@en,
-        "Une page Web pouvant être consultée dans un navigateur pour accéder au catalogue, à un ensemble de données, à ses distributions et/ou à des informations supplémentaires."@fr ;
+    sh:name "Webseite"@de,
+        "Website"@en ;
+    sh:description "Eine Webseite mit weiteren Informationen."@de,
+        "A web page with further information."@en ;
     sh:nodeKind sh:IRI .
 
 shape:seeAlso a sh:PropertyShape ;
     sh:order 6 ;
     sh:path rdfs:seeAlso ;
     sh:name "Siehe auch"@de,
-        "See also"@en,
-        "Voir aussi"@fr ;
+        "See also"@en ;
     sh:description "Verweis auf eine weiterführende Quelle, zum Beispiel eine Dokumentation oder eine Webseite."@de,
-        "Reference to a further source, for example documentation or a web page."@en,
-        "Renvoi à une source complémentaire, par exemple une documentation ou une page web."@fr ;
+        "Reference to a further source, for example documentation or a web page."@en ;
     sh:nodeKind sh:IRI .
 
 shape:keywords a sh:PropertyShape ;
     sh:order 20 ;
     sh:path schema:keywords ;
     sh:name "Schlagwort"@de,
-        "Keyword"@en,
-        "Mot-clé"@fr ;
+        "Keyword"@en ;
     sh:description "Ein Schlagwort, das den Gegenstand thematisch einordnet."@de,
-        "A keyword that classifies the item thematically."@en,
-        "Un mot-clé qui classe l'élément par thème."@fr ;
+        "A keyword that classifies the item thematically."@en ;
     sh:nodeKind sh:IRI ;
     sh:class schema:DefinedTerm .
 
@@ -534,10 +460,8 @@ shape:legalBasis a sh:PropertyShape ;
     sh:order 21 ;
     sh:path systemmap:hasLegalBasis ;
     sh:name "hat Rechtsgrundlage"@de,
-        "has legal basis"@en,
-        "a une base légale"@fr ;
+        "has legal basis"@en ;
     sh:description "Zeigt an, dass irgendetwas X eine Rechtsgrundlage mit (einem bestimmten Teil) der Legislation Y hat."@de,
-        "Indicates that anything X has a legal basis in a (particular part of) legislation Y."@en,
-        "Indique que tout X a une base légale dans une (partie particulière de) législation Y."@fr ;
+        "Indicates that anything X has a legal basis in a (particular part of) legislation Y."@en ;
     sh:nodeKind sh:IRI ;
     sh:class schema:Legislation .
