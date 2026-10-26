@@ -1,197 +1,260 @@
 ---
-title: Quarto-Dokument als Vorlage
-abstract: Kurze Zusammenfassung des Zwecks dieses Dokuments
+title: DigiAgriFoodCH Systemlandkarte
+abstract: |
+  Die Systemlandkarte beschreibt die IT-Systeme des Schweizer Agrar- und Ernährungssektors, die Daten, die sie enthalten, die Services, die sie anbieten und nutzen, sowie die Organisationen, die sie betreiben, besitzen oder entwickeln.
+  Sie macht sichtbar, wo welche Daten liegen, woher sie stammen und wer dafür zuständig ist.
+  Sämtliche Inhalte stehen als maschinenlesbare _Linked Data_ zur Verfügung.
 lang: de
 ---
 
-# Hinweis {#sec-note .unnumbered .unlisted}
-
-Im vorliegenden Dokument wird bei der Bezeichnung von Personen eine geschlechtsneutrale Formulierung verwendet. Basis bildet der Leitfaden der Bundeskanzlei. Je nach Situation kommen Paarformen (Bürgerinnen und Bürger), geschlechtsabstrakte Formen (versicherte Person), geschlechtsneutrale Formen (Versicherte) oder Umschreibungen ohne Personenbezug zum Einsatz. Das generische Maskulin (Bürger) ist nicht zulässig. Vollformen werden in fortlaufenden Texten verwendet, also in Texten, die aus ausformulierten Sätzen bestehen. In verknappten Textpassagen, namentlich in Tabellen, können Kurzformen verwendet werden. Dabei wird die Kurzform mit Schrägstrich, aber ohne Auslassungsstrich verwendet (Referent/in). Genderstern und ähnliche Schreibweisen werden nicht verwendet.
-
 # Einleitung {#sec-introduction}
 
-## Status {#sec-status}
+Im Schweizer Agrar- und Ernährungssektor betreiben Bund, Kantone und private Organisationen eine Vielzahl von IT-Systemen: für Direktzahlungen, für den Tierverkehr, für Kontrollen, für die Nährstoffbilanz oder für die Betriebsführung.
+Viele dieser Systeme tauschen Daten miteinander aus oder beziehen Daten voneinander.
+Welche Daten in welchem System liegen, woher sie stammen und wer für ein System zuständig ist, ist jedoch selten an einem Ort zusammenhängend beschrieben.
+Das erschwert es, Datenflüsse zu verstehen, Mehrfacherhebungen zu vermeiden und die Auswirkungen von Änderungen an einem System abzuschätzen.
 
-{{< ech status >}}
+Die Systemlandkarte schliesst diese Lücke.
+Sie beschreibt die Systeme, ihre Daten und ihre Beziehungen in einem gemeinsamen Wissensgraphen.
 
-## Geltungsbereich {#sec-scope-of-application}
+## Anwendungsgebiet {#sec-scope}
 
-Die Angaben in diesem Kapitel sollen dem Leser einen raschen Überblick geben, wofür dieser Standard gedacht ist.
-Hinweise zu folgenden Sachverhalten können dabei hilfreich sein.
+Die Systemlandkarte richtet sich an Fachpersonen, Architektinnen und Architekten sowie Entwickelnde, die sich einen Überblick über die IT-Landschaft des Agrar- und Ernährungssektors verschaffen oder Datenflüsse zwischen Systemen nachvollziehen wollen.
+Sie umfasst (@tbl-content):
 
-## Wir können Untertitel haben {#sec-example-subheading}
+- IT-Systeme und die Services, die sie anbieten und nutzen,
+- die Datensätze, die in den Systemen enthalten sind, und deren Herkunft,
+- die Organisationen, die Systeme betreiben, besitzen oder entwickeln,
+- die Rechtsgrundlagen, auf die sich Systeme und Daten stützen, sowie
+- Subgraphen, die einen thematischen Ausschnitt der Systemlandkarte zusammenfassen.
 
-Und etwas Text schreiben.
+Nicht Gegenstand sind die Daten selbst:
+Die Systemlandkarte beschreibt, *welche* Daten ein System enthält, nicht deren Inhalt.
+Ebenfalls nicht enthalten sind technische Details wie Server, Netzwerke oder Schnittstellenspezifikationen.
 
-### Auch Unter-Unterüberschriften {#sec-example-subsubheading}
+| Inhalt           | Anzahl |
+|:-----------------|-------:|
+| IT-Systeme       |    154 |
+| Datensätze       |    127 |
+| Services         |     10 |
+| Organisationen   |    270 |
+| Rechtsgrundlagen |     49 |
+| Schlagwörter     |     20 |
+| Subgraphen       |      6 |
 
-Und noch mehr Text schreiben. Vielleicht sogar mit einem schönen Bild.
+: Inhalte der Systemlandkarte (Stand Oktober 2026). {#tbl-content tbl-colwidths="[70,30]"}
 
-![Fügen Sie immer etwas Text hinzu, um zu beschreiben, was das Bild zeigt. Hat eine Abbildung eine Beschriftung, erscheint sie im Abbildungsverzeichnis. Dort wird nur der erste Satz der Beschriftung angezeigt.](https://fastly.picsum.photos/id/653/536/354.jpg?hmac=3InR8I5KmwbdkPHehlM8BMPd_BDHG_RWZkxt_IkeQGY){#fig-example}
+## Aufbau des Dokuments {#sec-structure}
 
-Bei der Darstellung von Diagrammen sollte versucht werden, diese direkt in Mermaid JS zu erstellen; dies macht zukünftige Änderungen oder Übersetzungen sehr einfach.
+- @sec-content erklärt, was die Systemlandkarte abbildet, und zeigt die Begriffe an Beispielen.
+- @sec-data-model beschreibt, wie diese Begriffe modelliert und miteinander verknüpft sind.
+- @sec-data-retrieval zeigt, wie die Daten bezogen und gepflegt werden.
+- @sec-class-reference dokumentiert alle Klassen und Eigenschaften.
 
-## Formatierungen {#sec-formatting}
+# Was die Systemlandkarte abbildet {#sec-content}
 
-Dieses Kapitel ist ein Stresstest: Es enthält die gängigen Markdown- und Quarto-Elemente, damit ihre Darstellung in PDF und Website geprüft werden kann.
+## IT-Systeme und Services {#sec-systems}
 
-### Textauszeichnungen {#sec-formatting-text}
+Ein IT-System ist eine eigenständige Anwendung, die Daten verarbeitet, oft mit einer oder mehreren dazugehörigen Datenbanken, und von einer Organisation betrieben wird, zum Beispiel das Agrarpolitische Informationssystem (AGIS) des BLW.
+Grössere Systeme können aus Teilsystemen bestehen.
+Eine eigene Gruppe bilden die Farm-Management-Informationssysteme (FMIS), die landwirtschaftliche Daten erfassen, verarbeiten und bereitstellen, um betriebliche Entscheidungen zu unterstützen, etwa elektronische Feldkalender.
 
-Text kann **fett**, *kursiv*, [unterstrichen]{.underline}, [markiert]{.mark}, [in Kapitälchen]{.smallcaps} oder ~~durchgestrichen~~ gesetzt werden. Tastenkürzel wie {{< kbd Ctrl-C >}} + {{< kbd Ctrl-V >}} und Inline-Code wie `schema:name` werden speziell hervorgehoben.[^1]
+Ein Service ist eine technische Softwarekomponente, die über klar definierte Schnittstellen Funktionen für andere Systeme bereitstellt.
+So stellt Agate den zentralen Authentifizierungs- und Rollenverwaltungsdienst bereit, über den sich Nutzende bei verschiedenen Systemen anmelden, und der Beitragsberechnungsservice berechnet die Direktzahlungen der Landwirtschaftsbetriebe.
 
-#### Eine Überschrift vierter Stufe {#sec-formatting-h4}
+## Datensätze und Datenflüsse {#sec-datasets}
 
-Überschriften bis zur vierten Stufe sind möglich; sie werden nummeriert, erscheinen aber nicht im Inhaltsverzeichnis.[^2]
+Ein Datensatz ist eine Informationseinheit, die in einem IT-System enthalten ist.
+Der Begriff ist bewusst weit gefasst: Ein Datensatz kann eine ganze Datenbank sein, eine einzelne Tabelle oder ein Dokument, zum Beispiel die Beitragsdaten in AGIS.
 
-### Listen und Hinweise {#sec-formatting-lists}
+Fliessen Daten von einem System in ein anderes, zeigt die Systemlandkarte nicht nur, *dass* Daten fliessen, sondern auch *welche* und woher sie stammen.
+Wie die Daten übertragen werden, spielt dabei keine Rolle: über eine technische Schnittstelle, per E-Mail-Versand von Tabellen oder durch manuelles Abschreiben.
 
-Ungeordnete Liste:
+Einige Datensätze werden gesondert ausgewiesen:
+Stammdaten wie die BUR-Nummer oder die UID, die von vielen Systemen gemeinsam genutzt werden, sowie Datensätze mit Personendaten oder mit besonders schützenswerten Personendaten.
 
-- Erster Punkt
-- Zweiter Punkt
-  - Unterpunkt
-- Dritter Punkt
+## Organisationen {#sec-organizations}
 
-Geordnete Liste:
+Organisationen sind juristische Personen wie Behörden, Unternehmen oder Verbände sowie deren Untereinheiten.
+Sie betreiben, besitzen oder entwickeln IT-Systeme.
+Unterschieden werden Organisationen des Bundes, kantonale Organisationen, darunter Landwirtschaftsämter, Veterinärdienste und Beratungsstellen, sowie privatrechtliche Organisationen.
+Organisationen können hierarchisch gegliedert sein, etwa in Abteilungen.
 
-1. Erster Schritt
-2. Zweiter Schritt
-3. Dritter Schritt
+## Rechtsgrundlagen {#sec-legal-basis}
 
-::: {.callout-note}
-Ein Hinweis macht auf Zusammenhänge aufmerksam, die leicht übersehen werden.
-:::
+Organisationen, IT-Systeme und Datensätze können sich auf eine Rechtsgrundlage stützen, etwa auf einen Artikel des Landwirtschaftsgesetzes (LwG).
 
-::: {.callout-warning}
-Eine Warnung weist auf Fehlerquellen hin, zum Beispiel auf ungeprüfte Eingabedaten.
-:::
+## Subgraphen {#sec-subgraphs}
 
-### Code, Tabellen und Formeln {#sec-formatting-code}
+Ein Subgraph fasst einen thematischen Ausschnitt der Systemlandkarte zusammen, zum Beispiel die Architektur rund um ein bestimmtes System.
+So lässt sich ein Teilbereich zeigen, ohne die Vielzahl der übrigen Knoten.
+@tbl-subgraphs listet die bestehenden Subgraphen.
 
-Der folgende Codeblock zeigt eine SPARQL-Abfrage:
+| Subgraph                                        | Knoten |
+|:------------------------------------------------|-------:|
+| IT-Systemlandschaft im Schweizer Nutztiersektor |    139 |
+| Systemlandschaft des BLW                        |     99 |
+| digiFLUX Systemarchitektur                      |     50 |
+| Acontrol Systemarchitektur                      |     38 |
+| AGIS Systemarchitektur                          |     33 |
+| MARS III Systemarchitektur                      |     27 |
 
-```sparql
-SELECT ?s ?p ?o
-WHERE {
-  ?s ?p ?o .
-}
-LIMIT 10
-```
-
-+----------------+--------------------+--------------------------------+
-| Spalte         | Typ                | Bemerkung                      |
-+:===============+:===================+:===============================+
-| Name           | Zeichenkette       | Pflichtfeld                    |
-+----------------+--------------------+--------------------------------+
-| Menge          | Dezimalzahl        | mit Einheit                    |
-+----------------+--------------------+--------------------------------+
-
-: Beispieltabelle mit drei Spalten. Hat eine Tabelle eine Beschriftung, erscheint sie im Tabellenverzeichnis. Dort wird nur der erste Satz der Beschriftung angezeigt. {#tbl-example}
-
-Eine Formel kann im Text stehen, etwa $E = m c^2$, oder als eigene Gleichung wie @eq-example:
-
-$$
-\sum_{i=1}^{n} x_i = n \bar{x}
-$$ {#eq-example}
-
-[^1]: Fussnoten erscheinen auf der Website am rechten Rand, im PDF am Seitenende.
-[^2]: Eine zweite Fussnote mit einem Link auf [ech.ch](https://www.ech.ch/).
-
-# Hinweise zur Verwendung {#sec-usage-notes}
-
-Der folgende Absatz ist bewusst Unsinn und dient nur dem Test der Zitierweise: Gemäss dem Genehmigungsleitfaden [@eCH-0003:11.1.0] müssen alle Postadressen [@eCH-0010:8.1.0] in Turtle [@Turtle] serialisiert, als DCAT-Katalog [@DCAT; @eCH-0200:3.0.1] mit SHACL [@SHACL] geprüft und per SPARQL [@SPARQL] als Linked Open Data [@eCH-0205:1.0] über landwirtschaftliche Kulturen [@eCH-0265:1.0.0] in JSON-LD [@JSON-LD] und OWL [@OWL2] veröffentlicht werden, wie es das Semantic Web [@berners2023semantic] vorsieht.
-
-## Namespaces {#sec-namespaces}
-
-@tbl-namespaces listet die Präfixe und Namespaces, die in diesem Dokument verwendet werden. Ein Präfix steht stellvertretend für eine Namespace-IRI, den gemeinsamen Anfang der IRIs eines Vokabulars. Die Turtle-Spezifikation beschreibt, wie solche [*Prefixed Names*](https://www.w3.org/TR/turtle/#prefixed-name) aufgelöst werden [@Turtle].
-
-{{< include namespaces.md >}}
+: Subgraphen der Systemlandkarte mit der Anzahl enthaltener Knoten (Stand Oktober 2026). {#tbl-subgraphs tbl-colwidths="[80,20]"}
 
 # Datenmodell {#sec-data-model}
 
-{{< include entities.md >}}
+Dieses Kapitel beschreibt, wie die Begriffe aus @sec-content modelliert sind: welche Angaben erfasst werden, welche davon Pflicht sind und wie die Elemente miteinander verknüpft werden.
+Die technische Referenz mit allen Eigenschaften ist in @sec-class-reference dokumentiert.
 
-# Datenbezug {#sec-data-retrieval}
+## IT-Systeme {#sec-model-systems}
 
-Die diesem Dokument zugrundeliegenden Master- und Referenzdaten sind als _Linked Data_ verfügbar.
+Jedes IT-System hat einen Namen in mindestens einer der Sprachen Deutsch, Französisch, Italienisch oder Englisch, höchstens einen pro Sprache, sowie eine deutsche Beschreibung.
+Zudem muss jedes System von einer Organisation betrieben werden.
+Bei 149 der 154 Systeme ist der Betreiber direkt erfasst; die übrigen sind Teilsysteme und werden vom Betreiber ihres übergeordneten Systems betrieben.
 
-Die technologische Basis dafür bildet das Resource Description Framework [RDF, @cyganiak2014rdf11], ein zentraler Standard des World Wide Web Consortiums (W3C) zur Modellierung von Datenstrukturen im Web.
-In RDF werden Informationen nicht in klassischen Tabellen, sondern als vernetzte Graphen abgebildet.
-Jede Aussage besteht dabei aus einem sogenannten Triple (Subjekt, Prädikat, Objekt).
-Diese Struktur ermöglicht eine maschinenlesbare, interoperable und systemübergreifend eindeutige Beschreibung von Ressourcen und deren Relationen zueinander.
+Optional sind eine Abkürzung, weitere Namen, eine Webseite, die entwickelnde Organisation, die Rechtsgrundlage und Schlagwörter.
+Über «ist Teil von» wird ein System einem übergeordneten System zugeordnet, über «nutzt IT-Service» den Services, die es verwendet.
 
-Für die Speicherung und Publikation dieser RDF-Daten wird [LINDAS](https://lindas.admin.ch/) (Linked Data Service) genutzt, der offizielle Linked-Data-Dienst der Schweizer Bundesverwaltung.
-LINDAS fungiert als sogenannter _Triple Store_, einer spezialisierte Graphdatenbank, die für das effiziente Speichern und Abfragen von RDF-Triples optimiert ist und die Daten öffentlich über eine genormte Schnittstelle bereitstellt.
+Ein Beispiel: Das Agrarpolitische Informationssystem (AGIS) wird von der Gruppe Agrarinformationssystem AGIS des BLW betrieben, enthält fünf Datensätze und stützt sich auf Art. 165c des Landwirtschaftsgesetzes.
 
-Das folgende Kapitel gibt eine minimale Anleitung, wie die Daten von LINDAS abgefragt und bezogen werden können.
+## Datensätze {#sec-model-datasets}
+
+Jeder Datensatz liegt in einem IT-System, entweder direkt (89 Datensätze) oder als Teil eines übergeordneten Datensatzes (38).
+So lässt sich eine Datenbank mit ihren Tabellen abbilden.
+
+Datenflüsse werden über die Beziehung «wurde abgeleitet von» erfasst:
+Der Datensatz im empfangenden System verweist auf den Datensatz, aus dem er stammt.
+So sind etwa die Kontaktdaten der Milchproduzenten aus den Registerdaten in AGIS abgeleitet.
+Die Gegenrichtung «informiert» wird automatisch ergänzt.
+
+13 Datensätze sind als Stammdaten gekennzeichnet; andere Datensätze verweisen über «hat Masterdaten» darauf.
+26 Datensätze sind als Personendaten gekennzeichnet, 2 als besonders schützenswerte Personendaten.
+
+## IT-Services {#sec-model-services}
+
+Ein Service wird von einem IT-System bereitgestellt und von IT-Systemen oder anderen Services genutzt.
+Erfasst sind zehn Services; 67 Systeme nutzen mindestens einen davon.
+
+## Organisationen {#sec-model-organizations}
+
+Jede Organisation hat einen Namen.
+Von den 270 Organisationen sind 70 Organisationen des Bundes, 51 kantonale Organisationen und 88 privatrechtliche Organisationen.
+Wo eine Organisation in einem amtlichen Register geführt wird, verweist die Systemlandkarte auf diesen Eintrag, statt die Angaben zu kopieren:
+Unternehmen werden direkt über ihren Eintrag im Handelsregister (Zefix) identifiziert, Verwaltungseinheiten verweisen über «Registereintrag» auf den Staatskalender.
+
+Die Hierarchie wird über «gehört zu» abgebildet, jeweils nur die direkte Zugehörigkeit.
+So gehört die Abteilung Direktzahlungen und Beiträge zu Landwirtschaft Aargau.
+Ausserdem lässt sich festhalten, dass eine Organisation Mitglied einer anderen ist, sie (teilweise) besitzt oder Zugriff auf bestimmte Daten hat, etwa wenn eine andere Organisation als die Betreiberin auf die Daten zugreift.
+
+## Rechtsgrundlagen, Schlagwörter und Subgraphen {#sec-model-other}
+
+Rechtsgrundlagen werden über ihre Adresse in der Systematischen Rechtssammlung des Bundes (Fedlex) identifiziert und tragen ihren offiziellen Titel.
+Erfasst sind 49 Rechtsgrundlagen, auf die Organisationen, IT-Systeme und Datensätze verweisen.
+
+Schlagwörter ordnen IT-Systeme, Datensätze und Services thematisch ein.
+Ein Subgraph hat einen Namen und enthält mindestens ein Element.
+
+## Beziehungen {#sec-relations}
+
+@tbl-relations zeigt die Beziehungen der Systemlandkarte.
+Zu den meisten gibt es eine Gegenrichtung, die bei der Verarbeitung automatisch ergänzt wird.
+
+| Beziehung               | Gegenrichtung                 | Von                                | Zu                   |
+|:------------------------|:------------------------------|:-----------------------------------|:---------------------|
+| wird betrieben von      | betreibt                      | IT-System                          | Organisation         |
+| entwickelt von          | entwickelt                    | IT-System                          | Organisation         |
+| ist Teil von            | hat Teil                      | IT-System, Datensatz, Service      | dieselbe Klasse      |
+| nutzt IT-Service        | wird verwendet von            | IT-System, Service                 | Service              |
+| wird bereitgestellt von | bietet Service an             | Service                            | IT-System            |
+| ist beinhaltet in       | beinhaltet                    | Datensatz                          | IT-System            |
+| wurde abgeleitet von    | informiert                    | Datensatz                          | Datensatz            |
+| hat Masterdaten         | –                             | Datensatz                          | Datensatz            |
+| gehört zu               | beinhaltet Suborganisation    | Organisation                       | Organisation         |
+| Mitglied von            | hat Mitglied                  | Organisation                       | Organisation         |
+| besitzt (teilweise)     | ist (teilweise) in Besitz von | Organisation                       | Organisation         |
+| hat Zugriff auf         | –                             | Organisation                       | IT-System, Datensatz |
+| hat Rechtsgrundlage     | –                             | Organisation, IT-System, Datensatz | Rechtsgrundlage      |
+
+: Die Beziehungen der Systemlandkarte mit ihrer Gegenrichtung. {#tbl-relations tbl-colwidths="[22,26,28,24]"}
+
+## Qualitätssicherung {#sec-quality}
+
+Bei jeder Änderung werden die Daten automatisch geprüft, bevor sie publiziert werden.
+Die Regeln dafür sind in der *Shapes Constraint Language* (SHACL) formuliert [@SHACL].
+Sie legen zum Beispiel fest, dass jedes IT-System eine deutsche Beschreibung hat und von einer Organisation betrieben wird, dass jeder Datensatz in einem IT-System liegt und dass jede Beziehung auf ein Objekt der passenden Klasse zeigt.
+Nur Daten, die alle Regeln erfüllen, werden publiziert.
+
+# Datenbezug und Nutzung {#sec-data-retrieval}
+
+## Bezug über LINDAS {#sec-lindas}
+
+Die Systemlandkarte ist auf [LINDAS](https://lindas.admin.ch/), dem Linked Data Service der Bundesverwaltung, publiziert und kann mit SPARQL abgefragt werden [@SPARQL].
+Das folgende Beispiel listet alle Subgraphen mit der Anzahl ihrer Knoten:
 
 ``` rq
-{{< include ../data/example.rq >}}
+{{< include ../../src/sparql/queries/subgraphs.rq >}}
 ```
 
-Die zugrundeliegenden Daten selbst werden auf GitHub als Turtle-Files gepflegt.
+Solche Abfragen lassen sich auf <https://lindas.admin.ch/sparql/> ausprobieren.
+Weitere Beispiele liegen im Repository unter `src/sparql/queries/`.
 
-``` ttl
-{{< include ../data/example.ttl >}}
-```
+## Visualisierung {#sec-visualisation}
 
-# Sicherheitsaspekte {#sec-safety-consideration}
+Ein separates [Frontend](https://github.com/damian-oswald/system-map-frontend) zeigt die Systemlandkarte als interaktiven Graphen im Browser an und kann auf einzelne Subgraphen gefiltert werden.
 
-Informationen zu den ausdrücklich massgeblichen rechtlichen Grundlagen oder ein Hinweis darauf, dass bei der Umsetzung die entsprechenden rechtlichen Grundlagen zu beachten sind.
+## Einschränkungen {#sec-limitations}
 
-# Haftungsausschluss {#sec-disclaimer}
+Fehlt in der Systemlandkarte eine Angabe, heisst das nicht, dass es sie nicht gibt, sondern nur, dass sie nicht erfasst ist.
+Ist ein Datensatz nicht als Personendaten gekennzeichnet, kann er dennoch Personendaten enthalten.
 
-eCH-Standards, die der Verein eCH dem Anwender kostenlos zur Verfügung stellt oder die auf eCH verweisen, haben nur den Status von Empfehlungen. Der Verein eCH haftet in keinem Fall für Entscheidungen oder Massnahmen, die der Anwender auf der Grundlage dieser Dokumente trifft bzw. ergreift. Der Anwender ist dafür verantwortlich, die Dokumente vor ihrer Verwendung selbst zu überprüfen und gegebenenfalls fachlichen Rat einzuholen. eCH-Standards können und sollen die technische, organisatorische oder rechtliche Beratung im Einzelfall nicht ersetzen.
+## Pflege {#sec-maintenance}
 
-Dokumente, Verfahren, Methoden, Produkte und Standards, auf die in eCH-Standards verwiesen wird, sind möglicherweise durch Marken-, Urheber- oder Patentrechte geschützt. Es liegt in der ausschliesslichen Verantwortung des Anwenders, die erforderlichen Lizenzen von den berechtigten Personen und/oder Organisationen einzuholen.
+Die Systemlandkarte wird auf GitHub gepflegt.
+Fehler oder fehlende Einträge können als [Issue](https://github.com/blw-ofag-ufag/system-map-backend/issues) gemeldet werden.
+Die Inhalte stehen unter der Lizenz [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) und dürfen unter Nennung der Quelle frei verwendet werden.
 
-Obwohl der Verein eCH bei der Erstellung der eCH-Standards mit angemessener Sorgfalt vorgegangen ist, kann er keine Gewährleistung oder Garantie dafür übernehmen, dass die bereitgestellten Informationen und Dokumente aktuell, vollständig, richtig oder fehlerfrei sind. eCH behält sich das Recht vor, die Inhalte der eCH-Standards jederzeit und ohne vorherige Ankündigung zu ändern.
+# Klassen des Datenmodells {#sec-class-reference}
 
-Jede Haftung für Schäden, die durch die Nutzung der eCH-Standards durch den Anwender entstehen, wird im gesetzlich zulässigen Rahmen ausgeschlossen.
+Dieses Kapitel dokumentiert alle Klassen der Systemlandkarte mit ihren Eigenschaften.
+Es wird automatisch aus den SHACL-Shapes erzeugt, mit denen die Daten geprüft werden, und ist deshalb immer auf dem Stand der Regeln.
 
-# Urheberrechte {#sec-copyrights}
+## Namespaces {#sec-namespaces}
 
-Personen, die eCH-Standards erarbeiten, bleiben Inhaber ihrer geistigen Eigentumsrechte. Diese Personen verpflichten sich jedoch, ihre geistigen Eigentumsrechte oder andere Rechte an geistigen Eigentumsrechten Dritter, soweit möglich, den jeweiligen Fachgruppen und dem Verein eCH kostenlos und zur uneingeschränkten Nutzung und Weiterentwicklung im Rahmen des Vereinszwecks zur Verfügung zu stellen.
+@tbl-namespaces listet die Präfixe und die zugehörigen Namespaces, die in diesem Kapitel verwendet werden.
 
-Die von den Fachgruppen erarbeiteten Standards dürfen unter Nennung des jeweiligen Autors von eCH kostenlos und in uneingeschränktem Umfang genutzt, verbreitet und weiterentwickelt werden.
+{{< include namespaces.md >}}
 
-eCH-Standards sind vollständig dokumentiert und frei von lizenz- und/oder patentrechtlichen Einschränkungen. Die dazugehörige Dokumentation kann kostenlos angefordert werden.
-Diese Bestimmungen gelten jedoch nur für die von eCH erarbeiteten Standards, nicht aber für Standards oder Produkte Dritter, die auf eCH-Standards verweisen. Die Standards enthalten die entsprechenden Hinweise auf Rechte Dritter.
+{{< include entities.md >}}
 
 # Anhang A – Referenzen {#sec-appendix-a .appendix .unnumbered}
 
 ::: {#refs}
 :::
 
-# Anhang B – Mitwirkung und Prüfung {#sec-appendix-b .appendix .unnumbered}
+# Anhang B – Mitwirkung {#sec-appendix-b .appendix .unnumbered}
 
-| Name                           | Organisation                      |
-|:-------------------------------|:----------------------------------|
-| Damian Oswald                  | Bundesamt für Landwirtschaft      |
-| Michael Schüpbach              | Bundesamt für Landwirtschaft      |
-| Lea Stauber                    | Bundesamt für Landwirtschaft      |
+| Name              | Organisation                 |
+|:------------------|:-----------------------------|
+| Marc Beringer     | Bundesamt für Landwirtschaft |
+| Linus Degen       | Berner Fachhochschule        |
+| Pascal Hurni      | Bundesamt für Landwirtschaft |
+| Damian Oswald     | Bundesamt für Landwirtschaft |
+| Michael Schüpbach | Bundesamt für Landwirtschaft |
+| Lea Stauber       | Bundesamt für Landwirtschaft |
+
+: Mitwirkende {#tbl-authors tbl-colwidths="[50,50]"}
 
 # Anhang C – Abkürzungen und Glossar {#sec-appendix-c .appendix .unnumbered}
 
-Dieses Glossar ist als SKOS-Glossar [@SKOS] auch maschinenlesbar verfügbar, auf [LINDAS](https://lindas.admin.ch/) und im [GitHub-Repository](https://github.com/blw-ofag-ufag/semantic-web-template/blob/main/src/rdf/data/glossary.skos.ttl).
+Dieses Glossar ist auch maschinenlesbar verfügbar, auf LINDAS und im Repository unter `src/rdf/data/glossary.skos.ttl`.
 
 {{< include glossary.md >}}
 
-# Anhang D – Änderungen gegenüber der Vorversion {#sec-appendix-d .appendix .unnumbered}
+# Anhang D – Änderungen gegenüber dem bisherigen Repository {#sec-appendix-d .appendix .unnumbered}
 
-Die wichtigsten Änderungen der Version 2.0.0 gegenüber der Vorversion 1.4.6:
+Die Systemlandkarte wurde bisher im Repository [system-map](https://github.com/blw-ofag-ufag/system-map) gepflegt.
+Mit dem Wechsel in das vorliegende Repository blieb die vollständige Versionsgeschichte erhalten.
 
-- **Dokumentvorlage:** Die PDF-Ausgabe folgt neu der eCH-Dokumentvorlage (Titelseite mit Metadatentabelle, Kopf- und Fusszeile, Inhaltsverzeichnis, Anhänge); die Website übernimmt denselben Stil in einer hellen und einer dunklen Variante.
-- **Metadaten:** Nummer, Kategorie, Reifegrad, Version, Status und weitere Angaben des Standards werden einmal zentral erfasst und automatisch in alle Sprachversionen, in die Titelseite, in die Fusszeile und in @sec-status übernommen.
-- **Verzeichnisse:** Abbildungs- und Tabellenverzeichnis (Anhang E und F) werden automatisch erzeugt und sind mit den Abbildungen und Tabellen verlinkt.
-- **Darstellung:** Einheitliche Gestaltung von Tabellen, Beschriftungen und Code in PDF und Website.
-
-Eine vollständige Liste aller Änderungen je Version findet sich in den [Releases auf GitHub](https://github.com/blw-ofag-ufag/semantic-web-template/releases).
-
-# Anhang E – Abbildungsverzeichnis {#sec-appendix-e .appendix .unnumbered}
-
-{{< ech figures >}}
-
-# Anhang F – Tabellenverzeichnis {#sec-appendix-f .appendix .unnumbered}
+# Anhang E – Tabellenverzeichnis {#sec-appendix-e .appendix .unnumbered}
 
 {{< ech tables >}}

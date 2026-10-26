@@ -15,30 +15,21 @@
 @prefix schema:          <http://schema.org/> .
 @prefix vcard:           <http://www.w3.org/2006/vcard/ns#> .
 @prefix void:            <http://rdfs.org/ns/void#> .
-@prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
 @prefix org:             <https://register.ld.admin.ch/opendataswiss/org/> .
-@prefix theme:           <https://register.ld.admin.ch/opendataswiss/category/> .
-@prefix status:          <https://ld.admin.ch/vocabulary/CreativeWorkStatus/> .
-@prefix tou:             <https://ld.admin.ch/vocabulary/TermsOfUse/> .
 @prefix frequency:       <https://publications.europa.eu/resource/authority/frequency/> .
 
-<https://lindas.admin.ch/foag/ogd> a void:Dataset,
-        dcat:Dataset,
+<https://lindas.admin.ch/foag/system-map> a void:Dataset,
         schema:Dataset ;
     schema:name
-        "eCH-1234 Chinook-Datensatz"@de,
-        "eCH-1234 Chinook dataset"@en,
-        "eCH-1234 Jeu de données Chinook"@fr,
-        "eCH-1234 Set di dati Chinook"@it ;
+        "Systemlandkarte des Schweizer Agrar- und Ernährungssektors"@de,
+        "System map of the Swiss agri-food sector"@en,
+        "Carte des systèmes du secteur agroalimentaire suisse"@fr,
+        "Mappa dei sistemi del settore agroalimentare svizzero"@it ;
     schema:description
-        "Demonstrationsdaten des Standards eCH-1234: Musiktitel, Alben, Personen und Rechnungen aus der Chinook-Datenbank als Linked Data."@de,
-        "Demonstration data of the eCH-1234 standard: music tracks, albums, persons and invoices from the Chinook database as linked data."@en,
-        "Données de démonstration de la norme eCH-1234: titres musicaux, albums, personnes et factures de la base de données Chinook sous forme de données liées."@fr,
-        "Dati dimostrativi della norma eCH-1234: brani musicali, album, persone e fatture del database Chinook come linked data."@it ;
-    dcterms:issued "2026-10-01"^^xsd:date ;
-    schema:dateCreated "2026-10-01"^^xsd:date ;
-    schema:datePublished "2026-10-01"^^xsd:date ;
-    schema:creativeWorkStatus status:Draft ;
+        "Wissensgraph der IT-Systeme des Schweizer Agrar- und Ernährungssektors, der Daten, die sie enthalten, der Services, die sie anbieten und nutzen, sowie der Organisationen, die sie betreiben, besitzen oder entwickeln."@de,
+        "Knowledge graph of the IT systems of the Swiss agri-food sector, the data they contain, the services they provide and consume, and the organizations that operate, own or develop them."@en,
+        "Graphe de connaissances des systèmes informatiques du secteur agroalimentaire suisse, des données qu'ils contiennent, des services qu'ils fournissent et utilisent, ainsi que des organisations qui les exploitent, les possèdent ou les développent."@fr,
+        "Grafo di conoscenza dei sistemi IT del settore agroalimentare svizzero, dei dati che contengono, dei servizi che forniscono e utilizzano e delle organizzazioni che li gestiscono, li possiedono o li sviluppano."@it ;
     schema:creator org:blw-ofag-ufag ;
     schema:publisher org:blw-ofag-ufag ;
     dcat:contactPoint [
@@ -46,10 +37,8 @@
         vcard:fn "Bundesamt für Landwirtschaft BLW" ;
         vcard:hasEmail <mailto:agridata.ch@blw.admin.ch>
     ] ;
-    dcterms:rights tou:Open-Use ;
-    dcterms:license tou:Open-Use ;
-    dcat:landingPage <https://blw-ofag-ufag.github.io/semantic-web-template/> ;
-    dcat:theme theme:culture ;
-    dcterms:language "de", "fr", "en" ;
+    dcat:landingPage <https://github.com/blw-ofag-ufag/system-map-backend> ;
+    dcterms:language "de", "fr", "it", "en" ;
     dcterms:accrualPeriodicity frequency:IRREG ;
-    dcat:keyword "Linked Data"@de, "Linked Data"@en, "Données liées"@fr, "Musik"@de, "Music"@en, "Musique"@fr .
+    dcat:keyword "Systemlandkarte"@de, "System map"@en, "Carte des systèmes"@fr, "Mappa dei sistemi"@it,
+        "IT-Systeme"@de, "IT systems"@en, "Systèmes informatiques"@fr, "Sistemi IT"@it .

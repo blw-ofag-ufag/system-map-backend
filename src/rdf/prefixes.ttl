@@ -4,45 +4,37 @@
 # ==============================================================================
 
 # Project-specific namespaces/qnames
-@prefix :                <https://agriculture.ld.admin.ch/eCH-1234/2/> .
-@prefix term:            <https://agriculture.ld.admin.ch/eCH-1234/2/term/> .
-@prefix address:         <https://agriculture.ld.admin.ch/eCH-1234/2/address/> .
-@prefix album:           <https://agriculture.ld.admin.ch/eCH-1234/2/album/> .
-@prefix artist:          <https://agriculture.ld.admin.ch/eCH-1234/2/artist/> .
-@prefix customer:        <https://agriculture.ld.admin.ch/eCH-1234/2/customer/> .
-@prefix employee:        <https://agriculture.ld.admin.ch/eCH-1234/2/employee/> .
-@prefix genre:           <https://agriculture.ld.admin.ch/eCH-1234/2/genre/> .
-@prefix invline:         <https://agriculture.ld.admin.ch/eCH-1234/2/invoiceline/> .
-@prefix invoice:         <https://agriculture.ld.admin.ch/eCH-1234/2/invoice/> .
-@prefix media:           <https://agriculture.ld.admin.ch/eCH-1234/2/mediatype/> .
-@prefix playlist:        <https://agriculture.ld.admin.ch/eCH-1234/2/playlist/> .
-@prefix track:           <https://agriculture.ld.admin.ch/eCH-1234/2/tracks/> .
-@prefix person:          <https://agriculture.ld.admin.ch/eCH-1234/2/person/> .
+@prefix :                <https://agriculture.ld.admin.ch/system-map/> .
+@prefix systemmap:       <https://agriculture.ld.admin.ch/system-map/> .
+@prefix keyword:         <https://agriculture.ld.admin.ch/system-map/keyword/> .
+@prefix shape:           <https://agriculture.ld.admin.ch/system-map/shapes/> .
 
 # LINDAS-specific namespaces/qnames
-@prefix country:         <https://ld.admin.ch/country/> .
+@prefix staatskalender:  <https://register.ld.admin.ch/staatskalender/organization/> .
+@prefix termdat:         <https://register.ld.admin.ch/termdat/> .
+@prefix zefix:           <https://register.ld.admin.ch/zefix/company/> .
 @prefix org:             <https://register.ld.admin.ch/opendataswiss/org/> .
-@prefix cube:            <https://cube.link/> .
-@prefix meta:            <https://cube.link/meta/> .
-@prefix status:          <https://ld.admin.ch/vocabulary/CreativeWorkStatus/> .
 @prefix theme:           <https://register.ld.admin.ch/opendataswiss/category/> .
+@prefix status:          <https://ld.admin.ch/vocabulary/CreativeWorkStatus/> .
 @prefix tou:             <https://ld.admin.ch/vocabulary/TermsOfUse/> .
 
+# Legislation (Fedlex)
+@prefix LwG:             <https://www.fedlex.admin.ch/eli/cc/1998/3033_3033_3033#> .
+
 # Globally used namespaces/qnames
-@prefix adms:            <https://www.w3.org/ns/adms#> .
 @prefix dcat:            <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype:        <http://purl.org/dc/dcmitype/> .
 @prefix dcterms:         <http://purl.org/dc/terms/> .
-@prefix doap:            <http://usefulinc.com/ns/doap#> .
+@prefix fn:              <http://www.w3.org/2005/xpath-functions#> .
 @prefix frequency:       <https://publications.europa.eu/resource/authority/frequency/> .
 @prefix owl:             <http://www.w3.org/2002/07/owl#> .
-@prefix qudt:            <http://qudt.org/schema/qudt/> .
+@prefix prov:            <http://www.w3.org/ns/prov#> .
 @prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema:          <http://schema.org/> .
+@prefix service:         <http://purl.org/ontology/service#> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
-@prefix unit:            <http://qudt.org/vocab/unit/> .
 @prefix vcard:           <http://www.w3.org/2006/vcard/ns#> .
 @prefix void:            <http://rdfs.org/ns/void#> .
-@prefix wikidata:        <http://www.wikidata.org/entity/> .
 @prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
