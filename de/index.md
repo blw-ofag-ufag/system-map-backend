@@ -438,7 +438,7 @@ Geschlossen
 Ja (nur die aufgeführten Eigenschaften zulässig)
 
 Kennzahlen  
-127 Instanzen mit je 6 bis 32 Tripeln (im Mittel 11.3)
+131 Instanzen mit je 6 bis 32 Tripeln (im Mittel 11.5)
 
 Open Data  
 Ja ([auf LINDAS
@@ -696,7 +696,7 @@ Geschlossen
 Ja (nur die aufgeführten Eigenschaften zulässig)
 
 Kennzahlen  
-10 Instanzen mit je 6 bis 77 Tripeln (im Mittel 14.2)
+14 Instanzen mit je 6 bis 78 Tripeln (im Mittel 14.2)
 
 Open Data  
 Ja ([auf LINDAS
@@ -813,7 +813,7 @@ Geschlossen
 Ja (nur die aufgeführten Eigenschaften zulässig)
 
 Kennzahlen  
-154 Instanzen mit je 6 bis 29 Tripeln (im Mittel 11.8)
+154 Instanzen mit je 6 bis 29 Tripeln (im Mittel 11.9)
 
 Open Data  
 Ja ([auf LINDAS
@@ -1204,7 +1204,7 @@ Geschlossen
 Ja (nur die aufgeführten Eigenschaften zulässig)
 
 Kennzahlen  
-6 Instanzen mit je 31 bis 143 Tripeln (im Mittel 69.7)
+7 Instanzen mit je 31 bis 143 Tripeln (im Mittel 65.7)
 
 Open Data  
 Ja ([auf LINDAS
